@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique de Confidentialité - Boookly</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: white;
+            min-height: 100vh;
+        }
+
+        header {
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .last-updated {
+            color: #6c757d;
+            font-size: 0.95em;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            color: #2c3e50;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-box {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e9ecef;
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .footer-links {
+            margin-top: 15px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Politique de Confidentialité</h1>
+            <p class="last-updated">Dernière mise à jour : 18 mars 2026</p>
+        </header>
+
+        <main>
+            <p>Cette Politique de confidentialité explique comment <strong>FGC Média Sàrl</strong> (« nous », « notre »), exploitant la plateforme Boookly (le « Service »), collecte, utilise, stocke et protège vos données personnelles. Cette politique est conforme à la <strong>Loi fédérale sur la protection des données (LPD/nLPD)</strong> suisse, en vigueur depuis le 1er septembre 2023, et s'aligne sur le <strong>Règlement général sur la protection des données (RGPD)</strong> de l'UE pour les utilisateurs de l'Espace économique européen.</p>
+
+            <h2>1. Responsable du traitement</h2>
+            <div class="contact-box">
+                <p><strong>FGC Média Sàrl</strong><br>
+                c/o Fiduconsult Neuchâtel SA<br>
+                Rue du Temple-Neuf 4<br>
+                CH-2001 Neuchâtel<br>
+                Suisse</p>
+                <p>E-mail : <a href="mailto:support@boookly.ch">support@boookly.ch</a></p>
+            </div>
+
+            <p>Pour toute question relative à la protection des données, contactez-nous à l'adresse e-mail ci-dessus.</p>
+
+            <h2>2. Données personnelles que nous collectons</h2>
+
+            <h3>2.1 Données d'inscription au compte</h3>
+            <p>Lorsque vous créez un compte via notre système d'authentification (Supabase Auth), nous collectons :</p>
+            <ul>
+                <li><strong>Adresse e-mail</strong> — fournie lors de l'inscription</li>
+                <li><strong>Prénom et nom</strong> — fournis lors de l'inscription</li>
+                <li><strong>Identifiants d'authentification</strong> — ID utilisateur Supabase, jetons de session</li>
+            </ul>
+
+            <h3>2.2 Données de profil d'entreprise</h3>
+            <p>Lors de l'intégration et dans les paramètres du compte, nous collectons :</p>
+            <ul>
+                <li>Nom complet (personnel ou commercial)</li>
+                <li>Nom de l'entreprise (facultatif)</li>
+                <li>Adresse, code postal, ville, pays</li>
+                <li>Numéro de téléphone (facultatif)</li>
+                <li>Numéro de TVA/IDE (facultatif)</li>
+                <li>Canton suisse (facultatif, pour les utilisateurs suisses)</li>
+                <li>Devise par défaut (par exemple, CHF, EUR)</li>
+                <li>Logo de l'entreprise (facultatif, fichier image téléchargé)</li>
+            </ul>
+
+            <h3>2.3 Données financières et de facturation</h3>
+            <p>Lorsque vous utilisez nos fonctionnalités de facturation et de trésorerie, nous traitons :</p>
+            <ul>
+                <li><strong>Données de factures</strong> — numéros, dates, devise, montants, postes, notes, conditions de paiement, statut</li>
+                <li><strong>Informations de l'émetteur</strong> — nom de votre entreprise, adresse, numéro de TVA, coordonnées bancaires</li>
+                <li><strong>Informations du destinataire</strong> — nom de votre client, entreprise, adresse, e-mail, numéro de TVA</li>
+                <li><strong>Coordonnées bancaires</strong> — IBAN, BIC/SWIFT, nom de la banque, devise</li>
+                <li><strong>Données de dépenses</strong> — nom du fournisseur, montants, devise, dates, catégories, montants de TVA, URL des reçus</li>
+                <li><strong>Données de transactions bancaires</strong> — date, montant, libellé, solde, catégorie</li>
+            </ul>
+
+            <h3>2.4 Données clients/contacts</h3>
+            <p>Vous pouvez stocker les coordonnées de vos clients, y compris le nom, l'entreprise, l'e-mail, le téléphone, l'adresse, le numéro de TVA et les informations de contact.</p>
+
+            <h3>2.5 Données techniques et d'utilisation</h3>
+            <ul>
+                <li><strong>Adresse IP</strong> — pour la géolocalisation (détection du pays) et la limitation du taux</li>
+                <li><strong>Informations sur le navigateur et l'appareil</strong> — pour le support technique et l'optimisation de l'expérience utilisateur</li>
+                <li><strong>Vues de page et métriques de performance</strong> — via Plausible Analytics (anonymisé, sans cookies)</li>
+                <li><strong>Rapports d'erreurs</strong> — pour améliorer la stabilité et la sécurité du Service</li>
+            </ul>
+
+            <h2>3. Finalité et base juridique du traitement</h2>
+            <p>Nous traitons vos données aux fins suivantes :</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Finalité</th>
+                        <th>Base juridique</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Création et authentification du compte</td>
+                        <td>Exécution du contrat</td>
+                    </tr>
+                    <tr>
+                        <td>Fourniture de services de facturation et de trésorerie</td>
+                        <td>Exécution du contrat</td>
+                    </tr>
+                    <tr>
+                        <td>Scan OCR des factures et pièces comptables</td>
+                        <td>Exécution du contrat</td>
+                    </tr>
+                    <tr>
+                        <td>Traitement des paiements et abonnements</td>
+                        <td>Exécution du contrat</td>
+                    </tr>
+                    <tr>
+                        <td>Détection du pays basée sur l'IP</td>
+                        <td>Intérêt légitime</td>
+                    </tr>
+                    <tr>
+                        <td>Surveillance des erreurs et débogage</td>
+                        <td>Intérêt légitime</td>
+                    </tr>
+                    <tr>
+                        <td>Analyse et surveillance des performances</td>
+                        <td>Intérêt légitime</td>
+                    </tr>
+                    <tr>
+                        <td>Conformité légale (conservation des factures)</td>
+                        <td>Obligation légale (art. 958f CO)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>4. Services tiers et sous-traitants</h2>
+            <p>Nous utilisons les services suivants pour exploiter Boookly :</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Fonction</th>
+                        <th>Localisation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Supabase</strong></td>
+                        <td>Hébergement base de données, authentification, stockage fichiers</td>
+                        <td>Suisse (Zurich)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Render</strong></td>
+                        <td>Hébergement web et CDN</td>
+                        <td>Global (principalement UE/US)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stripe</strong></td>
+                        <td>Traitement des paiements</td>
+                        <td>US (traitement données UE)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LlamaCloud</strong></td>
+                        <td>Scan OCR factures/pièces</td>
+                        <td>US (en évaluation pour conformité RGPD)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Resend</strong></td>
+                        <td>Livraison e-mails transactionnels</td>
+                        <td>US (prévu)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Plausible Analytics</strong></td>
+                        <td>Analyse web respectueuse de la vie privée</td>
+                        <td>UE (prévu)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>5. Transferts internationaux de données</h2>
+            <p>Certains de nos prestataires de services traitent des données en dehors de la Suisse (principalement aux États-Unis). Nous assurons une protection adéquate par le biais de <strong>clauses contractuelles types (CCT)</strong>, du cadre de protection des données UE-États-Unis et d'accords contraignants de traitement des données.</p>
+
+            <p>Les données Supabase sont hébergées en <strong>Suisse (Zurich)</strong> et bénéficient donc de la protection complète de la LPD suisse.</p>
+
+            <h2>6. Conservation des données</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type de données</th>
+                        <th>Durée de conservation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Factures et PDF de factures</strong></td>
+                        <td><strong>10 ans</strong> (art. 958f CO suisse)</td>
+                    </tr>
+                    <tr>
+                        <td>Profil de compte et autres données</td>
+                        <td>Jusqu'à suppression du compte</td>
+                    </tr>
+                    <tr>
+                        <td>Journaux d'erreurs</td>
+                        <td>90 jours maximum</td>
+                    </tr>
+                    <tr>
+                        <td>Données de paiement Stripe</td>
+                        <td>Selon politique de conservation Stripe</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Lorsque vous supprimez votre compte, toutes les données personnelles sont définitivement supprimées, <strong>à l'exception des factures qui sont conservées pendant 10 ans</strong> conformément à la loi suisse sur la conservation des documents commerciaux.</p>
+
+            <h2>7. Vos droits</h2>
+            <p>En vertu de la LPD suisse et du RGPD, vous avez le droit de :</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Droit</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Accès</strong></td>
+                        <td>Demander une copie de vos données personnelles</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rectification</strong></td>
+                        <td>Corriger les données inexactes via les paramètres du compte ou en nous contactant</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Suppression</strong></td>
+                        <td>Supprimer votre compte depuis la page « Mon compte »</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Portabilité des données</strong></td>
+                        <td>Demander des données dans un format lisible par machine ; exporter les factures en PDF et CSV</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Opposition</strong></td>
+                        <td>S'opposer au traitement basé sur des intérêts légitimes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Limitation du traitement</strong></td>
+                        <td>Limiter la manière dont nous traitons vos données</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Retrait du consentement</strong></td>
+                        <td>Lorsque le traitement est basé sur le consentement</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Pour exercer vos droits, contactez-nous à <a href="mailto:support@boookly.ch">support@boookly.ch</a>. Nous répondrons dans les 30 jours.</p>
+
+            <h2>8. Cookies et stockage local</h2>
+            <p>Boookly utilise des <strong>cookies essentiels</strong> pour l'authentification (Supabase Auth) et la sécurité (jetons CSRF/CSP). Ceux-ci sont strictement nécessaires au fonctionnement du Service et ne nécessitent pas de consentement explicite selon la législation suisse.</p>
+
+            <p><strong>Plausible Analytics</strong> (lorsque utilisé) collecte des données anonymisées sans cookies. Le localStorage du navigateur est utilisé pour les préférences de l'interface utilisateur (thème, langue, etc.).</p>
+
+            <h2>9. Sécurité des données</h2>
+            <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles :</p>
+            <ul>
+                <li><strong>Chiffrement en transit</strong> — toutes les données transmises via HTTPS/TLS</li>
+                <li><strong>Chiffrement au repos</strong> — base de données Supabase chiffrée (AES-256)</li>
+                <li><strong>Contrôle d'accès au niveau des lignes (RLS)</strong> — contrôle d'accès au niveau de la base de données</li>
+                <li><strong>Politique de sécurité du contenu (CSP)</strong> — en-têtes de sécurité pour empêcher XSS et injections</li>
+                <li><strong>Limitation de débit</strong> sur les points de terminaison API</li>
+                <li><strong>Validation d'entrée</strong> avec schémas de validation stricts</li>
+                <li><strong>Authentification sécurisée</strong> via Supabase Auth (JWT)</li>
+                <li><strong>Vérification de signature webhook</strong> (Stripe)</li>
+                <li><strong>Restrictions de téléchargement de fichiers</strong> (types MIME autorisés, taille maximale)</li>
+                <li><strong>Aucun stockage de carte bancaire</strong> — entièrement géré par Stripe (PCI-DSS compliant)</li>
+            </ul>
+
+            <h2>10. Vie privée des enfants</h2>
+            <p>Boookly est un outil professionnel destiné aux entreprises et aux fiduciaires. Nous ne collectons pas sciemment de données d'enfants de moins de 16 ans. Si vous pensez qu'un enfant nous a fourni des données personnelles, contactez-nous immédiatement à <a href="mailto:support@boookly.ch">support@boookly.ch</a>.</p>
+
+            <h2>11. Modifications de cette politique</h2>
+            <p>Nous pouvons mettre à jour cette Politique de confidentialité pour refléter les changements dans nos pratiques ou pour des raisons opérationnelles, juridiques ou réglementaires. Nous vous informerons en publiant la version mise à jour sur notre site Web et en mettant à jour la date de « Dernière mise à jour ». Les utilisateurs enregistrés seront informés par e-mail des modifications importantes.</p>
+
+            <h2>12. Droit de déposer une plainte</h2>
+            <p>Si vous estimez que vos droits en matière de protection des données ont été violés, vous pouvez déposer une plainte auprès de :</p>
+
+            <div class="contact-box">
+                <p><strong>Préposé fédéral à la protection des données et à la transparence (PFPDT)</strong><br>
+                Feldeggweg 1<br>
+                CH-3003 Berne<br>
+                Suisse<br>
+                Site web : <a href="https://www.edoeb.admin.ch" target="_blank">edoeb.admin.ch</a></p>
+            </div>
+
+            <p>Les utilisateurs de l'Espace économique européen peuvent également contacter leur autorité de contrôle locale en matière de protection des données.</p>
+
+            <h2>13. Contact</h2>
+            <p>Pour toute question concernant cette Politique de confidentialité ou vos données personnelles :</p>
+
+            <div class="contact-box">
+                <p><strong>FGC Média Sàrl</strong><br>
+                c/o Fiduconsult Neuchâtel SA<br>
+                Rue du Temple-Neuf 4<br>
+                CH-2001 Neuchâtel<br>
+                Suisse</p>
+                <p>E-mail : <a href="mailto:support@boookly.ch">support@boookly.ch</a></p>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2026 Boookly – FGC Média Sàrl. Tous droits réservés.</p>
+            <div class="footer-links">
+                <a href="cgu.html">Conditions d'utilisation</a> ·
+                <a href="mentions-legales.html">Mentions légales</a> ·
+                <a href="dpa.html">DPA</a> ·
+                <a href="mailto:support@boookly.ch">Contact</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
