@@ -157,6 +157,19 @@
       @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
       .project-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--accent-deep); opacity: .9; transition: opacity .2s, transform .2s; }
       .project-link:hover { opacity: 1; transform: translateX(3px); }
+
+      /* FAQ */
+      .faq { background: var(--bg-warm); }
+      .faq-list { margin-top: 40px; display: grid; gap: 14px; }
+      .faq-item { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow-sm); overflow: hidden; transition: box-shadow .25s; }
+      .faq-item[open] { box-shadow: var(--shadow); }
+      .faq-item summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 18px; padding: 26px 28px; font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+      .faq-item summary::-webkit-details-marker { display: none; }
+      .faq-item summary .sign { flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-wash); color: var(--accent-deep); display: grid; place-items: center; font-size: 20px; font-weight: 700; transition: transform .25s, background .2s, color .2s; margin-left: auto; }
+      .faq-item[open] summary .sign { transform: rotate(45deg); background: var(--accent); color: var(--card); }
+      .faq-item .faq-body { padding: 0 28px 26px 28px; color: var(--ink-soft); font-size: 17px; line-height: 1.68; max-width: 68ch; }
+      .faq-item .faq-body strong { color: var(--ink); font-weight: 600; }
+      @media (max-width: 560px) { .faq-item summary { font-size: 17px; padding: 22px 22px; } .faq-item .faq-body { padding: 0 22px 22px; } }
     </style>
   </head>
   <body>
@@ -167,6 +180,7 @@
           <nav class="nav-links">
             <a href="#approche">Approche</a>
             <a href="#realisations">Réalisations</a>
+            <a href="#faq">FAQ</a>
             <a href="#apropos">À propos</a>
             <a href="#contact">Contact</a>
           </nav>
@@ -289,6 +303,40 @@
       </div>
     </section>
 
+    <section class="block faq" id="faq">
+      <div class="wrap reveal">
+        <span class="eyebrow-c">Questions fréquentes</span>
+        <h2>Vous hésitez ? C'est normal.</h2>
+        <p class="sec-intro">Les questions que me posent le plus souvent les dirigeant(e)s avant de se lancer — et mes réponses, sans langue de bois.</p>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Je préfère me débrouiller seul, l'IA rend l'automatisation accessible aujourd'hui, non ?<span class="sign">+</span></summary>
+            <div class="faq-body">Oui, et c'est une excellente chose — je vous y encourage pour vos petits besoins du quotidien. Mais entre faire une démo qui marche une fois et mettre en production un outil <strong>fiable, sécurisé, qui ne casse pas quand vos données réelles arrivent</strong>, il y a un monde. Mon métier, ce n'est pas de savoir prompter : c'est de connaître les pièges, de penser les cas limites, la maintenance et l'évolution. La vraie question n'est pas « est-ce que je peux le faire ? » mais « est-ce le meilleur usage de mon temps de dirigeant ? ». Si bricoler vous coûte trois soirées par mois, je suis sans doute rentable dès le premier projet.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Combien ça coûte ? J'imagine que c'est hors budget pour une petite structure.<span class="sign">+</span></summary>
+            <div class="faq-body">Justement, je travaille surtout avec des TPE/PME — pas des grands comptes. On part toujours d'un <strong>périmètre clair et chiffré à l'avance</strong>, sans surprise, et on commence souvent par une première brique utile plutôt qu'un gros projet d'un an. L'idée n'est pas de dépenser, c'est de récupérer du temps et d'arrêter les erreurs coûteuses. L'audit initial est gratuit, et il sert précisément à voir si le jeu en vaut la chandelle pour vous — sans engagement.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Si je fais appel à vous, est-ce que je deviens dépendant ? Et si vous disparaissez ?<span class="sign">+</span></summary>
+            <div class="faq-body">Préoccupation légitime, et j'y réponds par principe : <strong>le code et les données vous appartiennent</strong>. Je documente ce que je construis, j'utilise des technologies standards (pas de boîte noire propriétaire), et tout est pensé pour qu'un autre développeur puisse reprendre la main si besoin. Mon objectif est que vous restiez avec moi parce que ça marche bien — pas parce que vous êtes prisonnier.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Pourquoi du sur-mesure plutôt qu'un logiciel tout fait du marché ?<span class="sign">+</span></summary>
+            <div class="faq-body">Si un logiciel du marché répond à votre besoin, je vous le dirai — et je vous aiderai même à bien le choisir et le brancher au reste. Le sur-mesure n'a de sens que quand <strong>aucun outil existant ne colle à votre façon de travailler</strong>, ou quand vous payez le prix fort pour un logiciel dont vous n'utilisez qu'une petite partie des fonctions. Souvent, la meilleure solution est un mélange : connecter intelligemment ce que vous avez déjà, et ne développer que ce qui manque vraiment.</div>
+          </details>
+          <details class="faq-item">
+            <summary>On a déjà essayé un outil et ça n'a jamais vraiment pris. Pourquoi ce serait différent ?<span class="sign">+</span></summary>
+            <div class="faq-body">Dans 9 cas sur 10, un outil finit au placard parce qu'il a été pensé pour la logique du logiciel, pas pour celle des gens qui l'utilisent. Mon point de départ, c'est <strong>votre quotidien et vos équipes</strong>, pas la technique. On avance par petites étapes concrètes, on teste sur le terrain, on ajuste — pour qu'à la fin l'outil soit utilisé parce qu'il fait gagner du temps.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Mes données sont sensibles. Comment garantissez-vous la sécurité des données ?<span class="sign">+</span></summary>
+            <div class="faq-body">C'est central, et j'y réponds concrètement : <strong>toutes les données sont chiffrées « au repos » (at rest) via Supabase, hébergées en Suisse (Zurich)</strong>. Les accès sont cloisonnés, et je m'engage à la confidentialité dès le premier échange — je peux signer un NDA si nécessaire.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <div class="cta-wrap" id="contact">
       <div class="wrap reveal">
         <div class="cta">
@@ -296,8 +344,9 @@
           <p>Audit gratuit et sans engagement pour comprendre vos enjeux, poser une base claire et voir comment construire des outils adaptés à votre façon de travailler.</p>
           <p class="fine">Aucun outil à acheter, aucune obligation — juste un échange clair.</p>
           <div class="cta-actions">
-            <a class="btn-primary btn-lg" href="https://wa.me/41782033239" target="_blank" rel="noopener">Me contacter sur WhatsApp</a>
-            <a class="btn-ghost btn-lg" href="/cdn-cgi/l/email-protection#90f7e2f5f7d0f6f7f3fdf5f4f9f1bef3f8"><span class="__cf_email__" data-cfemail="85e2f7e0e2c5e3e2e6e8e0e1ece4abe6ed">[email&#160;protected]</span></a>
+            <a class="btn-primary btn-lg" href="https://calendly.com/fgcmedia/rdv" target="_blank" rel="noopener">Réserver un créneau</a>
+            <a class="btn-ghost btn-lg" href="https://wa.me/41782033239" target="_blank" rel="noopener">Me contacter via WhatsApp</a>
+            <a class="btn-ghost btn-lg" href="/cdn-cgi/l/email-protection#6c0b1e090b2c0a0b0f010908050d420f04">Me contacter par email</a>
           </div>
         </div>
       </div>
@@ -314,6 +363,7 @@
             <h4>Naviguer</h4>
             <a href="#approche">Approche</a>
             <a href="#realisations">Réalisations</a>
+            <a href="#faq">FAQ</a>
             <a href="#apropos">À propos</a>
             <a href="#contact">Contact</a>
           </div>
@@ -322,7 +372,7 @@
             <a href="https://www.linkedin.com/in/gregory-cardinale/" target="_blank" rel="noopener">LinkedIn</a>
             <a href="https://fr.malt.ch/profile/gregorycardinale" target="_blank" rel="noopener">Profil Malt</a>
             <a href="https://wa.me/41782033239" target="_blank" rel="noopener">WhatsApp</a>
-            <a href="/cdn-cgi/l/email-protection#5e392c3b391e38393d333b3a373f703d36">Email</a>
+            <a href="/cdn-cgi/l/email-protection#0d6a7f686a4d6b6a6e606869646c236e65">Email</a>
           </div>
         </div>
         <div class="foot-bottom">
