@@ -94,7 +94,7 @@
 
       /* REALISATIONS */
       .realisations { background: var(--bg-warm); }
-      .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 44px; }
+      .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px; }
       .project { background: var(--card); border-radius: var(--r); padding: 32px; box-shadow: var(--shadow-sm); border: 1px solid var(--line); transition: all .25s; }
       .project:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
       .project-top { display: flex; align-items: center; justify-content: space-between; }
@@ -104,7 +104,7 @@
       .project .meta { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
       .project .meta span { font-size: 13px; color: var(--ink-soft); background: var(--bg-warm); border-radius: 999px; padding: 6px 13px; }
       .project .meta span b { color: var(--ink); }
-      @media (max-width: 820px) { .projects { grid-template-columns: 1fr; } }
+      @media (max-width: 980px) { .projects { grid-template-columns: 1fr; } }
 
       /* POUR QUI */
       .audience { display: grid; grid-template-columns: 1.1fr 1fr; gap: 44px; align-items: center; margin-top: 40px; }
@@ -248,8 +248,8 @@
     <section class="block realisations" id="realisations">
       <div class="wrap reveal">
         <span class="eyebrow-c">Réalisations</span>
-        <h2>Des produits que je conçois de A à Z</h2>
-        <p class="sec-intro">La meilleure preuve de ce que je sais faire : mes propres outils, en production.</p>
+        <h2>Quelques exemples de réalisations</h2>
+        <p class="sec-intro">La meilleure preuve de ce que je sais faire : mes propres projets, en production.</p>
         <div class="projects">
           <div class="project">
             <div class="project-top"><span class="project-name">Caardly</span><span class="badge">En lancement</span></div>
@@ -262,6 +262,12 @@
             <p>Le portail client que les fiduciaires confient à leurs PME pour gérer leur trésorerie et exporter vers leur logiciel comptable (Banana, Winbiz, Crésus).</p>
             <div class="meta"><span><b>B2B2B</b> · Fiduciaires</span><span><b>React</b> + Supabase</span></div>
             <a class="project-link" href="https://boookly.ch/" target="_blank" rel="noopener">Visiter le site ↗</a>
+          </div>
+          <div class="project">
+            <div class="project-top"><span class="project-name">LoyalBot</span><span class="badge">En lancement</span></div>
+            <p>Un système de fidélisation client sur-mesure propulsé par l'IA, qui relance automatiquement vos clients via WhatsApp. Aucune app, aucune carte à tamponner, aucune gestion de votre côté.</p>
+            <div class="meta"><span><b>WhatsApp</b> · IA</span><span><b>Commerces</b> de proximité</span></div>
+            <a class="project-link" href="https://loyalbot.ch" target="_blank" rel="noopener">Visiter le site ↗</a>
           </div>
         </div>
       </div>
@@ -346,7 +352,7 @@
           <div class="cta-actions">
             <a class="btn-primary btn-lg" href="https://calendly.com/fgcmedia/rdv" target="_blank" rel="noopener">Réserver un créneau</a>
             <a class="btn-ghost btn-lg" href="https://wa.me/41782033239" target="_blank" rel="noopener">Me contacter via WhatsApp</a>
-            <a class="btn-ghost btn-lg" href="/cdn-cgi/l/email-protection#6c0b1e090b2c0a0b0f010908050d420f04">Me contacter par email</a>
+            <a class="btn-ghost btn-lg" href="/cdn-cgi/l/email-protection#86e1f4e3e1c6e0e1e5ebe3e2efe7a8e5ee">Me contacter par email</a>
           </div>
         </div>
       </div>
@@ -372,7 +378,7 @@
             <a href="https://www.linkedin.com/in/gregory-cardinale/" target="_blank" rel="noopener">LinkedIn</a>
             <a href="https://fr.malt.ch/profile/gregorycardinale" target="_blank" rel="noopener">Profil Malt</a>
             <a href="https://wa.me/41782033239" target="_blank" rel="noopener">WhatsApp</a>
-            <a href="/cdn-cgi/l/email-protection#0d6a7f686a4d6b6a6e606869646c236e65">Email</a>
+            <a href="/cdn-cgi/l/email-protection#ccabbea9ab8caaabafa1a9a8a5ade2afa4">Email</a>
           </div>
         </div>
         <div class="foot-bottom">
