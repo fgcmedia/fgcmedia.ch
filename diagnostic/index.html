@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Diagnostic d'efficacité — FGC Média</title>
+<meta name="description" content="Identifiez vos inefficacités, votre potentiel d'automatisation et le ROI possible dans vos systèmes actuels. ~3 minutes, sans appel requis." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: oklch(0.972 0.018 65);
+    --bg-warm: oklch(0.95 0.028 62);
+    --card: oklch(0.995 0.004 80);
+    --ink: oklch(0.26 0.02 50);
+    --ink-soft: oklch(0.46 0.022 52);
+    --ink-faint: oklch(0.6 0.018 55);
+    --line: oklch(0.9 0.018 60);
+    --accent: oklch(0.7 0.155 50);
+    --accent-deep: oklch(0.6 0.15 46);
+    --accent-wash: oklch(0.93 0.04 60);
+    --forest: oklch(0.5 0.07 165);
+    --shadow: 0 18px 40px -22px oklch(0.5 0.08 50 / .4);
+    --shadow-sm: 0 8px 20px -14px oklch(0.5 0.08 50 / .35);
+    --sans: "Schibsted Grotesk", sans-serif;
+    --maxw: 1160px;
+    --r: 24px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 18px; line-height: 1.62; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 26px; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3 { font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; }
+
+  /* HEADER */
+  header { position: sticky; top: 0; z-index: 50; padding: 12px 0; }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 60px; background: color-mix(in oklch, var(--card) 82%, transparent); backdrop-filter: blur(14px); border: 1px solid var(--line); border-radius: 999px; padding: 0 12px 0 22px; box-shadow: var(--shadow-sm); }
+  .brand { display: flex; align-items: center; gap: 11px; font-weight: 800; font-size: 19px; letter-spacing: -0.02em; }
+  .brand .mark { width: 32px; height: 32px; border-radius: 11px; background: var(--accent); color: var(--card); display: grid; place-items: center; font-size: 15px; font-weight: 800; }
+  .nav-links { display: flex; align-items: center; gap: 26px; }
+  .nav-links a { font-size: 15px; font-weight: 500; color: var(--ink-soft); transition: color .2s; }
+  .nav-links a:hover { color: var(--accent-deep); }
+  .nav-actions { display: flex; align-items: center; gap: 8px; }
+  .icon-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; color: var(--ink-soft); background: var(--card); transition: all .2s; }
+  .icon-btn:hover { color: var(--accent-deep); border-color: var(--accent); transform: translateY(-1px); }
+  .icon-btn svg { width: 17px; height: 17px; }
+  .malt-pill { font-weight: 600; font-size: 13px; width: auto; padding: 0 15px; border-radius: 999px; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 9px; background: var(--accent); color: var(--card); font-weight: 600; font-size: 15px; padding: 12px 20px; border-radius: 999px; transition: all .2s; box-shadow: var(--shadow-sm); }
+  .btn-primary:hover { background: var(--accent-deep); transform: translateY(-1px); }
+  @media (max-width: 880px) { .nav-links { display: none; } }
+
+  /* DIAGNOSTIC */
+  main { padding: 40px 0 64px; }
+  .diag-card {
+    max-width: 680px; margin: 0 auto; background: var(--card);
+    border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow);
+    padding: clamp(24px, 5vw, 44px);
+  }
+  .progress { display: flex; gap: 6px; margin-bottom: 26px; }
+  .seg { flex: 1; height: 4px; border-radius: 99px; background: var(--line); }
+  .seg.on { background: var(--accent); }
+  .eyebrow-c { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: var(--accent-deep); margin-bottom: 16px; }
+  .eyebrow-c::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .diag-card h1 { font-size: clamp(22px, 4vw, 30px); margin: 0 0 6px; }
+  .sub { color: var(--ink-soft); font-size: 16px; margin: 0 0 26px; }
+  .field { margin-bottom: 20px; }
+  label.lab { display: block; font-weight: 600; font-size: 15.5px; margin: 0 0 8px; }
+  .hint { color: var(--ink-faint); font-size: 13.5px; margin: 0 0 10px; }
+  input[type=text], input[type=email], select, textarea {
+    width: 100%; padding: 12px 14px; font-size: 15px; border: 1px solid var(--line);
+    border-radius: 12px; background: var(--card); outline: none; color: var(--ink);
+    font-family: inherit;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+  textarea { min-height: 96px; resize: vertical; }
+  .pill {
+    display: block; width: 100%; text-align: left; padding: 12px 14px; margin-bottom: 10px;
+    font-size: 14.5px; border: 1.5px solid var(--line); background: var(--card); color: var(--ink);
+    border-radius: 12px; cursor: pointer; transition: all .15s ease; font-family: inherit;
+  }
+  .pill:hover { border-color: var(--accent); }
+  .pill.sel { border-color: var(--accent); background: var(--accent-wash); }
+  .check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--ink-soft); cursor: pointer; }
+  .check input { margin-top: 4px; }
+  .row { display: flex; gap: 12px; align-items: center; justify-content: space-between; margin-top: 28px; }
+  .primary { background: var(--accent); color: var(--card); border: none; border-radius: 999px; padding: 13px 26px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; box-shadow: var(--shadow-sm); transition: all .2s; }
+  .primary:hover:not(:disabled) { background: var(--accent-deep); transform: translateY(-1px); }
+  .primary:disabled { background: var(--line); color: var(--ink-faint); cursor: not-allowed; box-shadow: none; }
+  .ghost { background: none; color: var(--ink-soft); border: none; font-size: 14.5px; cursor: pointer; font-family: inherit; padding: 13px 8px; }
+  .ghost:hover { color: var(--accent-deep); }
+  .err { color: var(--accent-deep); font-size: 14px; margin-top: 4px; }
+  .score { font-size: clamp(54px, 12vw, 80px); font-weight: 800; line-height: 1; color: var(--accent-deep); letter-spacing: -0.03em; }
+  .score span { font-size: 28px; color: var(--ink-faint); font-weight: 600; }
+  .gauges { display: flex; gap: 16px; margin: 8px 0 26px; flex-wrap: wrap; }
+  .gauge { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 130px; }
+  .gtrack { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; }
+  .gfill { height: 100%; background: var(--forest); }
+  .gname { font-size: 13px; color: var(--ink-soft); }
+  .gval { font-size: 12.5px; color: var(--ink-faint); }
+  .mailbox { background: var(--bg-warm); border-radius: 16px; padding: 16px 18px; font-size: 14.5px; line-height: 1.55; color: var(--ink); }
+  a.cta-link { display: inline-block; text-decoration: none; margin-top: 22px; }
+
+  /* FOOTER */
+  footer { padding: 56px 0 40px; }
+  .foot-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; }
+  .foot-brand .brand { margin-bottom: 16px; }
+  .foot-brand p { font-size: 14.5px; color: var(--ink-faint); line-height: 1.7; }
+  .foot-col h4 { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+  .foot-col a { display: block; font-size: 14.5px; color: var(--ink-soft); padding: 5px 0; transition: color .2s; }
+  .foot-col a:hover { color: var(--accent-deep); }
+  .foot-bottom { display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center; margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--ink-faint); }
+  .foot-social { display: flex; gap: 8px; }
+  .foot-legal { display: flex; gap: 14px; flex-wrap: wrap; }
+  .foot-legal a:hover { color: var(--accent-deep); }
+  @media (max-width: 820px) { .foot-grid { grid-template-columns: 1fr 1fr; gap: 30px; } .foot-brand { grid-column: 1 / -1; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="nav">
+      <a href="/" class="brand"><span class="mark">F</span> FGC&nbsp;Média</a>
+      <nav class="nav-links">
+        <a href="/#approche">Approche</a>
+        <a href="/#realisations">Réalisations</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/#apropos">À propos</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="icon-btn" href="https://www.linkedin.com/in/gregory-cardinale/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        <a class="icon-btn malt-pill" href="https://fr.malt.ch/profile/gregorycardinale" target="_blank" rel="noopener" title="Profil Malt">Malt</a>
+        <a class="btn-primary" href="/#contact">Audit gratuit</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="diag-card" id="app"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="/" class="brand"><span class="mark">F</span> FGC&nbsp;Média</a>
+        <p>© FGC Média Sàrl · Tous droits réservés<br />Numéro d'immatriculation : CHE-339.209.179 (Suisse)<br />c/o Fiduconsult Neuchâtel SA, Rue du Temple-Neuf 4 – CH-2001 Neuchâtel – Suisse</p>
+      </div>
+      <div class="foot-col">
+        <h4>Naviguer</h4>
+        <a href="/#approche">Approche</a>
+        <a href="/#realisations">Réalisations</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/#apropos">À propos</a>
+        <a href="/#contact">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Me suivre</h4>
+        <a href="https://www.linkedin.com/in/gregory-cardinale/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://fr.malt.ch/profile/gregorycardinale" target="_blank" rel="noopener">Profil Malt</a>
+        <a href="https://wa.me/41782033239" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="foot-social">
+        <a class="icon-btn" href="https://www.linkedin.com/in/gregory-cardinale/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        <a class="icon-btn malt-pill" href="https://fr.malt.ch/profile/gregorycardinale" target="_blank" rel="noopener">Malt</a>
+      </div>
+      <div class="foot-legal">
+        <a href="/cgu/">Mentions légales</a><span>·</span>
+        <a href="/cookies/">Cookies</a><span>·</span>
+        <a href="/donnees-personnelles/">Confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const WEBHOOK_URL = "https://n8n.fgcmedia.ch/webhook/diagnostic";
+const CALENDLY_URL = "https://calendly.com/fgcmedia/rdv";
+
+const STEPS = ["Contact", "Entreprise", "Opérations", "Automatisation", "Objectifs"];
+
+const TAILLE = ["1-9","10-19","20-49","50-99","100+"];
+const CA = ["< 250k CHF","250k - 1M CHF","1M - 5M CHF","5M - 10M CHF","> 10M CHF","Je préfère ne pas répondre"];
+const NB_OUTILS = ["1-3","4-6","7-10","Plus de 10"];
+const ECHELLE = [1,2,3,4,5];
+const GESTION = [
+  ["A","Tableurs Excel & email"],
+  ["B","Outils de gestion de projet (Asana, ClickUp, Monday, Trello…)"],
+  ["C","Systèmes internes / sur-mesure"],
+  ["D","Un mélange d'outils avec des étapes manuelles"],
+];
+const ZONES = [
+  ["A","Ventes & relation client (CRM)"],
+  ["B","Onboarding client"],
+  ["C","Finance / facturation / devis"],
+  ["D","Opérations terrain / planification"],
+  ["E","Conformité / documentation"],
+  ["F","Reporting / tableaux de bord"],
+  ["G","Communication interne"],
+];
+const OUTILS = [
+  ["A","Zapier / Make / n8n"],
+  ["B","Airtable / Google Sheets"],
+  ["C","Notion / Smartsheet"],
+  ["D","Logiciel comptable (Banana, Winbiz, Crésus, Bexio…)"],
+  ["E","Slack / Teams"],
+  ["F","APIs ou tableaux de bord internes sur-mesure"],
+  ["G","Autre"],
+];
+
+let step = 0;
+let sending = false;
+let errorMsg = "";
+const data = {
+  nom:"", email:"", consent:false,
+  entreprise:"", site:"", secteur:"", taille:"", ca:"",
+  gestion:[], zones:[], nbOutils:"",
+  outils:[], sops:"", auto:"",
+  douleurs:"", vision:"",
+};
+
+const app = document.getElementById("app");
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function valid(){
+  if(step===0) return data.nom.trim() && /\S+@\S+\.\S+/.test(data.email) && data.consent;
+  if(step===1) return data.entreprise.trim() && data.site.trim() && data.secteur.trim() && data.taille && data.ca;
+  if(step===2) return data.gestion.length && data.zones.length && data.nbOutils;
+  if(step===3) return data.outils.length && data.sops && data.auto;
+  if(step===4) return data.douleurs.trim() && data.vision.trim();
+  return false;
+}
+
+function pillGroup(key, items){
+  return items.map(([k,label]) =>
+    `<button type="button" class="pill ${data[key].includes(k)?'sel':''}" data-toggle="${key}" data-val="${k}">${esc(label)}</button>`
+  ).join("");
+}
+function selectField(key, opts){
+  return `<select data-set="${key}">
+    <option value="">Sélectionnez…</option>
+    ${opts.map(o=>`<option value="${esc(o)}" ${data[key]==String(o)?'selected':''}>${esc(o)}</option>`).join("")}
+  </select>`;
+}
+
+function stepHTML(){
+  if(step===0) return `
+    <h1>Votre diagnostic d'efficacité</h1>
+    <p class="sub">Identifiez vos inefficacités, votre potentiel d'automatisation et le ROI possible dans vos systèmes actuels. ~3 minutes, sans appel requis.</p>
+    <div class="field"><label class="lab">Votre nom complet</label>
+      <input type="text" data-set="nom" value="${esc(data.nom)}" placeholder="Prénom Nom" /></div>
+    <div class="field"><label class="lab">Votre email</label>
+      <input type="email" data-set="email" value="${esc(data.email)}" placeholder="vous@entreprise.ch" /></div>
+    <label class="check"><input type="checkbox" data-set="consent" ${data.consent?'checked':''} />
+      <span>J'accepte que FGC Média utilise mon email pour m'envoyer le résultat de ce diagnostic. Aucune communication non sollicitée, désinscription à tout moment.</span></label>`;
+
+  if(step===1) return `
+    <h1>Votre entreprise</h1>
+    <p class="sub">Pour situer votre contexte et calibrer les recommandations.</p>
+    <div class="field"><label class="lab">Nom de l'entreprise</label><input type="text" data-set="entreprise" value="${esc(data.entreprise)}" /></div>
+    <div class="field"><label class="lab">Site web</label><input type="text" data-set="site" value="${esc(data.site)}" placeholder="https://" /></div>
+    <div class="field"><label class="lab">Secteur / activité</label><input type="text" data-set="secteur" value="${esc(data.secteur)}" /></div>
+    <div class="field"><label class="lab">Nombre de personnes (salariés + indépendants)</label>${selectField("taille",TAILLE)}</div>
+    <div class="field"><label class="lab">Chiffre d'affaires annuel</label>${selectField("ca",CA)}</div>`;
+
+  if(step===2) return `
+    <h1>Opérations & organisation</h1>
+    <p class="sub">Plusieurs réponses possibles.</p>
+    <div class="field"><label class="lab">Comment gérez-vous vos opérations / projets au quotidien ?</label>${pillGroup("gestion",GESTION)}</div>
+    <div class="field"><label class="lab">Quelles zones vous semblent les plus inefficaces aujourd'hui ?</label>${pillGroup("zones",ZONES)}</div>
+    <div class="field"><label class="lab">Combien d'outils / plateformes distincts vos équipes utilisent-elles chaque jour ?</label>${selectField("nbOutils",NB_OUTILS)}</div>`;
+
+  if(step===3) return `
+    <h1>Automatisation & maturité</h1>
+    <p class="sub">Où en êtes-vous aujourd'hui ?</p>
+    <div class="field"><label class="lab">Quels outils utilisez-vous actuellement ? (plusieurs réponses)</label>${pillGroup("outils",OUTILS)}</div>
+    <div class="field"><label class="lab">Combien de vos processus sont documentés (procédures écrites) ?</label>
+      <p class="hint">1 = aucune procédure → 5 = tout est documenté</p>${selectField("sops",ECHELLE)}</div>
+    <div class="field"><label class="lab">À quel point vos processus sont-ils automatisés ?</label>
+      <p class="hint">1 = tout est manuel → 5 = entièrement automatisé entre services</p>${selectField("auto",ECHELLE)}</div>`;
+
+  if(step===4) return `
+    <h1>Points de blocage & objectifs</h1>
+    <p class="sub">Vos réponses nourrissent directement vos 3 priorités.</p>
+    <div class="field"><label class="lab">Quels sont les principaux maux opérationnels que vous aimeriez éliminer dans les 6-12 prochains mois ?</label>
+      <textarea data-set="douleurs" placeholder="ex : trop de saisie manuelle, les rapports prennent des jours, aucune visibilité sur la charge de l'équipe…">${esc(data.douleurs)}</textarea></div>
+    <div class="field"><label class="lab">Si on doublait l'efficacité de votre équipe en 12 mois, à quoi ressemblerait le succès pour vous ?</label>
+      <textarea data-set="vision" placeholder="ex : gérer plus de projets à effectif constant, réduire le travail admin, meilleure visibilité des données…">${esc(data.vision)}</textarea></div>`;
+}
+
+function render(){
+  const progress = `<div class="progress">${STEPS.map((_,i)=>`<div class="seg ${i<=step?'on':''}"></div>`).join("")}</div>`;
+  const eyebrow = `<span class="eyebrow-c">${STEPS[step]} · étape ${step+1}/${STEPS.length}</span>`;
+  const error = errorMsg ? `<p class="err">${esc(errorMsg)}</p>` : "";
+  const backBtn = step>0 ? `<button class="ghost" id="back">← Retour</button>` : `<span></span>`;
+  const nextLabel = sending ? "Calcul en cours…" : (step===STEPS.length-1 ? "Obtenir mon score →" : "Suivant →");
+  const nav = `<div class="row">${backBtn}
+    <button class="primary" id="next" ${(!valid()||sending)?'disabled':''}>${nextLabel}</button></div>`;
+  app.innerHTML = progress + eyebrow + stepHTML() + error + nav;
+  wire();
+}
+
+function wire(){
+  app.querySelectorAll("[data-set]").forEach(el=>{
+    const key = el.getAttribute("data-set");
+    const evt = (el.type==="checkbox") ? "change" : (el.tagName==="SELECT"?"change":"input");
+    el.addEventListener(evt, ()=>{
+      data[key] = el.type==="checkbox" ? el.checked : el.value;
+      const nextBtn = document.getElementById("next");
+      if(nextBtn) nextBtn.disabled = !valid() || sending;
+    });
+  });
+  app.querySelectorAll("[data-toggle]").forEach(el=>{
+    el.addEventListener("click", ()=>{
+      const key = el.getAttribute("data-toggle"), val = el.getAttribute("data-val");
+      const arr = data[key];
+      data[key] = arr.includes(val) ? arr.filter(x=>x!==val) : [...arr, val];
+      render();
+    });
+  });
+  const nextBtn = document.getElementById("next");
+  if(nextBtn) nextBtn.addEventListener("click", next);
+  const backBtn = document.getElementById("back");
+  if(backBtn) backBtn.addEventListener("click", ()=>{ step=Math.max(0,step-1); errorMsg=""; render(); });
+}
+
+function next(){
+  if(!valid()) return;
+  if(step < STEPS.length-1){ step++; errorMsg=""; render(); }
+  else submit();
+}
+
+async function submit(){
+  sending = true; errorMsg=""; render();
+  try{
+    const res = await fetch(WEBHOOK_URL, {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify(data),
+    });
+    if(!res.ok) throw new Error("bad status");
+    let json={}; try{ json = await res.json(); }catch(e){}
+    renderResult(json);
+  }catch(e){
+    sending=false;
+    errorMsg="Le diagnostic n'a pas pu être envoyé. Vérifiez votre connexion et réessayez.";
+    render();
+  }
+}
+
+function renderResult(json){
+  const score = (json && json.score!=null) ? json.score : null;
+  let inner = `<span class="eyebrow-c">Votre diagnostic</span>`;
+  if(score!=null){
+    inner += `<div class="score">${esc(score)}<span>/100</span></div>
+      <h1 style="margin-top:12px">${esc(json.palier||"")}</h1>
+      <p class="sub">${esc(json.message||"")}</p>`;
+    if(json.souscores){
+      inner += `<div class="gauges">` + Object.entries(json.souscores).map(([k,v])=>`
+        <div class="gauge"><span class="gname">${esc(k)}</span>
+          <div class="gtrack"><div class="gfill" style="width:${(v/5)*100}%"></div></div>
+          <span class="gval">${esc(v)}/5</span></div>`).join("") + `</div>`;
+    }
+  }else{
+    inner += `<h1 style="margin-top:4px">Merci, c'est enregistré.</h1>`;
+  }
+  inner += `<div class="mailbox">Votre rapport détaillé, avec vos 3 priorités, vous arrive par email à <strong>${esc(data.email)}</strong>.</div>
+    <a class="cta-link primary" href="${CALENDLY_URL}" target="_blank" rel="noreferrer">Réserver un échange →</a>`;
+  app.innerHTML = inner;
+}
+
+render();
+</script>
+</body>
+</html>
