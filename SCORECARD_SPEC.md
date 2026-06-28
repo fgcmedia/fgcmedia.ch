@@ -82,19 +82,19 @@ Bouton final : **Obtenir mon score →**
 > ⚠️ **Hypothèses métier à valider/ajuster par Grégory.** Ce ne sont pas des
 > vérités universelles : ce sont des pondérations de départ, modifiables.
 
-Le score d'opportunité mesure **le gisement potentiel** (combien il y a à gagner),
+Le score d'opportunité mesure **le potentiel** (combien il y a à gagner),
 pas la maturité. Plus l'entreprise est manuelle/dispersée/peu documentée, plus le
-gisement est élevé → score élevé = forte opportunité d'automatisation.
+potentiel est élevé → score élevé = forte opportunité d'automatisation.
 
 ### 3.1 Composantes (total 100 points)
 
 | Composante | Poids | Logique |
 |---|---|---|
-| **Maturité automatisation** | 35 | Plus c'est manuel, plus le gisement est grand |
-| **Documentation (SOPs)** | 15 | Peu de procédures = friction élevée = gisement |
+| **Maturité automatisation** | 35 | Plus c'est manuel, plus le potentiel est grand |
+| **Documentation (SOPs)** | 15 | Peu de procédures = friction élevée = potentiel |
 | **Dispersion des outils** | 20 | Plus d'outils = plus d'intégrations manquantes |
 | **Surface d'inefficacité** | 20 | Plus de zones inefficaces cochées = plus de potentiel |
-| **Mode de gestion** | 10 | Tableurs/manuel = gisement ; outils intégrés = moins |
+| **Mode de gestion** | 10 | Tableurs/manuel = potentiel ; outils intégrés = moins |
 
 ### 3.2 Calcul détaillé
 
@@ -122,7 +122,7 @@ gisement est élevé → score élevé = forte opportunité d'automatisation.
 - Contient D (mélange + étapes manuelles) → +5
 - Contient C (systèmes internes) seul → +0
 - Plafonné à 10
-(B = outils de PM structurés → 0 pt de gisement sur cette composante)
+(B = outils de PM structurés → 0 pt de potentiel sur cette composante)
 
 **Score final** = A + B + C + D + E, arrondi à l'entier, borné 0-100.
 
@@ -130,9 +130,9 @@ gisement est élevé → score élevé = forte opportunité d'automatisation.
 
 | Score | Libellé | Phrase à l'écran (exemple) |
 |---|---|---|
-| 0-30 | Gisement faible | « Votre organisation est déjà bien outillée. Quelques optimisations ciblées restent possibles. » |
-| 31-60 | Gisement modéré | « Il y a de vraies poches d'efficacité à récupérer, sur 2-3 zones prioritaires. » |
-| 61-100 | Gisement élevé | « Votre potentiel d'automatisation est important : plusieurs processus-clés peuvent être fluidifiés rapidement. » |
+| 0-30 | potentiel faible | « Votre organisation est déjà bien outillée. Quelques optimisations ciblées restent possibles. » |
+| 31-60 | potentiel modéré | « Il y a de vraies poches d'efficacité à récupérer, sur 2-3 zones prioritaires. » |
+| 61-100 | potentiel élevé | « Votre potentiel d'automatisation est important : plusieurs processus-clés peuvent être fluidifiés rapidement. » |
 
 ### 3.4 Sous-scores de maturité (affichés en complément)
 
@@ -239,7 +239,7 @@ Rédige EXACTEMENT cette structure :
 
 Contraintes :
 - Pas de jargon technique inutile (éviter "SOP", dire "procédures documentées").
-- Reste honnête : si le gisement est faible, dis-le et propose des optimisations
+- Reste honnête : si le potentiel est faible, dis-le et propose des optimisations
   ciblées plutôt que d'inventer des problèmes.
 - Maximum ~250 mots.
 - Ne promets aucun chiffre de ROI précis ; parle de "potentiel" et de "fourchette".
