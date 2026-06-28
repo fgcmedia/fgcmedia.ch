@@ -158,6 +158,20 @@
       .project-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--accent-deep); opacity: .9; transition: opacity .2s, transform .2s; }
       .project-link:hover { opacity: 1; transform: translateX(3px); }
 
+      /* Approche intro */
+      .approche-lead { max-width: 34ch; font-size: clamp(25px, 3vw, 36px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.18; margin-top: 6px; text-wrap: balance; }
+      .approche-lead .hl { color: var(--accent-deep); }
+      .approche-intro { max-width: 70ch; font-size: 18.5px; color: var(--ink-soft); margin-top: 24px; line-height: 1.6; }
+      .approche-intro strong { color: var(--ink); font-weight: 600; }
+      .approche-rule { height: 1px; background: var(--line); margin: 52px 0 0; }
+
+      /* Diagnostic invite */
+      .diag-card { background: linear-gradient(160deg, var(--accent-wash), color-mix(in oklch, var(--accent-wash) 55%, var(--card))); border: 1px solid color-mix(in oklch, var(--accent) 28%, var(--line)); border-radius: var(--r); padding: 64px 40px; text-align: center; box-shadow: var(--shadow); }
+      .diag-card .eyebrow-c { justify-content: center; }
+      .diag-card h2 { font-size: clamp(28px, 4vw, 42px); }
+      .diag-card p { max-width: 56ch; margin: 18px auto 0; font-size: 19px; color: var(--ink-soft); line-height: 1.6; }
+      .diag-card .btn-primary { margin-top: 30px; }
+
       /* FAQ */
       .faq { background: var(--bg-warm); }
       .faq-list { margin-top: 40px; display: grid; gap: 14px; }
@@ -181,6 +195,7 @@
             <a href="#approche">Approche</a>
             <a href="#realisations">Réalisations</a>
             <a href="#faq">FAQ</a>
+            <a href="/diagnostic">Diagnostic</a>
             <a href="#apropos">À propos</a>
             <a href="#contact">Contact</a>
           </nav>
@@ -235,12 +250,27 @@
 
     <section class="block" id="approche" style="padding-top:0">
       <div class="wrap reveal">
-        <span class="eyebrow-c">Méthode</span>
-        <h2>Mon approche repose sur 3 piliers</h2>
+        <div class="problem-card">
+          <span class="eyebrow-c">Méthode</span>
+          <p class="approche-lead">L'automatisation n'est pas le but.<br /> <span class="hl">Vos opérations qui tournent sans friction, si.</span></p>
+          <p class="approche-intro">La plupart des prestataires vous livrent un outil. Moi, je pars de votre problème : <strong>où votre équipe perd-elle du temps, où vos données se dispersent, où votre process casse.</strong> L'automatisation et les interfaces que je construis ne sont que le moyen — l'objectif, c'est de fluidifier vos opérations.</p>
+        </div>
+        <h2 style="margin-top:64px">Mon approche repose sur 3 piliers</h2>
         <div class="pillars">
           <div class="pillar"><div class="ico">1</div><h3>Vision tech + business</h3><p>Je développe des solutions techniques avec un seul objectif : des résultats concrets pour votre activité.</p></div>
           <div class="pillar"><div class="ico">2</div><h3>Simplifier le complexe</h3><p>IA, automatisation, outils internes… je rends ces technologies réellement utiles dans votre quotidien.</p></div>
           <div class="pillar"><div class="ico">3</div><h3>Solutions sur-mesure</h3><p>Applications internes, micro-SaaS, outils personnalisés, avec ou sans code selon le besoin réel.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="diagnostic-invite" style="padding-top:0">
+      <div class="wrap reveal">
+        <div class="diag-card">
+          <span class="eyebrow-c">Diagnostic gratuit</span>
+          <h2>Où en êtes-vous vraiment ?</h2>
+          <p>En 3 minutes, évaluez le potentiel d'automatisation de votre entreprise et recevez vos 3 priorités personnalisées. Sans engagement, sans appel requis.</p>
+          <a class="btn-primary btn-lg" href="/diagnostic">Faire le diagnostic →</a>
         </div>
       </div>
     </section>
@@ -352,7 +382,7 @@
           <div class="cta-actions">
             <a class="btn-primary btn-lg" href="https://calendly.com/fgcmedia/rdv" target="_blank" rel="noopener">Réserver un créneau</a>
             <a class="btn-ghost btn-lg" href="https://wa.me/41782033239" target="_blank" rel="noopener">Me contacter via WhatsApp</a>
-            <a class="btn-ghost btn-lg" href="/cdn-cgi/l/email-protection#86e1f4e3e1c6e0e1e5ebe3e2efe7a8e5ee">Me contacter par email</a>
+            <a class="btn-ghost btn-lg" href="/cdn-cgi/l/email-protection#f691849391b69091959b93929f97d8959e">Me contacter par email</a>
           </div>
         </div>
       </div>
@@ -370,6 +400,7 @@
             <a href="#approche">Approche</a>
             <a href="#realisations">Réalisations</a>
             <a href="#faq">FAQ</a>
+            <a href="/diagnostic">Diagnostic</a>
             <a href="#apropos">À propos</a>
             <a href="#contact">Contact</a>
           </div>
@@ -378,7 +409,7 @@
             <a href="https://www.linkedin.com/in/gregory-cardinale/" target="_blank" rel="noopener">LinkedIn</a>
             <a href="https://fr.malt.ch/profile/gregorycardinale" target="_blank" rel="noopener">Profil Malt</a>
             <a href="https://wa.me/41782033239" target="_blank" rel="noopener">WhatsApp</a>
-            <a href="/cdn-cgi/l/email-protection#ccabbea9ab8caaabafa1a9a8a5ade2afa4">Email</a>
+            <a href="/cdn-cgi/l/email-protection#aacdd8cfcdeacccdc9c7cfcec3cb84c9c2">Email</a>
           </div>
         </div>
         <div class="foot-bottom">
