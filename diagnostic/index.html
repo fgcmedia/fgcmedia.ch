@@ -376,7 +376,7 @@ function renderResult(json){
   }else{
     inner += `<h1 style="margin-top:4px">Merci, c'est enregistré.</h1>`;
   }
-  inner += `<div class="mailbox">Votre rapport détaillé, avec vos 3 priorités, vous arrive par email à <strong>${esc(data.email)}</strong>.</div>
+  inner += `<div class="mailbox">Votre rapport détaillé, avec vos 3 priorités, vous sera envoyé par email à <strong>${esc(data.email)}</strong>, dans les prochaines heures.</div>
     <a class="cta-link primary" href="${CALENDLY_URL}" target="_blank" rel="noreferrer">Réserver un échange →</a>`;
   app.innerHTML = inner;
 }
