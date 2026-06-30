@@ -93,12 +93,9 @@
   .err { color: var(--accent-deep); font-size: 14px; margin-top: 4px; }
   .score { font-size: clamp(54px, 12vw, 80px); font-weight: 800; line-height: 1; color: var(--accent-deep); letter-spacing: -0.03em; }
   .score span { font-size: 28px; color: var(--ink-faint); font-weight: 600; }
-  .gauges { display: flex; gap: 16px; margin: 8px 0 26px; flex-wrap: wrap; }
-  .gauge { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 130px; }
-  .gtrack { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; }
-  .gfill { height: 100%; background: var(--forest); }
-  .gname { font-size: 13px; color: var(--ink-soft); }
-  .gval { font-size: 12.5px; color: var(--ink-faint); }
+  .gtrack { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; margin: 10px 0 6px; }
+  .gfill { height: 100%; background: var(--forest); border-radius: 99px; }
+  .glabels { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--ink-faint); }
   .mailbox { background: var(--bg-warm); border-radius: 16px; padding: 16px 18px; font-size: 14.5px; line-height: 1.55; color: var(--ink); }
   a.cta-link { display: inline-block; text-decoration: none; margin-top: 22px; }
 
@@ -215,7 +212,7 @@ const OUTILS = [
   ["A","Zapier / Make / n8n"],
   ["B","Airtable / Google Sheets"],
   ["C","Notion / Smartsheet"],
-  ["D","Logiciel comptable (Banana, Winbiz, Crésus, Bexio…)"],
+  ["D","Logiciel comptable"],
   ["E","Slack / Teams"],
   ["F","APIs ou tableaux de bord internes sur-mesure"],
   ["G","Autre"],
@@ -362,18 +359,14 @@ async function submit(){
 }
 
 function renderResult(json){
-  const score = (json && json.score!=null) ? json.score : null;
+  const maturite = (json && json.maturite != null) ? json.maturite : null;
   let inner = `<span class="eyebrow-c">Votre diagnostic</span>`;
-  if(score!=null){
-    inner += `<div class="score">${esc(score)}<span>/100</span></div>
-      <h1 style="margin-top:12px">${esc(json.palier||"")}</h1>
+  if(maturite != null){
+    inner += `<div class="score">${esc(maturite)}<span>/100</span></div>
+      <div class="gtrack"><div class="gfill" style="width:${maturite}%"></div></div>
+      <div class="glabels"><span>Niveau actuel</span><span>Potentiel à exploiter</span></div>
+      <h1 style="margin-top:20px">${esc(json.palier||"")}</h1>
       <p class="sub">${esc(json.message||"")}</p>`;
-    if(json.souscores){
-      inner += `<div class="gauges">` + Object.entries(json.souscores).map(([k,v])=>`
-        <div class="gauge"><span class="gname">${esc(k)}</span>
-          <div class="gtrack"><div class="gfill" style="width:${(v/5)*100}%"></div></div>
-          <span class="gval">${esc(v)}/5</span></div>`).join("") + `</div>`;
-    }
   }else{
     inner += `<h1 style="margin-top:4px">Merci, c'est enregistré.</h1>`;
   }

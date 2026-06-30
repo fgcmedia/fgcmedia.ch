@@ -1,20 +1,35 @@
-# Scorecard FGC Média — Spécification complète
+# Diagnostic d'automatisation FGC Média — Spécification complète
 
-> Document de référence pour le développement du questionnaire d'auto-évaluation
+> Document de référence pour le questionnaire d'auto-évaluation
 > (lead magnet + pré-qualification). À passer à Claude Code pour l'implémentation.
 >
-> _Créé : 2026-06-27_
+> _Créé : 2026-06-27 · Mis à jour : 2026-06-27 (logique maturité)_
 
 ---
 
 ## 1. Objectif & principe
 
-Permettre à un dirigeant de TPE/PME de s'auto-évaluer en ~3 minutes, sans réserver d'appel, et :
+Permettre à un dirigeant de TPE/PME de s'auto-évaluer en ~3 minutes, sans réserver
+d'appel, et :
 
-- **Pour le visiteur** : obtenir immédiatement un **score d'opportunité /100** + une phrase de diagnostic à l'écran, puis recevoir par email un rapport détaillé (3 priorités + recommandations).
-- **Pour Grégory** : capturer un **lead pré-qualifié** (email dès l'étape 1) avec tout le contexte métier, et un **brouillon d'email** prêt à valider dans Gmail.
+- **Pour le visiteur** : obtenir immédiatement un **niveau d'automatisation actuel /100**
+  (avec une jauge montrant le potentiel inexploité) + une phrase de diagnostic à
+  l'écran, puis recevoir par email un rapport détaillé (3 priorités + recommandations).
+- **Pour Grégory** : capturer un **lead pré-qualifié** (email dès l'étape 1) avec tout
+  le contexte métier, et un **brouillon d'email** prêt à valider dans Gmail.
 
-**Règle de transparence** : le score d'opportunité est une **estimation indicative**, assumée comme telle (jamais un chiffre faussement précis). Cohérent avec le principe « honnêteté sur les gaps ».
+**Règle de transparence** : le résultat est une **estimation indicative**, assumée comme
+telle (jamais un chiffre faussement précis). Cohérent avec le principe « honnêteté
+sur les gaps ».
+
+### Note importante sur la logique d'affichage (maturité, pas opportunité)
+
+Le test terrain a montré qu'afficher un **score d'opportunité /100** (haut = beaucoup
+à automatiser) crée une dissonance : le réflexe scolaire lit « score élevé = bonne
+note », à l'inverse du sens voulu. **On affiche donc la maturité** (`100 - opportunité`),
+intuitive (bas = peu automatisé), tout en rendant le manque visible par une **jauge en
+deux parties** (niveau actuel + potentiel à exploiter). Le score d'opportunité reste
+calculé en interne et stocké pour le tri commercial.
 
 ---
 
@@ -23,139 +38,109 @@ Permettre à un dirigeant de TPE/PME de s'auto-évaluer en ~3 minutes, sans rés
 L'email est capturé à l'**étape 1** : même en cas d'abandon, le lead est acquis.
 
 ### Étape 1 — Contact
-- Objectif affiché : « Identifiez vos inefficacités, votre potentiel d'automatisation et le ROI possible dans vos systèmes actuels. »
-- Temps estimé affiché : **3 min**
-- Champs : **Nom complet*** · **Email***
+- Objectif affiché + temps estimé (**3 min**)
+- Champs : **Nom complet*** · **Email*** · **case de consentement nLPD/RGPD***
 
 ### Étape 2 — Votre entreprise (qualification)
-- **Nom de l'entreprise***
-- **Site web*** (peut servir à enrichir le lead)
-- **Secteur / activité***
-- **Nombre de personnes (salariés + indépendants)*** — select :
-  `1-9` · `10-19` · `20-49` · `50-99` · `100+`
-- **Chiffre d'affaires annuel*** — select (fourchettes en CHF) :
-  `< 250k` · `250k-1M` · `1M-5M` · `5M-10M` · `> 10M` · `Je préfère ne pas répondre`
+- **Nom de l'entreprise*** · **Site web*** · **Secteur / activité***
+- **Nombre de personnes*** : `1-9` · `10-19` · `20-49` · `50-99` · `100+`
+- **Chiffre d'affaires annuel (CHF)*** : `< 250k` · `250k-1M` · `1M-5M` · `5M-10M` · `> 10M` · `Je préfère ne pas répondre`
 
 ### Étape 3 — Opérations & organisation (douleur)
-- **Comment gérez-vous vos opérations / projets au quotidien ?** (choix multiple) :
-  - A. Tableurs Excel & email
-  - B. Outils de gestion de projet (Asana, ClickUp, Monday, Trello…)
-  - C. Systèmes internes / sur-mesure
-  - D. Un mélange d'outils avec des étapes manuelles
-- **Quelles zones vous semblent les plus inefficaces aujourd'hui ?** (choix multiple) :
-  - A. Ventes & relation client (CRM)
-  - B. Onboarding client
-  - C. Finance / facturation / devis
-  - D. Opérations terrain / planification
-  - E. Conformité / documentation
-  - F. Reporting / tableaux de bord
-  - G. Communication interne
-  - H. Tâches administratives (gestion des emails, saisie de données, classement…)
-- **Combien d'outils / plateformes distincts vos équipes utilisent-elles chaque jour ?** — select :
-  `1-3` · `4-6` · `7-10` · `Plus de 10`
+- **Comment gérez-vous vos opérations / projets ?** (choix multiple) :
+  A. Tableurs Excel & email · B. Outils de gestion de projet (Asana, ClickUp, Monday…) ·
+  C. Systèmes internes / sur-mesure · D. Mélange d'outils avec étapes manuelles
+- **Zones les plus inefficaces ?** (choix multiple) :
+  A. Ventes & CRM · B. Onboarding client · C. Finance / facturation / devis ·
+  D. Opérations terrain / planification · E. Conformité / documentation ·
+  F. Reporting / tableaux de bord · G. Communication interne
+- **Combien d'outils distincts par jour ?** : `1-3` · `4-6` · `7-10` · `Plus de 10`
 
 ### Étape 4 — Automatisation & maturité (scoring)
-- **Quels outils utilisez-vous actuellement ?** (choix multiple) :
-  - A. Zapier / Make / n8n
-  - B. Airtable / Google Sheets
-  - C. Notion / Smartsheet
-  - D. Logiciel comptable (Banana, Winbiz, Crésus, Bexio…)
-  - E. Slack / Teams
-  - F. APIs ou tableaux de bord internes sur-mesure
-  - G. Autre
-- **Combien de vos processus sont documentés (procédures écrites) ?** — échelle 1-5
-  `1 = aucune procédure` → `5 = tout est documenté`
-- **À quel point vos processus sont-ils automatisés ?** — échelle 1-5
-  `1 = tout est manuel` → `5 = entièrement automatisé entre services`
+- **Quels outils utilisez-vous ?** (choix multiple) :
+  A. Zapier / Make / n8n · B. Airtable / Google Sheets · C. Notion / Smartsheet ·
+  D. Logiciel comptable (Banana, Winbiz, Crésus, Bexio…) · E. Slack / Teams ·
+  F. APIs / tableaux de bord internes · G. Autre
+- **Processus documentés (procédures écrites) ?** — échelle 1-5 (1 = aucune → 5 = tout)
+- **Processus automatisés ?** — échelle 1-5 (1 = tout manuel → 5 = entièrement automatisé)
 
 ### Étape 5 — Points de blocage & objectifs (or pour le suivi)
-- **Quels sont les principaux maux opérationnels que vous aimeriez éliminer dans les 6-12 prochains mois ?** — texte libre
-  _Placeholder : « ex : trop de saisie manuelle, les rapports prennent des jours, aucune visibilité sur la charge de l'équipe… »_
-- **Si on doublait l'efficacité de votre équipe en 12 mois, à quoi ressemblerait le succès pour vous ?** — texte libre
-  _Placeholder : « ex : gérer plus de projets à effectif constant, réduire le travail admin, meilleure visibilité des données… »_
+- **Principaux maux opérationnels à éliminer (6-12 mois) ?** — texte libre
+- **Si on doublait l'efficacité en 12 mois, à quoi ressemblerait le succès ?** — texte libre
 
 Bouton final : **Obtenir mon score →**
 
 ---
 
-## 3. Logique de score d'opportunité /100
+## 3. Logique de calcul
 
-> ⚠️ **Hypothèses métier à valider/ajuster par Grégory.** Ce ne sont pas des
-> vérités universelles : ce sont des pondérations de départ, modifiables.
+> ⚠️ **Hypothèses métier, modifiables.** Pondérations de départ, pas des vérités.
 
-Le score d'opportunité mesure **le potentiel** (combien il y a à gagner),
-pas la maturité. Plus l'entreprise est manuelle/dispersée/peu documentée, plus le
-potentiel est élevé → score élevé = forte opportunité d'automatisation.
+### 3.1 Score d'opportunité (calcul interne, /100)
 
-### 3.1 Composantes (total 100 points)
+Mesure le **gisement potentiel** : plus l'entreprise est manuelle / dispersée / peu
+documentée, plus l'opportunité est élevée.
 
 | Composante | Poids | Logique |
 |---|---|---|
-| **Maturité automatisation** | 35 | Plus c'est manuel, plus le potentiel est grand |
-| **Documentation (SOPs)** | 15 | Peu de procédures = friction élevée = potentiel |
-| **Dispersion des outils** | 20 | Plus d'outils = plus d'intégrations manquantes |
-| **Surface d'inefficacité** | 20 | Plus de zones inefficaces cochées = plus de potentiel |
-| **Mode de gestion** | 10 | Tableurs/manuel = potentiel ; outils intégrés = moins |
+| Maturité automatisation | 35 | Plus c'est manuel, plus le gisement est grand |
+| Documentation (SOPs) | 15 | Peu de procédures = friction = gisement |
+| Dispersion des outils | 20 | Plus d'outils = plus d'intégrations manquantes |
+| Surface d'inefficacité | 20 | Plus de zones cochées = plus de potentiel |
+| Mode de gestion | 10 | Tableurs/manuel = gisement ; outils intégrés = moins |
 
-### 3.2 Calcul détaillé
+**Calcul** :
+- **A. Automatisation (35)** : `(5 - valeur_auto) / 4 * 35`
+- **B. Documentation (15)** : `(5 - valeur_sops) / 4 * 15`
+- **C. Dispersion (20)** : `1-3 → 5` · `4-6 → 12` · `7-10 → 18` · `>10 → 20`
+- **D. Inefficacité (20)** : `min(nb_zones, 5) / 5 * 20`
+- **E. Gestion (10)** : `+5 si A (tableurs)` · `+5 si D (mélange manuel)` · plafonné à 10
 
-**A. Maturité automatisation (35 pts)** — depuis l'échelle 1-5 « automatisation »
-`points = (5 - valeur) / 4 * 35`
-- 1 (tout manuel) → 35 pts
-- 3 → 17,5 pts
-- 5 (tout automatisé) → 0 pt
+`opportunite = round(borne(A + B + C + D + E, 0, 100))`
 
-**B. Documentation (15 pts)** — depuis l'échelle 1-5 « SOPs »
-`points = (5 - valeur) / 4 * 15`
+### 3.2 Maturité (valeur affichée à l'écran, /100)
 
-**C. Dispersion des outils (20 pts)** — depuis « combien d'outils distincts »
-- `1-3` → 5 pts
-- `4-6` → 12 pts
-- `7-10` → 18 pts
-- `Plus de 10` → 20 pts
+```
+maturite = 100 - opportunite
+```
 
-**D. Surface d'inefficacité (20 pts)** — depuis les zones inefficaces cochées
-`points = min(nb_zones_cochées, 5) / 5 * 20`
-(plafonné à 5 zones pour éviter qu'un « je coche tout » sature le score)
+Intuitive : un chiffre bas = peu automatisé = beaucoup à gagner.
+C'est cette valeur qui est renvoyée au front et affichée en grand.
 
-**E. Mode de gestion (10 pts)** — depuis « comment gérez-vous vos opérations »
-- Contient A (tableurs & email) → +5
-- Contient D (mélange + étapes manuelles) → +5
-- Contient C (systèmes internes) seul → +0
-- Plafonné à 10
-(B = outils de PM structurés → 0 pt de potentiel sur cette composante)
+### 3.3 Paliers (formulés côté gain)
 
-**Score final** = A + B + C + D + E, arrondi à l'entier, borné 0-100.
+Le palier est déterminé par l'**opportunité** (le manque), mais **libellé en termes
+de bénéfice** pour rester motivant sans culpabiliser.
 
-### 3.3 Paliers d'interprétation
-
-| Score | Libellé | Phrase à l'écran (exemple) |
+| Opportunité | Palier affiché | Message |
 |---|---|---|
-| 0-30 | potentiel faible | « Votre organisation est déjà bien outillée. Quelques optimisations ciblées restent possibles. » |
-| 31-60 | potentiel modéré | « Il y a de vraies poches d'efficacité à récupérer, sur 2-3 zones prioritaires. » |
-| 61-100 | potentiel élevé | « Votre potentiel d'automatisation est important : plusieurs processus-clés peuvent être fluidifiés rapidement. » |
+| 0-30 | **Déjà bien outillé** | « Votre organisation est déjà bien automatisée. Quelques optimisations ciblées restent possibles. » |
+| 31-60 | **Des gains à portée de main** | « Plusieurs zones peuvent être fluidifiées : il y a du temps concret à récupérer. » |
+| 61-100 | **Beaucoup à gagner** | « Une large part de vos processus reste manuelle. Le temps récupérable est important, et rapidement. » |
 
-### 3.4 Sous-scores de maturité (affichés en complément)
+### 3.4 Sous-scores : supprimés
 
-Trois mini-jauges, calculées séparément du /100 :
-- **Documentation** : valeur 1-5 brute → affichée en /5
-- **Automatisation** : valeur 1-5 brute → affichée en /5
-- **Intégration des outils** : inverse de la dispersion → `1-3 outils = 5/5`, `>10 = 1/5`
+Les trois sous-jauges (Documentation / Automatisation / Intégration) ont été
+**retirées** : elles alourdissaient la lecture sans valeur ajoutée claire pour le
+visiteur. Les valeurs brutes `sops` et `auto` restent stockées en base pour analyse.
 
 ---
 
 ## 4. Affichage écran vs email
 
 ### À l'écran (immédiat, après submit)
-- Le **score d'opportunité /100** en grand
+- Le **niveau d'automatisation actuel /100** (= `maturite`) en grand
+- Une **jauge horizontale en deux parties** :
+  - partie pleine (largeur = `maturite`%) = « Niveau actuel »
+  - partie vide (largeur = `100 - maturite`%) = « Potentiel à exploiter »
 - Le **libellé de palier** + sa phrase de diagnostic
-- Les **3 sous-jauges de maturité** (/5)
 - Message : « Votre rapport détaillé avec vos 3 priorités vous arrive par email. »
+- Bouton **Calendly** (réserver un échange)
 
-### Dans l'email (rapport complet, validé par Grégory avant envoi)
-- Rappel du score + paliers
+### Dans l'email (rapport complet, en brouillon validé par Grégory)
+- Rappel du résultat + palier
 - **3 priorités personnalisées** générées par IA à partir des réponses
-- Lien pour réserver un appel (CTA)
+- Lien Calendly (CTA)
 - Ton : conseil, pas vente
 
 ---
@@ -163,107 +148,71 @@ Trois mini-jauges, calculées séparément du /100 :
 ## 5. Architecture technique
 
 ```
-┌─────────────────┐     POST réponses      ┌──────────────────┐
-│  Formulaire     │ ─────────────────────► │  n8n (webhook)   │
-│  React (site)   │                         │                  │
-│                 │ ◄───────────────────── │  1. Calcul score │
-│  Affiche score  │   { score, souscores } │  2. Appel OpenAI │
-└─────────────────┘     réponse synchrone   │  3. Crée draft   │
-                                            │     Gmail        │
-                                            └──────────────────┘
-                                                     │
-                                                     ▼
-                                          Brouillon dans Gmail
-                                          (fgcmedia.sarl@gmail.com)
-                                          → Grégory valide & envoie
+┌─────────────────┐   POST réponses     ┌──────────────────┐
+│  diagnostic.html │ ──────────────────► │  n8n (webhook)   │
+│  (HTML/JS vanilla)│                     │                  │
+│  site statique    │ ◄────────────────── │  1. Calcul score │
+│  Render           │  { maturite,        │  2. OpenAI       │
+│  Affiche maturité │    palier, message }│  3. Insert SB    │
+│  + jauge          │                     │  4. Draft Gmail  │
+└─────────────────┘                       └──────────────────┘
+                                                   │
+                                                   ▼
+                                        Brouillon Gmail
+                                        (fgcmedia.sarl@gmail.com)
+                                        → Grégory valide & envoie
 ```
 
-### 5.1 Frontend React
-- Formulaire multi-étapes (5 steps), state local (pas de localStorage — non supporté en artifacts, et inutile ici)
-- Validation par étape (champs requis)
-- POST du payload complet vers le webhook n8n en fin de parcours
-- **Le calcul du score peut être fait côté n8n** (recommandé : logique centralisée, modifiable sans redéploiement front) **et renvoyé en réponse synchrone** pour affichage immédiat
-- Affiche score + sous-jauges + message « rapport par email »
-
-### 5.2 n8n (cœur logique)
-1. **Webhook** reçoit le payload
-2. **Function node** : calcule le score /100 + sous-scores (logique section 3)
-3. **OpenAI node** : génère les 3 priorités personnalisées (prompt section 6)
-4. **Gmail node** (`createDraft`) : crée le brouillon sur le compte connecté
-5. **Respond to Webhook** : renvoie `{ score, souscores, palier }` au front
-
-> Architecture cohérente avec le principe « toute la logique de traitement reste
-> dans n8n, hors de l'app React ».
-
-### 5.3 Gmail — brouillon plutôt qu'envoi
-- Node Gmail `Create Draft` (pas `Send`)
-- Le brouillon est créé sur `fgcmedia.sarl@gmail.com`
-- Grégory ouvre Gmail, relit, ajuste, complète, puis envoie manuellement
-- **Argument vendeur** : « le système prépare, vous validez » — démontre une
-  automatisation avec garde-fou humain, vendable telle quelle à un client
+- **Front** : page autonome HTML/JS vanilla (pas de framework), POST vers le webhook,
+  affiche `maturite` + jauge deux parties. Charte du site (tokens oklch, Schibsted Grotesk).
+- **n8n** : webhook → Function (score) → OpenAI (gpt-4o-mini) → Supabase (insert) →
+  Gmail (draft) → Respond. Voir `WORKFLOW_N8N.md` pour le détail node par node.
+- **Supabase** : table `leads_diagnostic` (base « fgcmedia.ch »), colonnes de
+  qualification + `reponses` jsonb. La colonne `score` stocke l'**opportunité** (tri
+  commercial : score desc = leads les plus chauds).
 
 ---
 
-## 6. Prompt OpenAI (génération des 3 priorités)
+## 6. Livraison de l'email : draft (actuel) → envoi auto (évolution possible)
 
-> À placer dans le node OpenAI de n8n. Les variables `{{ }}` sont injectées
-> depuis les réponses du formulaire et le score calculé.
+**État actuel : brouillon Gmail.** Le workflow crée un draft que Grégory relit et
+envoie manuellement. Garde-fou pendant la phase d'observation.
 
-```
-Tu es un consultant en automatisation pour PME. À partir des réponses ci-dessous
-d'un dirigeant à un questionnaire d'auto-évaluation, rédige un court rapport en
-français, ton professionnel et bienveillant (vouvoiement), SANS survente.
+**Pourquoi garder le draft au début** :
+1. **Qualité du rapport IA** : tant qu'un échantillon de 15-20 rapports réels n'a pas
+   été observé, le draft protège contre une sortie hors-sujet ou maladroite.
+2. **Personnalisation à valeur** : permet d'ajouter une phrase sur-mesure (référence au
+   site du prospect, à son secteur) qui peut faire la différence sur un lead chaud.
 
-Contexte de l'entreprise :
-- Secteur : {{secteur}}
-- Taille : {{taille}} personnes
-- Gestion actuelle : {{mode_gestion}}
-- Zones inefficaces déclarées : {{zones_inefficaces}}
-- Nombre d'outils utilisés : {{nb_outils}}
-- Outils en place : {{outils}}
-- Documentation (1-5) : {{score_sops}}
-- Automatisation (1-5) : {{score_auto}}
-- Maux opérationnels (texte libre) : {{douleurs}}
-- Vision de succès (texte libre) : {{vision}}
-
-Score d'opportunité calculé : {{score}}/100 ({{palier}})
-
-Rédige EXACTEMENT cette structure :
-1. Un paragraphe de 2-3 phrases qui reformule leur situation avec empathie et
-   relie leur vision de succès au potentiel identifié.
-2. "Vos 3 priorités :" suivi de 3 points concrets, chacun avec :
-   - un titre court
-   - 1-2 phrases expliquant le gain attendu et une piste d'approche
-   Les priorités doivent être tirées de LEURS réponses (zones inefficaces,
-   outils, douleurs déclarées), pas génériques.
-3. Une phrase de clôture invitant à en discuter, sans pression.
-
-Contraintes :
-- Pas de jargon technique inutile (éviter "SOP", dire "procédures documentées").
-- Reste honnête : si le potentiel est faible, dis-le et propose des optimisations
-  ciblées plutôt que d'inventer des problèmes.
-- Maximum ~250 mots.
-- Ne promets aucun chiffre de ROI précis ; parle de "potentiel" et de "fourchette".
-```
+**Évolution possible : envoi automatique via Resend**, une fois la qualité validée sur
+un échantillon. Option : conditionner dans n8n (IF sur le score) — draft pour les leads
+à fort potentiel, envoi auto pour les autres. À ne mettre en place qu'après la phase
+d'observation, sans complexifier prématurément.
 
 ---
 
-## 7. Points à décider / affiner par Grégory
+## 7. Décisions verrouillées
 
-- [ ] **Valider les pondérations** de la section 3 (poids des composantes, fourchettes)
-- [ ] **CHF vs EUR** pour les fourchettes de CA (CHF retenu par défaut, cible Suisse)
-- [ ] **Réserver un nom de page** : `/scorecard`, `/evaluation`, `/diagnostic` ?
-- [ ] **CTA de fin d'email** : lien Calendly / réservation d'appel à intégrer
-- [ ] **RGPD / nLPD** : mention de consentement sur l'usage de l'email (case à cocher étape 1)
-- [ ] **Enrichissement** : exploiter le site web fourni pour pré-remplir le contexte ? (v2)
+- ✅ Pondérations du score : en l'état pour démarrer
+- ✅ Devise : CHF
+- ✅ Route : `/diagnostic`
+- ✅ Calendly : `https://calendly.com/fgcmedia/rdv`
+- ✅ Consentement nLPD/RGPD : case à l'étape 1
+- ✅ Modèle IA : gpt-4o-mini
+- ✅ Stockage : Supabase, table `leads_diagnostic`
+- ✅ Affichage : maturité /100 + jauge deux parties (pas le score d'opportunité brut)
+- ✅ Sous-scores : supprimés
+- ✅ Email : brouillon Gmail (envoi auto Resend = évolution future)
+- ✅ Terminologie : « Diagnostic d'automatisation » (nom) · « Découvrez votre potentiel
+  d'automatisation » (accroche home)
+- 🔲 Enrichissement via site web fourni : v2
 
 ---
 
-## 8. Prochaines étapes suggérées
+## 8. Fichiers liés
 
-1. Grégory valide/ajuste les pondérations (section 3) et les décisions (section 7)
-2. Construction du formulaire React multi-étapes (Claude Code)
-3. Construction du workflow n8n (webhook → score → OpenAI → draft Gmail)
-4. Test bout-en-bout avec un cas fictif
-5. Intégration sur le site (section dédiée + lien dans la nav)
-6. (v2) Score affiné, enrichissement via site web, A/B test de l'accroche
+| Fichier | Rôle |
+|---|---|
+| `diagnostic.html` | Page front (formulaire 5 étapes + écran résultat), déployée sur le site |
+| `WORKFLOW_N8N.md` | Construction node par node du workflow n8n + SQL Supabase + CORS |
+| `SCORECARD_SPEC.md` | Ce document — spécification de référence |
