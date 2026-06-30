@@ -50,6 +50,7 @@ L'email est capturé à l'**étape 1** : même en cas d'abandon, le lead est acq
   - E. Conformité / documentation
   - F. Reporting / tableaux de bord
   - G. Communication interne
+  - H. Tâches administratives (gestion des emails, saisie de données, classement…)
 - **Combien d'outils / plateformes distincts vos équipes utilisent-elles chaque jour ?** — select :
   `1-3` · `4-6` · `7-10` · `Plus de 10`
 
