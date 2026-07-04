@@ -1,0 +1,536 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NGL · Scan de fiche salon</title>
+<style>
+/* =========================================================================
+   MAQUETTE — "Scan de fiche salon" · variante NGL Cleaning Technology
+   -------------------------------------------------------------------------
+   Adaptée de la v2 maxon : mêmes principes (carte lue, listes fermées,
+   pastilles produits, confiance, capture unité/série) mais contenu métier NGL
+   et export vers Zoho CRM. Aucun backend : l'OCR est simulé (valeurs pré-
+   remplies). La "photo" est une fiche générique dessinée en SVG (pas de
+   photo NGL réelle disponible).
+   Couleurs de marque = PLACEHOLDER (teal) à remplacer par la vraie charte NGL.
+   ========================================================================= */
+
+:root{
+  --brand:#0B6E74; --brand-d:#095459;      /* teal / petrol — placeholder NGL */
+  --ink:#17201F; --muted:#657170; --line:#E1E7E6;
+  --surface:#F3F7F6; --paper:#FFFFFF;
+  --ok:#1F7A4D; --ok-bg:#E8F5EE;
+  --warn:#A9640B; --warn-bg:#FBF1DF;
+  --shadow:0 18px 50px -12px rgba(10,20,20,.35);
+  --ui:"Helvetica Neue",Helvetica,Arial,"Segoe UI",Roboto,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Roboto Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--ui); color:var(--ink);
+  background:radial-gradient(1200px 600px at 50% -10%, #eef3f2, #e6ecea 45%, #dee5e3);
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  padding:28px 16px; -webkit-font-smoothing:antialiased}
+
+.phone{width:390px; max-width:100%; height:min(824px,92vh); background:var(--paper);
+  border-radius:38px; overflow:hidden; box-shadow:var(--shadow); position:relative;
+  border:1px solid rgba(0,0,0,.06); display:flex; flex-direction:column}
+.statusbar{height:34px; flex:0 0 34px; display:flex; align-items:center;
+  justify-content:space-between; padding:0 20px; font-size:12px; font-weight:600}
+.statusbar .bar{width:16px;height:9px;border:1.4px solid var(--ink);border-radius:2px;position:relative}
+.statusbar .bar::after{content:"";position:absolute;right:-3px;top:2.5px;width:2px;height:3px;background:var(--ink);border-radius:0 1px 1px 0}
+
+.appbar{flex:0 0 auto; background:var(--brand); color:#fff; padding:12px 18px 14px; display:flex; align-items:center; gap:12px}
+.appbar .back{background:none;border:0;color:#fff;font-size:20px;cursor:pointer;padding:0 4px 0 0;display:none}
+.logo{font-weight:800; font-size:21px; letter-spacing:1px; line-height:1}
+.logo small{display:block;font-size:8.5px;font-weight:600;letter-spacing:1.5px;opacity:.85;margin-top:2px}
+.appbar .meta{margin-left:auto; text-align:right; line-height:1.25}
+.appbar .meta b{font-size:12.5px; font-weight:700; display:block}
+.appbar .meta span{font-size:11px; opacity:.85}
+
+.screen{flex:1 1 auto; position:relative; overflow:hidden}
+.view{position:absolute; inset:0; display:none; flex-direction:column}
+.view.active{display:flex}
+
+/* sheet SVG (remplit son conteneur comme object-fit:cover) */
+.sheet{width:100%;height:100%;display:block}
+.sheet svg{width:100%;height:100%;display:block}
+
+/* ---------- INBOX ---------- */
+.inbox{background:var(--surface)}
+.inbox .head{padding:16px 16px 8px; display:flex; align-items:baseline; gap:8px}
+.inbox .head h2{margin:0; font-size:16px}
+.inbox .head .n{font-size:12px; color:var(--muted)}
+.inbox .list{flex:1 1 auto; overflow-y:auto; padding:6px 14px 96px}
+.row{display:flex; align-items:center; gap:12px; background:#fff; border:1px solid var(--line);
+  border-radius:13px; padding:12px 13px; margin-bottom:10px; cursor:pointer; text-align:left; width:100%; font-family:var(--ui)}
+.row:active{transform:translateY(1px)}
+.row .ic{width:38px;height:46px;border-radius:7px;background:var(--surface);flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:19px;border:1px solid var(--line)}
+.row .body{flex:1 1 auto; min-width:0}
+.row .body b{font-size:14.5px; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.row .body span{font-size:11.5px; color:var(--muted)}
+.row .st{font-size:10.5px; font-weight:700; padding:3px 8px; border-radius:20px; white-space:nowrap}
+.row .st.ok{color:var(--ok); background:var(--ok-bg)}
+.row .st.warn{color:var(--warn); background:var(--warn-bg)}
+.row .chev{color:#C3CCCB; font-size:18px; margin-left:2px}
+.fab{position:absolute; left:14px; right:14px; bottom:calc(16px + env(safe-area-inset-bottom));
+  background:var(--brand); color:#fff; border:0; border-radius:14px; padding:15px; font-weight:700; font-size:15px;
+  font-family:var(--ui); cursor:pointer; box-shadow:0 10px 24px -8px rgba(11,110,116,.6); display:flex; align-items:center; justify-content:center; gap:9px}
+.fab:active{transform:translateY(1px)}
+
+/* ---------- CAPTURE ---------- */
+.capture{background:#0C1413}
+.capbar{flex:0 0 auto; display:flex; justify-content:center; padding:12px}
+.modes{display:inline-flex; background:rgba(255,255,255,.12); border-radius:11px; padding:3px}
+.modes button{border:0; background:none; color:rgba(255,255,255,.7); font-family:var(--ui); font-size:12.5px; font-weight:600; padding:7px 16px; border-radius:9px; cursor:pointer}
+.modes button.on{background:#fff; color:var(--ink)}
+.viewfinder{flex:1 1 auto; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#0C1413}
+.brackets{position:absolute; inset:18px; pointer-events:none}
+.brackets i{position:absolute; width:26px; height:26px; border:2.5px solid #fff; opacity:.9}
+.brackets i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0}
+.brackets i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0}
+.brackets i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}
+.brackets i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
+.hint{position:absolute; top:14px; left:0; right:0; text-align:center; color:#fff; font-size:12.5px; opacity:.92; text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.cardbadge{position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
+  display:inline-flex; align-items:center; gap:6px; background:rgba(31,122,77,.95); color:#fff;
+  font-size:12px; font-weight:700; padding:6px 12px; border-radius:20px; box-shadow:0 3px 12px rgba(0,0,0,.35)}
+.shutterbar{flex:0 0 auto; background:#0C1413; padding:14px 0 22px; display:flex; align-items:center; justify-content:center; position:relative}
+.shutter{width:66px;height:66px;border-radius:50%;background:#fff;border:4px solid rgba(255,255,255,.35);cursor:pointer;transition:transform .12s}
+.shutter:active{transform:scale(.94)}
+.shutter:focus-visible{outline:3px solid #fff; outline-offset:4px}
+.done-serie{position:absolute; right:20px; top:50%; transform:translateY(-50%); color:#fff; background:rgba(255,255,255,.14); border:0; border-radius:11px; padding:10px 14px; font-family:var(--ui); font-weight:700; font-size:13px; cursor:pointer; display:none}
+.counter{position:absolute; left:20px; top:50%; transform:translateY(-50%); color:#fff; font-size:12.5px; font-weight:700; display:none; align-items:center; gap:7px}
+.counter b{background:var(--brand); width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+
+/* ---------- SCAN ---------- */
+.scanning{background:#0C1413}
+.scanwrap{flex:1 1 auto; position:relative; overflow:hidden}
+.scanwrap .sheet{opacity:.55; filter:grayscale(.15)}
+.scanline{position:absolute; left:0; right:0; height:3px; top:0; background:linear-gradient(90deg,transparent,#fff,transparent); box-shadow:0 0 22px 6px rgba(255,255,255,.55)}
+.scan-anim{animation:sweep 1.15s cubic-bezier(.4,0,.2,1) infinite alternate}
+@keyframes sweep{from{top:4%}to{top:96%}}
+.scanmesh{position:absolute; inset:0; background-image:linear-gradient(rgba(11,110,116,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(11,110,116,.2) 1px,transparent 1px); background-size:28px 28px; mix-blend-mode:screen; opacity:.6}
+.scanstatus{flex:0 0 auto; background:#0C1413; color:#fff; padding:18px 22px 24px}
+.scanstatus .lbl{font-size:13.5px; font-weight:600; display:flex; align-items:center; gap:9px}
+.spin{width:15px;height:15px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.prog{height:4px; background:rgba(255,255,255,.16); border-radius:3px; margin-top:14px; overflow:hidden}
+.prog i{display:block; height:100%; width:0; background:#fff; border-radius:3px; transition:width .3s ease}
+
+/* ---------- REVIEW ---------- */
+.review{background:var(--surface)}
+.rev-scroll{flex:1 1 auto; overflow-y:auto; padding:14px 14px 16px}
+.rev-top{display:flex; align-items:center; gap:10px; margin:2px 2px 12px}
+.rev-top .thumb{width:40px;height:52px;border-radius:6px;border:1px solid var(--line);flex:0 0 auto;cursor:pointer;overflow:hidden}
+.rev-top .t b{font-size:14px}
+.rev-top .t span{font-size:11.5px;color:var(--muted);display:block}
+.rev-top .see{margin-left:auto;font-size:11.5px;color:var(--brand);font-weight:600;background:none;border:0;cursor:pointer;padding:6px}
+
+.card{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:13px 14px; margin-bottom:11px}
+.card > h3{margin:0 0 10px; font-size:11px; letter-spacing:.7px; text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.chip{font-size:10px; font-weight:700; padding:2px 7px; border-radius:20px; text-transform:none; letter-spacing:0}
+.chip.ok{color:var(--ok); background:var(--ok-bg)}
+.chip.warn{color:var(--warn); background:var(--warn-bg)}
+.chip.ok::before{content:"✓ "}
+.chip.warn::before{content:"⚠ "}
+
+.card.biz{border-color:#BFE3D4; background:linear-gradient(#fff,#fafefb)}
+.biz .src{font-size:11px;color:var(--ok);margin:-4px 0 10px}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.field{display:flex; flex-direction:column; gap:4px; margin-bottom:11px}
+.field.full{grid-column:1 / -1}
+.field:last-child{margin-bottom:2px}
+.field > label{font-size:11.5px; color:var(--muted)}
+.field input, .field textarea, .field select{font-family:var(--ui); font-size:14px; color:var(--ink); width:100%; border:1px solid var(--line); border-radius:9px; padding:9px 10px; background:#fff}
+.field input.code, .field select.code{font-family:var(--mono); letter-spacing:.4px}
+.field textarea{resize:vertical; min-height:64px; line-height:1.5}
+.field input:focus, .field textarea:focus, .field select:focus{outline:2px solid var(--brand); border-color:var(--brand)}
+.field.flag input, .field.flag textarea, .field.flag select{border-left:3px solid var(--warn); background:var(--warn-bg)}
+.field select{appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23657170' stroke-width='1.6' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 11px center; padding-right:28px}
+
+.checks{display:grid; grid-template-columns:1fr 1fr; gap:9px 10px}
+.chk{display:flex; align-items:center; gap:8px; font-size:13.5px; cursor:pointer; user-select:none}
+.chk input{appearance:none;-webkit-appearance:none;width:19px;height:19px;flex:0 0 auto;border:1.6px solid #A9B4B2;border-radius:5px;background:#fff;position:relative;cursor:pointer}
+.chk input:checked{background:var(--brand);border-color:var(--brand)}
+.chk input:checked::after{content:"✓";color:#fff;font-size:13px;font-weight:700;position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.chk.off{color:var(--muted)}
+.full{grid-column:1 / -1}
+
+.seg{display:flex; gap:8px}
+.seg button{flex:1; font-family:var(--ui); font-size:13px; font-weight:600; padding:9px 0; border-radius:9px; border:1.4px solid var(--line); background:#fff; color:var(--muted); cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--brand); border-color:var(--brand); color:#fff}
+
+.pills{display:flex; flex-wrap:wrap; gap:8px; margin-top:2px}
+.pill{display:inline-flex; align-items:center; gap:7px; background:var(--ok-bg); color:#15603B; border:1px solid #C7E7D6; border-radius:20px; padding:6px 11px; font-size:12.5px; font-weight:600}
+.pill .fam{font-family:var(--mono); font-size:11px; background:#fff; border-radius:5px; padding:1px 5px; color:var(--ok)}
+.pill.add{background:#fff; color:var(--muted); border-style:dashed; cursor:pointer}
+.rawnote{font-size:11.5px; color:var(--muted); margin-top:9px; font-style:italic}
+
+.actionbar{flex:0 0 auto; background:var(--paper); border-top:1px solid var(--line); padding:12px 14px calc(12px + env(safe-area-inset-bottom)); display:flex; gap:10px}
+.btn{flex:1; font-family:var(--ui); font-weight:700; font-size:14px; padding:13px 0; border-radius:11px; cursor:pointer; border:1.5px solid var(--line); background:#fff; color:var(--ink)}
+.btn.primary{background:var(--brand); border-color:var(--brand); color:#fff; flex:1.5; display:flex; align-items:center; justify-content:center; gap:7px}
+.btn:active{transform:translateY(1px)}
+
+.done{background:var(--surface); align-items:center; justify-content:center; padding:34px}
+.done .tick{width:76px;height:76px;border-radius:50%;background:var(--ok-bg);color:var(--ok);display:flex;align-items:center;justify-content:center;font-size:40px;margin-bottom:20px}
+.done h2{margin:0 0 6px; font-size:20px}
+.done p{margin:0; color:var(--muted); font-size:13.5px; text-align:center; line-height:1.5}
+.done .summary{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:22px 0 26px;width:100%;font-size:13px}
+.done .summary div{display:flex;justify-content:space-between;padding:5px 0}
+.done .summary div + div{border-top:1px solid var(--surface)}
+.done .summary span{color:var(--muted)}
+.done .again{width:100%;padding:13px;border-radius:11px;border:0;background:var(--brand);color:#fff;font-weight:700;font-size:14px;font-family:var(--ui);cursor:pointer}
+
+.overlay{position:absolute; inset:0; background:rgba(6,12,11,.92); z-index:20; display:none; flex-direction:column; padding:14px}
+.overlay.show{display:flex}
+.overlay .sheet{flex:1; min-height:0}
+.overlay button{margin-top:12px; padding:12px; border-radius:11px; border:0; background:#fff; font-weight:700; font-family:var(--ui); cursor:pointer}
+.toast{position:absolute; left:16px; right:16px; bottom:24px; background:var(--ink); color:#fff; padding:12px 15px; border-radius:11px; font-size:13px; font-weight:600; z-index:30; opacity:0; transform:translateY(8px); transition:.25s; pointer-events:none; text-align:center}
+.toast.show{opacity:1; transform:none}
+@media (prefers-reduced-motion:reduce){.scan-anim,.spin{animation:none}}
+</style>
+
+<div class="phone">
+  <div class="statusbar"><span>9:41</span><span class="bar"></span></div>
+
+  <div class="appbar">
+    <button class="back" id="back">‹</button>
+    <div class="logo">NGL<small>CLEANING TECH</small></div>
+    <div class="meta"><b id="appctx">Field · Leads</b><span>EPHJ Genève 2026</span></div>
+  </div>
+
+  <div class="screen">
+
+    <!-- ========== INBOX ========== -->
+    <div class="view inbox active" id="v-inbox">
+      <div class="head"><h2>Fiches du salon</h2><span class="n">3 fiches · 1 à vérifier</span></div>
+      <div class="list">
+        <button class="row" id="row-main">
+          <span class="ic">📄</span>
+          <span class="body"><b>Chronostel Manufacture SA</b><span>NGL Suisse · Horlogerie · Nettoyage · il y a 3 min</span></span>
+          <span class="st warn">À vérifier</span><span class="chev">›</span>
+        </button>
+        <button class="row">
+          <span class="ic">📄</span>
+          <span class="body"><b>OrthoMed Implants SA</b><span>NGL Suisse · Dispositifs médicaux · il y a 19 min</span></span>
+          <span class="st ok">Prêt</span><span class="chev">›</span>
+        </button>
+        <button class="row">
+          <span class="ic">📄</span>
+          <span class="body"><b>Jurassienne d'Optique Sàrl</b><span>NGL France · Optique de précision · il y a 41 min</span></span>
+          <span class="st ok">Prêt</span><span class="chev">›</span>
+        </button>
+      </div>
+      <button class="fab" id="fab">＋ Scanner une fiche</button>
+    </div>
+
+    <!-- ========== CAPTURE ========== -->
+    <div class="view capture" id="v-capture">
+      <div class="capbar">
+        <div class="modes">
+          <button class="on" data-mode="single" id="m-single">Fiche unique</button>
+          <button data-mode="serie" id="m-serie">Série</button>
+        </div>
+      </div>
+      <div class="viewfinder">
+        <div class="sheet" id="vf-sheet"></div>
+        <div class="brackets"><i></i><i></i><i></i><i></i></div>
+        <div class="cardbadge">✓ Carte détectée</div>
+        <div class="hint" id="caphint">Cadrez la fiche + la carte agrafée, puis capturez</div>
+      </div>
+      <div class="shutterbar">
+        <div class="counter" id="counter"><b>0</b> capturées</div>
+        <button class="shutter" id="shoot" aria-label="Capturer"></button>
+        <button class="done-serie" id="finish">Terminer</button>
+      </div>
+    </div>
+
+    <!-- ========== SCAN ========== -->
+    <div class="view scanning" id="v-scan">
+      <div class="scanwrap">
+        <div class="sheet" id="sc-sheet"></div>
+        <div class="scanmesh"></div>
+        <div class="scanline scan-anim"></div>
+      </div>
+      <div class="scanstatus">
+        <div class="lbl"><span class="spin"></span><span id="scan-msg">Détection de la fiche…</span></div>
+        <div class="prog"><i id="prog"></i></div>
+      </div>
+    </div>
+
+    <!-- ========== REVIEW ========== -->
+    <div class="view review" id="v-review">
+      <div class="rev-scroll">
+        <div class="rev-top">
+          <div class="thumb sheet" id="th-sheet"></div>
+          <div class="t"><b>Données extraites</b><span>Vérifiez les champs ⚠, puis enregistrez</span></div>
+          <button class="see" id="see-orig">Voir l'original</button>
+        </div>
+
+        <!-- Carte de visite lue -->
+        <div class="card biz">
+          <h3>Carte de visite <span class="chip ok">Lue automatiquement</span></h3>
+          <p class="src">Extraite de la carte agrafée sur la même photo.</p>
+          <div class="grid2">
+            <div class="field full"><label>Entreprise</label><input value="Chronostel Manufacture SA"></div>
+            <div class="field full"><label>Département</label><input value="Bureau des méthodes"></div>
+            <div class="field"><label>Nom</label><input value="Sandoz"></div>
+            <div class="field"><label>Prénom</label><input value="Camille"></div>
+            <div class="field full"><label>Adresse</label><input value="Rue du Parc 45, 2300 La Chaux-de-Fonds"></div>
+            <div class="field"><label>Téléphone</label><input value="+41 32 555 27 90"></div>
+            <div class="field"><label>E-mail</label><input value="c.sandoz@chronostel.ch"></div>
+          </div>
+        </div>
+
+        <!-- En-tête : listes fermées -->
+        <div class="card">
+          <h3>En-tête</h3>
+          <div class="field">
+            <label>Filiale NGL — à transmettre à <span class="chip ok" style="margin-left:4px">Liste</span></label>
+            <select>
+              <option>NGL Suisse — Nyon</option>
+              <option>NGL France — Saint-Priest</option>
+              <option>NGL Cleaning GmbH — Bocholt</option>
+              <option>NGL Nordic — Ishøj</option>
+              <option>NGL Shanghai — Chine</option>
+              <option>NGL Asia Pacific — Singapour</option>
+              <option>NGL Cleaning Inc. — USA</option>
+            </select>
+          </div>
+          <div class="field flag"><label>Commercial NGL ⚠ manuscrit</label><input value="M. Perret"></div>
+          <div class="field"><label>Date de la fiche</label><input value="06.2026"></div>
+        </div>
+
+        <!-- Service destinataire -->
+        <div class="card">
+          <h3>À transmettre au service <span class="chip ok">Vérifié</span></h3>
+          <div class="checks">
+            <label class="chk"><input type="checkbox" checked> Ventes</label>
+            <label class="chk"><input type="checkbox" checked> Application Centre</label>
+            <label class="chk off"><input type="checkbox"> R&D / Formulation</label>
+            <label class="chk off"><input type="checkbox"> Traitement des eaux</label>
+          </div>
+        </div>
+
+        <!-- Secteur d'activité -->
+        <div class="card">
+          <h3>Secteur d'activité <span class="chip ok">Vérifié</span></h3>
+          <div class="checks">
+            <label class="chk"><input type="checkbox" checked> Horlogerie</label>
+            <label class="chk off"><input type="checkbox"> Bijouterie / Luxe</label>
+            <label class="chk off"><input type="checkbox"> Dispositifs médicaux</label>
+            <label class="chk off"><input type="checkbox"> Optique de précision</label>
+            <label class="chk off"><input type="checkbox"> Optique ophtalmique</label>
+            <label class="chk off"><input type="checkbox"> Outils de coupe</label>
+            <label class="chk off"><input type="checkbox"> Semi-conducteurs</label>
+            <label class="chk off"><input type="checkbox"> Métallurgie</label>
+          </div>
+        </div>
+
+        <!-- Besoin / solution -->
+        <div class="card">
+          <h3>Besoin / solution discutée <span class="chip ok">Vérifié</span></h3>
+          <div class="checks">
+            <label class="chk"><input type="checkbox" checked> Nettoyage de précision</label>
+            <label class="chk"><input type="checkbox" checked> Préparation de surface</label>
+            <label class="chk off"><input type="checkbox"> Decoating (PVD)</label>
+            <label class="chk off"><input type="checkbox"> Polissage (disques)</label>
+            <label class="chk off"><input type="checkbox"> Traitement des eaux</label>
+            <label class="chk"><input type="checkbox" checked> Essai Application Centre</label>
+          </div>
+          <div class="field" style="margin-top:11px"><label>Procédé</label>
+            <div class="seg" role="group" aria-label="Procédé">
+              <button aria-pressed="true">Ultrasons</button>
+              <button aria-pressed="false">Aspersion</button>
+              <button aria-pressed="false">Chambre unique</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Produits reconnus (catalogue) -->
+        <div class="card">
+          <h3>Produits reconnus <span class="chip ok">Catalogue NGL</span></h3>
+          <div class="pills">
+            <span class="pill"><span class="fam">Horlo</span> Galvex 20.02 ✕</span>
+            <span class="pill"><span class="fam">Horlo</span> Rodastel 30 ✕</span>
+            <span class="pill add">＋ Ajouter</span>
+          </div>
+          <div class="rawnote">Lu depuis les notes : « essai Galvex 20.02 + Rodastel 30 »</div>
+        </div>
+
+        <!-- Mesures -->
+        <div class="card">
+          <h3>Mesures <span class="chip ok">Vérifié</span></h3>
+          <div class="checks" style="margin-bottom:11px">
+            <label class="chk full"><input type="checkbox" checked> Contact souhaité</label>
+            <label class="chk"><input type="checkbox" checked> Échantillon demandé</label>
+            <label class="chk off"><input type="checkbox"> Documentation envoyée</label>
+            <label class="chk off full"><input type="checkbox"> Devis à établir</label>
+          </div>
+          <div class="field flag"><label>Date de relance ⚠ manuscrit</label><input class="code" value="15.07.2026"></div>
+        </div>
+
+        <!-- Langue / opportunité -->
+        <div class="card">
+          <h3>Langue &amp; opportunité <span class="chip ok">Vérifié</span></h3>
+          <div class="field"><label>Langue</label>
+            <div class="seg" role="group" aria-label="Langue">
+              <button aria-pressed="false">DE</button>
+              <button aria-pressed="false">EN</button>
+              <button aria-pressed="true">FR</button>
+              <button aria-pressed="false">IT</button>
+            </div>
+          </div>
+          <div class="field" style="margin-top:4px"><label>Opportunité commerciale</label>
+            <div class="seg" role="group" aria-label="Opportunité">
+              <button aria-pressed="false">Haute</button>
+              <button aria-pressed="true">Moyenne</button>
+              <button aria-pressed="false">Basse</button>
+            </div>
+          </div>
+          <label class="chk" style="margin-top:4px"><input type="checkbox" checked> Carte de visite remise</label>
+        </div>
+
+        <!-- Notes -->
+        <div class="card">
+          <h3>Notes technico-commerciales <span class="chip warn">Manuscrit</span></h3>
+          <div class="field flag">
+            <label>Pièces / pollution / ligne / volumes</label>
+            <textarea>Nettoyage de composants horlogers après polissage.
+Résidus de pâte diamantée + traces de doigts.
+Ligne ultrasons 3 cuves, ~200 pièces/jour.
+Essai souhaité : Galvex 20.02 + Rodastel 30.</textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="actionbar">
+        <button class="btn" id="csv">Exporter .csv</button>
+        <button class="btn primary" id="send">↗ Envoyer vers Zoho</button>
+      </div>
+
+      <div class="overlay" id="overlay">
+        <div class="sheet" id="ov-sheet"></div>
+        <button id="close-orig">Fermer</button>
+      </div>
+    </div>
+
+    <!-- ========== DONE ========== -->
+    <div class="view done" id="v-done">
+      <div class="tick">✓</div>
+      <h2>Lead envoyé vers Zoho</h2>
+      <p>Carte + fiche structurées et créées comme contact dans Zoho CRM.<br>Une tâche de relance a été programmée.</p>
+      <div class="summary">
+        <div><span>Entreprise</span><b>Chronostel Manufacture SA</b></div>
+        <div><span>Contact</span><b>C. Sandoz</b></div>
+        <div><span>Secteur</span><b>Horlogerie</b></div>
+        <div><span>Produits</span><b>Galvex 20.02 · Rodastel 30</b></div>
+        <div><span>Relance Zoho</span><b>15.07.2026</b></div>
+      </div>
+      <button class="again" id="again">Retour à la file</button>
+    </div>
+
+  </div>
+
+  <div class="toast" id="toast">Fichier lead-EPHJ-2026.csv généré</div>
+</div>
+
+<script>
+/* --------- fiche générique dessinée (aucune photo NGL réelle) --------- */
+const SHEET = `<svg viewBox="0 0 757 1010" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <rect width="757" height="1010" fill="#fff"/>
+  <rect x="40" y="40" width="677" height="930" fill="none" stroke="#EAEDEC" stroke-width="2"/>
+  <!-- header -->
+  <text x="64" y="96" font-family="Helvetica,Arial" font-size="34" font-weight="800" letter-spacing="2" fill="#0B6E74">NGL</text>
+  <text x="64" y="116" font-family="Helvetica,Arial" font-size="11" font-weight="600" letter-spacing="2" fill="#657170">CLEANING TECHNOLOGY</text>
+  <text x="64" y="164" font-family="Helvetica,Arial" font-size="20" font-weight="700" fill="#17201F">Compte-rendu salon</text>
+  <text x="64" y="188" font-family="Helvetica,Arial" font-size="13" fill="#657170">EPHJ Genève 2026</text>
+  <!-- zone carte grisée + carte agrafée -->
+  <rect x="430" y="150" width="270" height="150" fill="#F3F7F6" stroke="#CBD6D4"/>
+  <text x="444" y="172" font-family="Helvetica,Arial" font-size="11" fill="#8A9694">Carte de visite</text>
+  <g transform="rotate(-4 560 235)">
+    <rect x="470" y="190" width="190" height="96" rx="4" fill="#fff" stroke="#B9C6C4" stroke-width="1.5"/>
+    <rect x="470" y="190" width="190" height="20" rx="4" fill="#0B6E74"/>
+    <text x="484" y="234" font-family="Helvetica,Arial" font-size="13" font-weight="700" fill="#17201F">Chronostel Mfr SA</text>
+    <text x="484" y="252" font-family="Helvetica,Arial" font-size="9.5" fill="#657170">C. Sandoz · Méthodes</text>
+    <text x="484" y="268" font-family="Helvetica,Arial" font-size="9" fill="#657170">La Chaux-de-Fonds</text>
+    <line x1="600" y1="222" x2="618" y2="222" stroke="#B9C6C4"/><line x1="470" y1="205" x2="484" y2="205" stroke="#fff"/>
+  </g>
+  <!-- colonne gauche : cases -->
+  <text x="64" y="250" font-family="Helvetica,Arial" font-size="12" font-weight="700" fill="#17201F">Secteur d'activité</text>
+  ${[['Horlogerie',1],['Bijouterie / Luxe',0],['Dispositifs médicaux',0],['Optique de précision',0]].map((r,i)=>`
+    <rect x="64" y="${266+i*30}" width="16" height="16" rx="3" fill="none" stroke="#9AA6A4" stroke-width="1.5"/>
+    ${r[1]?`<path d="M67 ${274+i*30} l4 5 l7 -9" stroke="#0B6E74" stroke-width="2.4" fill="none"/>`:''}
+    <text x="90" y="${279+i*30}" font-family="Helvetica,Arial" font-size="13" fill="#2b3534">${r[0]}</text>`).join('')}
+  <text x="64" y="418" font-family="Helvetica,Arial" font-size="12" font-weight="700" fill="#17201F">Besoin</text>
+  ${[['Nettoyage de précision',1],['Préparation de surface',1],['Decoating',0],['Essai App. Centre',1]].map((r,i)=>`
+    <rect x="64" y="${434+i*30}" width="16" height="16" rx="3" fill="none" stroke="#9AA6A4" stroke-width="1.5"/>
+    ${r[1]?`<path d="M67 ${442+i*30} l4 5 l7 -9" stroke="#0B6E74" stroke-width="2.4" fill="none"/>`:''}
+    <text x="90" y="${447+i*30}" font-family="Helvetica,Arial" font-size="13" fill="#2b3534">${r[0]}</text>`).join('')}
+  <!-- colonne droite : champs manuscrits -->
+  <text x="430" y="340" font-family="Helvetica,Arial" font-size="12" font-weight="700" fill="#17201F">Commercial NGL</text>
+  <path d="M430 360 q20 -12 40 0 t40 -2" stroke="#2b3aa0" stroke-width="2" fill="none" opacity=".8"/>
+  <text x="430" y="404" font-family="Helvetica,Arial" font-size="12" font-weight="700" fill="#17201F">Procédé</text>
+  <text x="430" y="428" font-family="Helvetica,Arial" font-size="13" fill="#2b3534">Ultrasons — 3 cuves</text>
+  <text x="430" y="470" font-family="Helvetica,Arial" font-size="12" font-weight="700" fill="#17201F">Relance</text>
+  <path d="M430 490 q16 -10 30 -2 t28 -1 t26 2" stroke="#2b3aa0" stroke-width="2" fill="none" opacity=".8"/>
+  <!-- notes bas : manuscrit -->
+  <text x="64" y="600" font-family="Helvetica,Arial" font-size="12" font-weight="700" fill="#17201F">Notes</text>
+  ${[0,1,2,3].map(i=>`<line x1="64" y1="${628+i*34}" x2="693" y2="${628+i*34}" stroke="#E4E9E8"/>`).join('')}
+  <path d="M74 620 q40 -14 90 -4 t120 2 t150 -6 t180 4" stroke="#2b3aa0" stroke-width="2" fill="none" opacity=".75"/>
+  <path d="M74 654 q60 -12 130 0 t210 -4 t150 3" stroke="#2b3aa0" stroke-width="2" fill="none" opacity=".75"/>
+  <path d="M74 688 q50 -10 110 2 t160 -4" stroke="#2b3aa0" stroke-width="2" fill="none" opacity=".75"/>
+  <text x="64" y="946" font-family="Helvetica,Arial" font-size="10" fill="#9AA6A4">NGL Cleaning Technology SA · Nyon</text>
+</svg>`;
+document.querySelectorAll('.sheet').forEach(el=>el.innerHTML = SHEET);
+
+/* --------- navigation --------- */
+const V = id => { document.querySelectorAll('.view').forEach(v=>v.classList.remove('active')); document.getElementById(id).classList.add('active'); };
+const back = document.getElementById('back'), appctx = document.getElementById('appctx');
+const setNav = (show, ctx) => { back.style.display = show?'block':'none'; appctx.textContent = ctx; };
+setNav(false,'Field · Leads');
+
+const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+let mode='single', captured=0;
+
+document.getElementById('fab').onclick = () => { V('v-capture'); setNav(true,'Nouvelle fiche'); };
+document.getElementById('row-main').onclick = () => { V('v-review'); setNav(true,'Chronostel Mfr SA'); };
+back.onclick = () => { V('v-inbox'); setNav(false,'Field · Leads'); resetCapture(); };
+
+const counter=document.getElementById('counter'), finish=document.getElementById('finish'), hint=document.getElementById('caphint');
+function resetCapture(){ mode='single'; captured=0; sync(); document.getElementById('m-single').classList.add('on'); document.getElementById('m-serie').classList.remove('on'); }
+function sync(){
+  counter.querySelector('b').textContent=captured;
+  const s=mode==='serie';
+  counter.style.display=s&&captured>0?'flex':'none';
+  finish.style.display=s?'block':'none';
+  finish.textContent=captured>0?'Terminer ('+captured+')':'Terminer';
+  hint.textContent=s?'Mode série · enchaînez les fiches, puis Terminer':'Cadrez la fiche + la carte agrafée, puis capturez';
+}
+document.getElementById('m-single').onclick=e=>{mode='single';e.target.classList.add('on');document.getElementById('m-serie').classList.remove('on');sync();};
+document.getElementById('m-serie').onclick=e=>{mode='serie';e.target.classList.add('on');document.getElementById('m-single').classList.remove('on');sync();};
+
+const steps=[['Détection fiche + carte…',20],['Lecture de la carte de visite…',45],['Lecture des cases à cocher…',68],['Lecture manuscrite + catalogue…',88],['Structuration…',100]];
+function runScan(then){
+  V('v-scan'); setNav(false,'Analyse');
+  const msg=document.getElementById('scan-msg'), prog=document.getElementById('prog'); let i=0;
+  (function tick(){ if(i<steps.length){msg.textContent=steps[i][0];prog.style.width=steps[i][1]+'%';i++;setTimeout(tick,reduce?160:520);} else setTimeout(then,reduce?120:360); })();
+}
+document.getElementById('shoot').onclick=()=>{
+  if(mode==='serie'){captured++;sync();const s=document.querySelector('.viewfinder');s.style.filter='brightness(2.2)';setTimeout(()=>s.style.filter='',90);return;}
+  runScan(()=>{V('v-review');setNav(true,'Chronostel Mfr SA');});
+};
+finish.onclick=()=>{ if(captured===0)mode='single'; runScan(()=>{toast((captured||1)+' fiche'+((captured>1)?'s':'')+' ajoutée'+((captured>1)?'s':''));V('v-inbox');setNav(false,'Field · Leads');resetCapture();}); };
+
+document.querySelectorAll('.seg').forEach(seg=>seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{seg.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');}));
+document.querySelectorAll('.chk input').forEach(cb=>cb.addEventListener('change',()=>cb.closest('.chk').classList.toggle('off',!cb.checked)));
+
+const toastEl=document.getElementById('toast');
+function toast(t){toastEl.textContent=t;toastEl.classList.add('show');setTimeout(()=>toastEl.classList.remove('show'),2200);}
+document.getElementById('csv').onclick=()=>toast('Fichier lead-EPHJ-2026.csv généré');
+document.getElementById('send').onclick=()=>{V('v-done');setNav(false,'Envoyé');};
+document.getElementById('again').onclick=()=>{V('v-inbox');setNav(false,'Field · Leads');};
+
+const ov=document.getElementById('overlay'); const openOv=()=>ov.classList.add('show');
+document.getElementById('see-orig').onclick=openOv;
+document.getElementById('close-orig').onclick=()=>ov.classList.remove('show');
+</script>
