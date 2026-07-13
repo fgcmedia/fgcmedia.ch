@@ -92,8 +92,16 @@
       .pillar p { margin-top: 12px; color: var(--ink-soft); font-size: 16.5px; }
       @media (max-width: 820px) { .pillars { grid-template-columns: 1fr; } }
 
+      .usage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
+      .usage-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 28px; box-shadow: var(--shadow-sm); transition: all .25s; }
+      .usage-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+      .usage-card .usage-tag { display: block; font-size: 13px; font-weight: 700; letter-spacing: .03em; color: var(--accent-deep); text-transform: uppercase; }
+      .usage-card p { margin-top: 12px; color: var(--ink-soft); font-size: 16px; line-height: 1.55; }
+      .usage-card p strong { color: var(--ink); font-weight: 600; }
+      @media (max-width: 880px) { .usage-grid { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 620px) { .usage-grid { grid-template-columns: 1fr; } }
+
       /* REALISATIONS */
-      .realisations { background: var(--bg-warm); }
       .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px; }
       .project { background: var(--card); border-radius: var(--r); padding: 32px; box-shadow: var(--shadow-sm); border: 1px solid var(--line); transition: all .25s; }
       .project:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
@@ -175,7 +183,6 @@
       .diag-card .btn-primary { margin-top: 30px; }
 
       /* FAQ */
-      .faq { background: var(--bg-warm); }
       .faq-list { margin-top: 40px; display: grid; gap: 14px; }
       .faq-item { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow-sm); overflow: hidden; transition: box-shadow .25s; }
       .faq-item[open] { box-shadow: var(--shadow); }
@@ -194,8 +201,9 @@
         <div class="nav">
           <a href="#top" class="brand"><span class="mark">F</span> FGC&nbsp;Média</a>
           <nav class="nav-links">
-            <a href="#approche">Approche</a>
-            <a href="#realisations">Réalisations</a>
+            <a href="#approche">Méthode</a>
+            <a href="#realisations">Projets</a>
+            <a href="#exemples">Exemples</a>
             <a href="#faq">FAQ</a>
             <a href="#diagnostic-invite">Diagnostic</a>
             <a href="#apropos">À propos</a>
@@ -221,10 +229,10 @@
           <p class="lead">Partenaire technique des dirigeant(e)s de PME qui veulent structurer, automatiser et faire évoluer leurs processus.</p>
           <div class="hero-cta">
             <a class="btn-primary btn-lg" href="#contact">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
               Réserver un audit
             </a>
-            <a class="btn-ghost btn-lg" href="https://fr.malt.ch/profile/gregorycardinale" target="_blank" rel="noopener">Voir mon profil Malt</a>
+            <a class="btn-ghost btn-lg" href="#exemples">Voir des exemples</a>
           </div>
         </div>
         <div class="reveal portrait" style="transition-delay:.1s">
@@ -234,7 +242,7 @@
       </div>
       <div class="wrap" style="margin-top:36px">
         <div class="strip-inner">
-          <span class="chip"><span class="dot"></span><b>+7 ans</b>&nbsp;d'expérience</span>
+          <span class="chip"><span class="dot"></span><b>+20 ans</b>&nbsp;en tech &amp; business</span>
           <span class="chip"><span class="dot"></span><b>Remote</b> ou sur site&nbsp;· France & Suisse</span>
         </div>
       </div>
@@ -266,20 +274,9 @@
       </div>
     </section>
 
-    <section class="block" id="diagnostic-invite" style="padding-top:0">
-      <div class="wrap reveal">
-        <div class="diag-card">
-          <span class="eyebrow-c">Diagnostic d'automatisation</span>
-          <h2>Où en êtes-vous vraiment ?</h2>
-          <p>En 3 minutes, évaluez le potentiel d'automatisation de votre entreprise et recevez vos 3 priorités personnalisées. Sans engagement, sans appel requis.</p>
-          <a class="btn-primary btn-lg" href="/diagnostic">Faire le diagnostic →</a>
-        </div>
-      </div>
-    </section>
-
     <section class="block realisations" id="realisations">
       <div class="wrap reveal">
-        <span class="eyebrow-c">Réalisations</span>
+        <span class="eyebrow-c">Projets</span>
         <h2>Quelques exemples de réalisations</h2>
         <p class="sec-intro">La meilleure preuve de ce que je sais faire : mes propres projets, en production.</p>
         <div class="projects">
@@ -301,6 +298,85 @@
             <div class="meta"><span><b>WhatsApp</b> · IA</span><span><b>Commerces</b> de proximité</span></div>
             <a class="project-link" href="https://loyalbot.ch" target="_blank" rel="noopener">Visiter le site ↗</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="exemples">
+      <div class="wrap reveal">
+        <span class="eyebrow-c">Cas d'usage</span>
+        <h2>Concrètement, ça donne quoi ?</h2>
+        <p class="sec-intro">« Automatisation » reste abstrait tant qu'on ne voit pas d'exemples. En voici quelques-uns, par métier — la logique s'adapte à bien d'autres secteurs.</p>
+        <div class="usage-grid">
+          <div class="usage-card">
+            <span class="usage-tag">Tri &amp; réponse d'e-mails</span>
+            <p><strong>Cabinet, profession libérale :</strong> e-mails entrants triés, réponses rédigées et prêtes à valider. Zéro oubli.</p>
+          </div>
+          <div class="usage-card">
+            <span class="usage-tag">Prise de rendez-vous</span>
+            <p><strong>Praticien, cabinet, atelier :</strong> les demandes reçues par mail traitées et calées dans l'agenda automatiquement.</p>
+          </div>
+          <div class="usage-card">
+            <span class="usage-tag">Relance devis &amp; impayés</span>
+            <p><strong>Artisan, PME, prestataire :</strong> les devis sans réponse et les factures impayées relancés tout seuls, au bon moment.</p>
+          </div>
+          <div class="usage-card">
+            <span class="usage-tag">Création de devis</span>
+            <p><strong>Artisan, BTP :</strong> les éléments d'un devis rassemblés et mis en forme automatiquement, prêts à ajuster et envoyer.</p>
+          </div>
+          <div class="usage-card">
+            <span class="usage-tag">Fidélisation &amp; réactivation</span>
+            <p><strong>Institut, salle de sport, commerce local :</strong> clients inactifs relancés automatiquement, créneaux creux remplis.</p>
+          </div>
+          <div class="usage-card">
+            <span class="usage-tag">Tableau de bord sur-mesure</span>
+            <p><strong>PME industrielle, agence :</strong> données éparpillées entre plusieurs outils réunies dans un écran clair et à jour.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block faq" id="faq">
+      <div class="wrap reveal">
+        <span class="eyebrow-c">Questions fréquentes</span>
+        <h2>Vous hésitez ? C'est normal.</h2>
+        <p class="sec-intro">Les questions que me posent le plus souvent les dirigeant(e)s avant de se lancer — et mes réponses, sans langue de bois.</p>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Je préfère me débrouiller seul, l'IA rend l'automatisation accessible aujourd'hui, non ?<span class="sign">+</span></summary>
+            <div class="faq-body">Oui, et c'est une excellente chose — je vous y encourage pour vos petits besoins du quotidien. Mais entre faire une démo qui marche une fois et mettre en production un outil <strong>fiable, sécurisé, qui ne casse pas quand vos données réelles arrivent</strong>, il y a un monde. Mon métier, ce n'est pas de savoir prompter : c'est de connaître les pièges, de penser les cas limites, la maintenance et l'évolution. La vraie question n'est pas « est-ce que je peux le faire ? » mais « est-ce le meilleur usage de mon temps de dirigeant ? ». Si bricoler vous coûte trois soirées par mois, je suis sans doute rentable dès le premier projet.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Combien ça coûte ? J'imagine que c'est hors budget pour une petite structure.<span class="sign">+</span></summary>
+            <div class="faq-body">Justement, je travaille surtout avec des PME — pas des grands comptes. On part toujours d'un <strong>périmètre clair et chiffré à l'avance</strong>, sans surprise, et on commence souvent par une première brique utile plutôt qu'un gros projet d'un an. L'idée n'est pas de dépenser, c'est de récupérer du temps et d'arrêter les erreurs coûteuses. L'audit initial est offert, et il sert précisément à voir si le jeu en vaut la chandelle pour vous — sans engagement.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Si je fais appel à vous, est-ce que je deviens dépendant ? Et si vous disparaissez ?<span class="sign">+</span></summary>
+            <div class="faq-body">Préoccupation légitime, et j'y réponds par principe : <strong>le code et les données vous appartiennent</strong>. Je documente ce que je construis, j'utilise des technologies standards (pas de boîte noire propriétaire), et tout est pensé pour qu'un autre développeur puisse reprendre la main si besoin. Mon objectif est que vous restiez avec moi parce que ça marche bien — pas parce que vous êtes prisonnier.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Pourquoi du sur-mesure plutôt qu'un logiciel tout fait du marché ?<span class="sign">+</span></summary>
+            <div class="faq-body">Si un logiciel du marché répond à votre besoin, je vous le dirai — et je vous aiderai même à bien le choisir et le brancher au reste. Le sur-mesure n'a de sens que quand <strong>aucun outil existant ne colle à votre façon de travailler</strong>, ou quand vous payez le prix fort pour un logiciel dont vous n'utilisez qu'une petite partie des fonctions. Souvent, la meilleure solution est un mélange : connecter intelligemment ce que vous avez déjà, et ne développer que ce qui manque vraiment.</div>
+          </details>
+          <details class="faq-item">
+            <summary>On a déjà essayé un outil et ça n'a jamais vraiment pris. Pourquoi ce serait différent ?<span class="sign">+</span></summary>
+            <div class="faq-body">Dans 9 cas sur 10, un outil finit au placard parce qu'il a été pensé pour la logique du logiciel, pas pour celle des gens qui l'utilisent. Mon point de départ, c'est <strong>votre quotidien et vos équipes</strong>, pas la technique. On avance par petites étapes concrètes, on teste sur le terrain, on ajuste — pour qu'à la fin l'outil soit utilisé parce qu'il fait gagner du temps.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Mes données sont sensibles. Comment garantissez-vous la sécurité des données ?<span class="sign">+</span></summary>
+            <div class="faq-body">C'est central, et j'y réponds concrètement : <strong>toutes les données sont chiffrées « au repos » (at rest) via Supabase, hébergées en Suisse (Zurich)</strong>. Les accès sont cloisonnés, et je m'engage à la confidentialité dès le premier échange — je peux signer un NDA si nécessaire.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="diagnostic-invite" style="padding-top:0">
+      <div class="wrap reveal">
+        <div class="diag-card">
+          <span class="eyebrow-c">Diagnostic d'automatisation</span>
+          <h2>Où en êtes-vous vraiment ?</h2>
+          <p>En 3 minutes, évaluez le potentiel d'automatisation de votre entreprise et recevez vos 3 priorités personnalisées. Sans engagement, sans appel requis.</p>
+          <a class="btn-primary btn-lg" href="/diagnostic">Faire le diagnostic →</a>
         </div>
       </div>
     </section>
@@ -342,40 +418,6 @@
       </div>
     </section>
 
-    <section class="block faq" id="faq">
-      <div class="wrap reveal">
-        <span class="eyebrow-c">Questions fréquentes</span>
-        <h2>Vous hésitez ? C'est normal.</h2>
-        <p class="sec-intro">Les questions que me posent le plus souvent les dirigeant(e)s avant de se lancer — et mes réponses, sans langue de bois.</p>
-        <div class="faq-list">
-          <details class="faq-item">
-            <summary>Je préfère me débrouiller seul, l'IA rend l'automatisation accessible aujourd'hui, non ?<span class="sign">+</span></summary>
-            <div class="faq-body">Oui, et c'est une excellente chose — je vous y encourage pour vos petits besoins du quotidien. Mais entre faire une démo qui marche une fois et mettre en production un outil <strong>fiable, sécurisé, qui ne casse pas quand vos données réelles arrivent</strong>, il y a un monde. Mon métier, ce n'est pas de savoir prompter : c'est de connaître les pièges, de penser les cas limites, la maintenance et l'évolution. La vraie question n'est pas « est-ce que je peux le faire ? » mais « est-ce le meilleur usage de mon temps de dirigeant ? ». Si bricoler vous coûte trois soirées par mois, je suis sans doute rentable dès le premier projet.</div>
-          </details>
-          <details class="faq-item">
-            <summary>Combien ça coûte ? J'imagine que c'est hors budget pour une petite structure.<span class="sign">+</span></summary>
-            <div class="faq-body">Justement, je travaille surtout avec des PME — pas des grands comptes. On part toujours d'un <strong>périmètre clair et chiffré à l'avance</strong>, sans surprise, et on commence souvent par une première brique utile plutôt qu'un gros projet d'un an. L'idée n'est pas de dépenser, c'est de récupérer du temps et d'arrêter les erreurs coûteuses. L'audit initial est offert, et il sert précisément à voir si le jeu en vaut la chandelle pour vous — sans engagement.</div>
-          </details>
-          <details class="faq-item">
-            <summary>Si je fais appel à vous, est-ce que je deviens dépendant ? Et si vous disparaissez ?<span class="sign">+</span></summary>
-            <div class="faq-body">Préoccupation légitime, et j'y réponds par principe : <strong>le code et les données vous appartiennent</strong>. Je documente ce que je construis, j'utilise des technologies standards (pas de boîte noire propriétaire), et tout est pensé pour qu'un autre développeur puisse reprendre la main si besoin. Mon objectif est que vous restiez avec moi parce que ça marche bien — pas parce que vous êtes prisonnier.</div>
-          </details>
-          <details class="faq-item">
-            <summary>Pourquoi du sur-mesure plutôt qu'un logiciel tout fait du marché ?<span class="sign">+</span></summary>
-            <div class="faq-body">Si un logiciel du marché répond à votre besoin, je vous le dirai — et je vous aiderai même à bien le choisir et le brancher au reste. Le sur-mesure n'a de sens que quand <strong>aucun outil existant ne colle à votre façon de travailler</strong>, ou quand vous payez le prix fort pour un logiciel dont vous n'utilisez qu'une petite partie des fonctions. Souvent, la meilleure solution est un mélange : connecter intelligemment ce que vous avez déjà, et ne développer que ce qui manque vraiment.</div>
-          </details>
-          <details class="faq-item">
-            <summary>On a déjà essayé un outil et ça n'a jamais vraiment pris. Pourquoi ce serait différent ?<span class="sign">+</span></summary>
-            <div class="faq-body">Dans 9 cas sur 10, un outil finit au placard parce qu'il a été pensé pour la logique du logiciel, pas pour celle des gens qui l'utilisent. Mon point de départ, c'est <strong>votre quotidien et vos équipes</strong>, pas la technique. On avance par petites étapes concrètes, on teste sur le terrain, on ajuste — pour qu'à la fin l'outil soit utilisé parce qu'il fait gagner du temps.</div>
-          </details>
-          <details class="faq-item">
-            <summary>Mes données sont sensibles. Comment garantissez-vous la sécurité des données ?<span class="sign">+</span></summary>
-            <div class="faq-body">C'est central, et j'y réponds concrètement : <strong>toutes les données sont chiffrées « au repos » (at rest) via Supabase, hébergées en Suisse (Zurich)</strong>. Les accès sont cloisonnés, et je m'engage à la confidentialité dès le premier échange — je peux signer un NDA si nécessaire.</div>
-          </details>
-        </div>
-      </div>
-    </section>
-
     <div class="cta-wrap" id="contact">
       <div class="wrap reveal">
         <div class="cta">
@@ -385,7 +427,7 @@
           <div class="cta-actions">
             <a class="btn-primary btn-lg" href="https://calendly.com/fgcmedia/rdv" target="_blank" rel="noopener">Réserver un créneau</a>
             <a class="btn-ghost btn-lg" href="https://wa.me/41782033239" target="_blank" rel="noopener">Me contacter via WhatsApp</a>
-            <a class="btn-ghost btn-lg" href="/cdn-cgi/l/email-protection#d4b3a6b1b394b2b3b7b9b1b0bdb5fab7bc">Me contacter par email</a>
+            <a class="btn-ghost btn-lg" href="/cdn-cgi/l/email-protection#6d0a1f080a2d0b0a0e000809040c430e05">Me contacter par email</a>
           </div>
         </div>
       </div>
@@ -400,8 +442,9 @@
           </div>
           <div class="foot-col">
             <h4>Naviguer</h4>
-            <a href="#approche">Approche</a>
-            <a href="#realisations">Réalisations</a>
+            <a href="#approche">Méthode</a>
+            <a href="#realisations">Projets</a>
+            <a href="#exemples">Exemples</a>
             <a href="#faq">FAQ</a>
             <a href="#diagnostic-invite">Diagnostic</a>
             <a href="#apropos">À propos</a>
@@ -412,7 +455,7 @@
             <a href="https://www.linkedin.com/in/gregory-cardinale/" target="_blank" rel="noopener">LinkedIn</a>
             <a href="https://fr.malt.ch/profile/gregorycardinale" target="_blank" rel="noopener">Profil Malt</a>
             <a href="https://wa.me/41782033239" target="_blank" rel="noopener">WhatsApp</a>
-            <a href="/cdn-cgi/l/email-protection#b6d1c4d3d1f6d0d1d5dbd3d2dfd798d5de">Email</a>
+            <a href="/cdn-cgi/l/email-protection#2c4b5e494b6c4a4b4f414948454d024f44">Email</a>
           </div>
         </div>
         <div class="foot-bottom">
