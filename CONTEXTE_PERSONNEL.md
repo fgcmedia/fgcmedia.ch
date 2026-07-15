@@ -2,7 +2,7 @@
 
 > Document de référence pour partager rapidement ma situation avec un assistant IA (Claude ou autre) afin d'obtenir des conseils stratégiques pertinents sur mes projets et choix professionnels.
 >
-> _Dernière mise à jour : 2026-06-23_
+> _Dernière mise à jour : 2026-07-15_
 
 ---
 
@@ -27,8 +27,8 @@
 - **Runway psychologique** : ~6 mois confortables (au-delà, la situation devient intenable mentalement même si comptablement tenable).
 - **Revenus actuels** :
   - Prestations de services freelance : couvrent juste les frais pros, pas la vie perso
-  - Boookly : 0 (en nurture pilote)
-  - Caardly : 0 (sprint commercial en cours)
+  - Boookly : 0 (en nurture pilote — statut portfolio/vitrine)
+  - Caardly : 0 (repositionné en portfolio/vitrine — voir section 4)
 - **Niveau de stress financier** : présent malgré le runway, mais pas critique objectivement
 - **Charges fixes mensuelles** : Florence paie les charges, mais je devrais payer la moitié, soit environ 1000 EUR par mois. J'ai aussi à payer ma mutuelle Suisse (418 CHF par mois) et mon adresse en Suisse (450 CHF par mois).
 - **Niveau de revenu mensuel net cible pour être serein** : Avec 3000 EUR net par mois, je paierai tous mes frais et j'aurai un peu d'argent en plus pour les imprévus.
@@ -68,7 +68,7 @@
 - **Type de client préféré** : aucune.
 - **Type de projet préféré** : aucune.
 - **Disponibilité** : 3 jours par semaine, remote ponctuel possible.
-- **Canaux freelance actifs** : Malt (profil publié, orienté « builder SaaS full-stack + n8n ») + Upwork. L'ancien réseau webmarketing étant froid, pas de prospection directe sur ce levier.
+- **Canaux freelance actifs** : Malt + Upwork (profils publiés, orientés « builder SaaS full-stack + n8n ») ; site fgcmedia.ch (positionnement dev/automatisation sur-mesure pour PME, avec funnel Diagnostic + section Exemples de cas d'usage) ; prospection directe LinkedIn (ratissage réseau ciblé) et cold calling (salons type EPHJ). L'ancien réseau webmarketing reste froid.
 
 ---
 
@@ -85,44 +85,55 @@
 - **Horizon de validation** : fin 2026 (signal pilote validé + 1-2 autres fiduciaires intéressées)
 - **Seule action qui compte maintenant** : pousser la fiduciaire pilote à connecter un vrai client SME et en extraire un signal de demande réel (« je paierais / je recommanderais »).
 
-### Caardly — sprint commercial actif
+### Caardly — portfolio/vitrine (décision de repositionnement, 2026-07)
 
 - **Quoi** : bot Telegram qui transforme une carte de visite scannée en email personnalisé en 30 secondes
-- **Statut** : produit fonctionnel en production, landing live, vidéo de démo sur la landing, Stripe opérationnel. Sprint commercial 8 semaines en cours.
-- **Marché cible** : commerciaux et indépendants en networking
-- **Modèle économique** : 79 CHF/an (avec 14 jours d'essai gratuit) ou 39 CHF one-time
-- **Canaux d'acquisition actifs** :
-  - Outreach LinkedIn direct : 58 contacts Suisse identifiés (segmentés depuis export 421 contacts), séquence en 2 messages (qualification → visio démo)
-  - Apporteurs d'affaires — en cours de lancement avec Océane
-  - Meta Ads : écarté pour l'instant (à réserver après premières conversions payantes prouvées)
-- **Séquence outreach** :
-  - Message 1 : qualification neutre (« est-ce que tu échanges encore des cartes ? »)
-  - Message 2 vague 1 (10 contacts, labo) : proposition visio 15 min pour démo live
-  - Message 2 vagues suivantes : lien essai direct avec filet d'accompagnement (« si tu bloques, réponds-moi »)
-- **Critère de verdict (8 semaines)** : voir section 7
-- **Horizon commercial** : objectif 20-50 utilisateurs payants d'ici 2-3 mois (≈ 380-950 CHF/mois MRR)
+- **Statut** : produit fonctionnel en production, landing live, Stripe opérationnel. **Sprint commercial clos. Repositionné en portfolio/vitrine.**
+- **Décision (à froid, 2026-07)** : après le sprint commercial (tests Valais Network, EPHJ, messages LinkedIn), **0 vente**. Les retours de commerciaux indiquent que la douleur n'est pas assez forte / présente sur ce marché. Décision prise posément, en fin de fenêtre, pas un jour de basse énergie — conforme au critère de verdict pré-écrit (0 payant = vitrine).
+- **Rôle désormais** : actif de crédibilité / preuve de capacité technique pour la prospection freelance dev. Entretien minimal, aucun sprint commercial actif.
+- **Ce que ça a appris** : bon « pied dans la porte » et exercice de bout-en-bout (produit + distribution), mais le signal marché n'est pas là. Assumé sereinement.
 
-### Prestations de service freelance
+### Boookly — nurture / portfolio
 
-- **Statut** : quelques clients réguliers, charge limitée
-- **Type de prestations** : Un peu de dev (gestion d'un chatbot développé sur-mesure pour un institut de beauté) + gestion campagne Facebook Ads.
-- **Évolution souhaitée** : socle léger en parallèle du sprint Caardly (2-3 actions/semaine max), via Malt + Upwork
+- Voir bloc ci-dessus. Même logique que Caardly : produit en prod, sert de preuve de capacité, rythme dicté par la fiduciaire pilote et non par mon effort. Pas de sprint actif.
+
+### Dev freelance — FRONT ACTIF (dominant depuis 2026-07)
+
+- **Statut** : devenu la priorité active, en remplacement du sprint Caardly. Quelques clients réguliers existants (charge limitée) + prospection active.
+- **Prestations existantes** : dev (chatbot sur-mesure institut de beauté) + gestion campagne Facebook Ads.
+- **Positionnement** : développeur freelance dev/automatisation sur-mesure pour PME sans équipe tech. Site fgcmedia.ch refondu autour de ça (punchline « Méthode », funnel Diagnostic, section Exemples de cas d'usage par métier).
+- **Canaux actifs** : Malt + Upwork ; site + funnel Diagnostic ; LinkedIn (ratissage réseau ciblé) ; cold calling (leads salons EPHJ) ; angle marque blanche pour agences (en réserve, à réactiver selon résultats immo).
+
+#### Test immo — expérience bornée (front actif, lancée 2026-07)
+
+- **Angle** : agences immobilières (réseau LinkedIn concentré). Douleur ciblée = tri + qualification + classement CRM des demandes entrantes (mandats, estimations, contacts portails), aujourd'hui souvent manuel.
+- **Approche** : message à froid en angle problème/question (pas de promesse, pas de chiffres empruntés). Cas d'usage inspiré du marché (ex. DKDP) mais **jamais** de témoignage/chiffre d'un tiers repris à mon compte.
+- **Objectif** : décrocher **1 cas pilote immo** (tarif réduit ↔ témoignage + droit de présenter le cas en référence). Un seul vrai cas immo débloque tout le segment (« je sais faire » → « j'ai fait »).
+- **Offre pilote** : périmètre serré (1 workflow), réduit mais **payant** (jamais gratuit), cadre « pilote, places limitées ».
+- **Critère de verdict (4 semaines)** :
+  - ≥ 1 pilote signé → **Scale** (construire le cas, ouvrir le segment immo avec preuve).
+  - 0 pilote mais ≥ 2 échanges qualifiés → **Zone grise** (l'angle accroche, ajuster offre/prix/closing avant 2e vague). Issue la plus probable.
+  - 0 pilote et < 2 échanges qualifiés → angle/segment ne prend pas, arrêter ou pivoter l'accroche.
+- **Volumétrie** : ~20 agences qualifiées (équipe + vrai flux de demandes), 6-8 messages/sem sur créneaux mar-jeu, ~3 semaines d'envoi + 1 tampon.
+- **Garde-fou** : décision seulement en fin de fenêtre, jamais un jour de basse énergie. Suivi tableur : messages / réponses / échanges qualifiés / offres pilote / signature.
+- **Discipline** : ce front **remplace** le ratissage LinkedIn générique, il ne s'y ajoute pas (limite de 2 fronts).
 
 ---
 
 ## 5. Vision et arbitrages stratégiques
 
-### Stratégie barbell
+### Stratégie barbell (révisée 2026-07)
 
-- **Socle** : freelance léger (Malt + Upwork) — objectif : couvrir les ~1900 EUR de frais perso avant fin du runway psychologique de 6 mois. Éteint le stress de fond.
-- **Dominant** : Caardly en sprint commercial borné 8 semaines — zéro nouvelle feature, focus distribution.
-- **Option patiente** : Boookly en nurture — rythme dicté par la fiduciaire pilote, pas par mon effort.
+- **Dominant** : dev freelance (dont le test immo borné) — devenu le front actif, objectif couvrir les frais perso et sortir du stress de fond. Priorité à la prospection et à la signature de missions.
+- **Portfolio / preuve** : Caardly + Boookly, produits en prod servant d'actifs de crédibilité. Entretien minimal, aucun sprint commercial actif.
+- **Suivi passif** : leads EPHJ (envoyés, en attente de réponses), angle marque blanche agences (en réserve, conditionné aux résultats immo).
 
 ### Allocation de temps
 
-- **Caardly** : priorité commerciale court terme — sprint 8 semaines
-- **Boookly** : nurture — une action (pousser la pilote à connecter un SME), puis attente
-- **Mission freelance** : socle léger, 2-3 actions/semaine en parallèle (pas de sprint, pas de plan B lointain)
+- **Dev freelance / test immo** : front actif unique — prospection ciblée, critère de verdict à 4 semaines.
+- **Caardly / Boookly** : portfolio, entretien minimal.
+- **EPHJ + marque blanche** : suivi réactif, pas d'effort proactif dédié.
+- **Principe** : un seul front qui avance à la fois, le reste soutient sans disperser (limite de 2 projets simultanés confirmée).
 
 ### Critères de décision personnels
 
@@ -144,7 +155,7 @@
 - **Niveau de stress / anxiété** : présent malgré le runway de 12 mois
 - **Risque de dispersion** : présent — stratégie barbell adoptée pour y répondre (un dominant net + socle + nurture)
 - **Capacité de focus identifiée** : je peux être focus pendant 2-3 heures d'affilée sur un projet si nécessaire
-- **Garde-fou émotionnel** : le critère de verdict Caardly est fixé par écrit (voir section 7) — le calendrier tranche, pas l'humeur. Aucune décision « vitrine » prise un jour de déprime.
+- **Garde-fou émotionnel** : les critères de verdict sont fixés par écrit à l'avance (Caardly hier, test immo aujourd'hui) — le calendrier tranche, pas l'humeur. Aucune décision structurante prise un jour de déprime. La décision Caardly → vitrine (2026-07) a bien été prise à froid, en fin de fenêtre.
 - **Soutien personnel/professionnel** : Florence qui peut m'aider sur la prospection LinkedIn ou pour faire des salons, par exemple. Je n'ai pas de mentor à proprement parler, mais je suis le parcours de gens qui m'inspirent dans le domaine du SaaS bootstrappé, notamment Miquel Palet (Founder) et Pau Guirao Castells (Software Engineer) qui développent Zernio.
 
 ---
@@ -164,9 +175,19 @@
 | 2026-06 | Séquence outreach Caardly : qualification → visio démo (vague 1) → essai direct (vagues suivantes) | La visio pilote le premier "wow" et génère des apprentissages sur les objections |
 | 2026-06 | Boookly en nurture propre (capture mobile livrée)                         | Goulot = rythme de la fiduciaire pilote, pas l'effort produit                      |
 | 2026-06 | Freelance via Malt + Upwork | L'ancien réseau est distendu, ce canal est tombé                                   |
+| 2026-07 | **Caardly → portfolio/vitrine** (sprint clos)                             | 0 vente après Valais Network + EPHJ + LinkedIn ; douleur marché insuffisante (retours commerciaux). Décision à froid, conforme au critère pré-écrit (0 payant = vitrine) |
+| 2026-07 | **Dev freelance = front actif dominant**                                  | Remplace le sprint Caardly ; site refondu (Diagnostic + Exemples), prospection LinkedIn + cold calling + EPHJ |
+| 2026-07 | **Test immo lancé** (angle problème/question, objectif 1 pilote)          | Réseau LinkedIn immo concentré + douleur précise (tri demandes) + effet de levier du 1er cas sectoriel |
+| 2026-07 | Critère de verdict immo fixé (≥1 pilote = Scale, 0 pilote/≥2 échanges qualifiés = Zone grise, sinon pivot) | Pré-engagement écrit, expérience bornée 4 semaines pour éviter que ça traîne |
+| 2026-07 | Offre pilote = réduite mais payante, périmètre 1 workflow, cadre « places limitées » | Protège la valeur, filtre les non-sérieux, évite le puits de travail gratuit |
+| 2026-07 | Prototype/maquette = carte jouée en RDV sur prospect qualifié, jamais accroche à froid | AUROVIS l'a « mérité » via découverte ; à froid = promesses ingérables + dévalorisation |
+| 2026-07 | Audit payant (façon DKDP) = offre de phase 2, après premières références   | Sans cas client, invendable ; d'abord décrocher missions + témoignages, puis packager |
 
 ---
 
 ## 8. À compléter / questions ouvertes
 
-- Critère de verdict Caardly détaillé dans `caardly-PLANNING.md`.
+- Test immo en cours : suivre le critère de verdict à 4 semaines (voir section 4).
+- Angle marque blanche agences : à réactiver ou non selon les résultats du test immo.
+- Audit payant (façon DKDP) : à packager en phase 2, une fois 2-3 références freelance obtenues.
+- Réponses EPHJ : en attente, à traiter au fil de l'eau.
