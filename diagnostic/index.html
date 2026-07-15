@@ -195,7 +195,7 @@ const CA = ["< 250k CHF","250k - 1M CHF","1M - 5M CHF","5M - 10M CHF","> 10M CHF
 const NB_OUTILS = ["1-3","4-6","7-10","Plus de 10"];
 const ECHELLE = [1,2,3,4,5];
 const GESTION = [
-  ["A","Tableurs Excel & email"],
+  ["A","Email et/ou tableur(s) (Excel, Google Sheets…)"],
   ["B","Outils de gestion de projet (Asana, ClickUp, Monday, Trello…)"],
   ["C","Systèmes internes / sur-mesure"],
   ["D","Un mélange d'outils avec des étapes manuelles"],
@@ -212,12 +212,12 @@ const ZONES = [
 ];
 const OUTILS = [
   ["A","Zapier / Make / n8n"],
-  ["B","Airtable / Google Sheets"],
+  ["B","Airtable / Excel / Google Sheets"],
   ["C","Notion / Smartsheet"],
   ["D","Logiciel comptable"],
   ["E","Slack / Teams"],
   ["F","APIs ou tableaux de bord internes sur-mesure"],
-  ["G","Autre"],
+  ["G","Autre / Aucune idée"],
 ];
 
 let step = 0;
@@ -285,7 +285,7 @@ function stepHTML(){
   if(step===3) return `
     <h1>Automatisation & maturité</h1>
     <p class="sub">Où en êtes-vous aujourd'hui ?</p>
-    <div class="field"><label class="lab">Quels outils utilisez-vous actuellement ? (plusieurs réponses)</label>${pillGroup("outils",OUTILS)}</div>
+    <div class="field"><label class="lab">Quels outils utilisez-vous actuellement ? (plusieurs réponses possibles)</label>${pillGroup("outils",OUTILS)}</div>
     <div class="field"><label class="lab">Combien de vos processus sont documentés (procédures écrites) ?</label>
       <p class="hint">1 = aucune procédure → 5 = tout est documenté</p>${selectField("sops",ECHELLE)}</div>
     <div class="field"><label class="lab">À quel point vos processus sont-ils automatisés ?</label>
@@ -373,7 +373,7 @@ function renderResult(json){
     inner += `<h1 style="margin-top:4px">Merci, c'est enregistré.</h1>`;
   }
   inner += `<div class="mailbox">Votre rapport détaillé, avec vos 3 priorités, vous sera envoyé par email à <strong>${esc(data.email)}</strong>, dans les prochaines heures.</div>
-    <a class="cta-link primary" href="${CALENDLY_URL}" target="_blank" rel="noreferrer">Réserver un échange →</a>`;
+    <a class="cta-link primary" href="${CALENDLY_URL}" target="_blank" rel="noreferrer">Réserver un audit de 30 min offert →</a>`;
   app.innerHTML = inner;
 }
 
