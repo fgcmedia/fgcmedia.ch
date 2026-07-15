@@ -130,8 +130,8 @@ const pD = (nbZones / 5) * 20;
 // --- E. Mode de gestion (10 pts) ---
 const g = arr(b.gestion);
 let pE = 0;
-if (g.includes("A")) pE += 5;   // tableurs & email
-if (g.includes("D")) pE += 5;   // mélange + étapes manuelles
+if (g.some(v => v.startsWith("Tableurs")))   pE += 5; // ex-code A
+if (g.some(v => v.startsWith("Un mélange"))) pE += 5; // ex-code D
 pE = Math.min(pE, 10);
 
 // --- Score d'opportunité (interne, stocké pour le tri commercial) ---

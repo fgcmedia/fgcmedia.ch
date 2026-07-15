@@ -342,13 +342,24 @@ function next(){
   else submit();
 }
 
+function toLabels(codes, lookup){
+  const map = Object.fromEntries(lookup);
+  return codes.map(c => map[c] || c);
+}
+
 async function submit(){
   sending = true; errorMsg=""; render();
+  const payload = {
+    ...data,
+    gestion: toLabels(data.gestion, GESTION),
+    zones:   toLabels(data.zones,   ZONES),
+    outils:  toLabels(data.outils,  OUTILS),
+  };
   try{
     const res = await fetch(WEBHOOK_URL, {
       method:"POST",
       headers:{"Content-Type":"application/json"},
-      body: JSON.stringify(data),
+      body: JSON.stringify(payload),
     });
     if(!res.ok) throw new Error("bad status");
     let json={}; try{ json = await res.json(); }catch(e){}
