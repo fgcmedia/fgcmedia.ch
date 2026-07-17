@@ -2,7 +2,7 @@
 
 > Document de référence pour partager rapidement ma situation avec un assistant IA (Claude ou autre) afin d'obtenir des conseils stratégiques pertinents sur mes projets et choix professionnels.
 >
-> _Dernière mise à jour : 2026-07-15_
+> _Dernière mise à jour : 2026-07-17_
 
 ---
 
@@ -182,6 +182,9 @@
 | 2026-07 | Offre pilote = réduite mais payante, périmètre 1 workflow, cadre « places limitées » | Protège la valeur, filtre les non-sérieux, évite le puits de travail gratuit |
 | 2026-07 | Prototype/maquette = carte jouée en RDV sur prospect qualifié, jamais accroche à froid | AUROVIS l'a « mérité » via découverte ; à froid = promesses ingérables + dévalorisation |
 | 2026-07 | Audit payant (façon DKDP) = offre de phase 2, après premières références   | Sans cas client, invendable ; d'abord décrocher missions + témoignages, puis packager |
+| 2026-07 | Prospection téléphonique déléguée = phase 2 (pas maintenant)              | Amplifier avant preuve de conversion = payer pour amplifier une inconnue ; ~1500-2500 € prélevés sur runway anxiogène ; offre consultative sur-mesure difficile à prospecter par un tiers. À réactiver après 1-2 missions signées + script éprouvé + cash entrant |
+| 2026-07 | BTP = secteur n°2, **séquencé après** le verdict immo (pas en parallèle)   | Bonne niche (admin lourd, pas d'IT interne, ROI démontrable, solutions réutilisables) mais l'immo sert de terrain d'apprentissage ; lancer les deux ensemble = dispersion + perte de l'effet d'apprentissage |
+| 2026-07 | Outils d'enrichissement (Icypeas / FullEnrich) = phase 2, pour secteurs sans réseau | Inutiles pour l'immo (réseau LinkedIn existant, contacts déjà joignables en DM) ; utiles quand liste à créer de zéro (BTP). Optimiser le sourcing avant d'avoir validé la conversion = optimiser la mauvaise étape |
 
 ---
 
@@ -189,5 +192,20 @@
 
 - Test immo en cours : suivre le critère de verdict à 4 semaines (voir section 4).
 - Angle marque blanche agences : à réactiver ou non selon les résultats du test immo.
-- Audit payant (façon DKDP) : à packager en phase 2, une fois 2-3 références freelance obtenues.
+
+### Pile de phase 2 (à activer APRÈS le verdict immo, jamais en parallèle)
+
+> Toutes ces pistes sont bonnes mais leur valeur dépend du moment. Priorité absolue
+> actuelle : faire aboutir le front immo et en tirer une 1re référence. Le reste
+> reste « au chaud » sans fragmenter le focus (limite de 2 fronts).
+
+- **BTP = secteur n°2**, séquencé après le verdict immo. L'immo sert de terrain d'apprentissage (angle, format pilote, points de blocage à la conversion) ; le BTP bénéficiera des ajustements. Packs pertinents repérés : tri e-mails, brouillon de devis, classement photos de chantier, extraction factures fournisseurs, comptes rendus. Solutions réutilisables d'un artisan à l'autre. Ne pas se sur-spécialiser trop tôt (ex. « électriciens 5-50 salariés ») — décider une fois sur le terrain.
+- **Outils d'enrichissement de leads** (Icypeas / FullEnrich) : pour les secteurs où je pars sans réseau (BTP notamment), afin de sourcer + trouver le contact direct du dirigeant. Inutiles tant que je prospecte mon réseau LinkedIn existant. À déclencher en même temps que le BTP.
+- **Prescripteurs / partenaires** (piste ChatGPT à creuser) : grossistes et fournisseurs qui voient passer des centaines de PME (matériel élec/bâtiment), fiduciaires, intégrateurs de logiciels (ERP/CRM), agences web. Un seul partenaire peut apporter plusieurs clients. À explorer une fois une référence sectorielle obtenue.
+- **Audit payant (façon DKDP)** : à packager une fois 2-3 références freelance obtenues.
+- **Prospection téléphonique déléguée** : à réactiver après 1-2 missions signées + script éprouvé + cash entrant (ne pas puiser dans le runway).
+- **Contact Nathalie Bouland Caminati (Swixim International)** : cible partenariat/déploiement réseau immo (niveau franchise, pas agence individuelle) — à recontacter une fois une référence immo en main.
+
+### Suivi passif
+
 - Réponses EPHJ : en attente, à traiter au fil de l'eau.
