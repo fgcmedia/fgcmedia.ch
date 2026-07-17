@@ -3,7 +3,7 @@
 > Document de référence pour le questionnaire d'auto-évaluation
 > (lead magnet + pré-qualification). À passer à Claude Code pour l'implémentation.
 >
-> _Créé : 2026-06-27 · Mis à jour : 2026-06-27 (logique maturité)_
+> _Créé : 2026-06-27 · Mis à jour : 2026-07-17 (retrait génération IA, score seul + audit)_
 
 ---
 
@@ -13,23 +13,32 @@ Permettre à un dirigeant de TPE/PME de s'auto-évaluer en ~3 minutes, sans rés
 d'appel, et :
 
 - **Pour le visiteur** : obtenir immédiatement un **niveau d'automatisation actuel /100**
-  (avec une jauge montrant le potentiel inexploité) + une phrase de diagnostic à
-  l'écran, puis recevoir par email un rapport détaillé (3 priorités + recommandations).
+  (avec une jauge montrant le potentiel inexploité), présenté honnêtement comme un
+  premier indicateur automatique, puis être invité à un audit offert pour le
+  transformer en plan d'action.
 - **Pour Grégory** : capturer un **lead pré-qualifié** (email dès l'étape 1) avec tout
-  le contexte métier, et un **brouillon d'email** prêt à valider dans Gmail.
+  le contexte métier stocké en base, et **maximiser les réservations d'audit**.
 
-**Règle de transparence** : le résultat est une **estimation indicative**, assumée comme
-telle (jamais un chiffre faussement précis). Cohérent avec le principe « honnêteté
-sur les gaps ».
+**Positionnement retenu : jouer sur la confiance, pas sur la frustration.** Le score
+est donné franchement (pas verrouillé pour forcer l'appel), et l'audit est proposé
+comme la suite naturelle — sans rétention artificielle d'information.
 
-### Note importante sur la logique d'affichage (maturité, pas opportunité)
+### Historique des arbitrages de conception
 
-Le test terrain a montré qu'afficher un **score d'opportunité /100** (haut = beaucoup
-à automatiser) crée une dissonance : le réflexe scolaire lit « score élevé = bonne
-note », à l'inverse du sens voulu. **On affiche donc la maturité** (`100 - opportunité`),
-intuitive (bas = peu automatisé), tout en rendant le manque visible par une **jauge en
-deux parties** (niveau actuel + potentiel à exploiter). Le score d'opportunité reste
-calculé en interne et stocké pour le tri commercial.
+- **Logique d'affichage = maturité, pas opportunité.** Un score d'opportunité /100
+  (haut = beaucoup à automatiser) créait une dissonance (réflexe scolaire « score
+  élevé = bonne note »). On affiche donc la **maturité** (`100 - opportunité`),
+  intuitive, avec une jauge en deux parties (niveau actuel + potentiel à exploiter).
+  Le score d'opportunité reste calculé en interne et stocké pour le tri commercial.
+- **Retrait de la génération IA (2026-07).** À l'origine, un node OpenAI générait 3
+  priorités personnalisées + une estimation d'heures récupérables, livrées par email.
+  Constat après lecture des emails réels : le contenu était trop **générique** (le
+  questionnaire ne capte pas assez de contexte pour un conseil vraiment spécifique —
+  le vrai contexte naît dans la conversation, pas dans un formulaire). La « démonstration
+  de compétence » attendue était donc faible. Décision : **retirer entièrement la
+  génération IA** (priorités + estimation d'heures). Le diagnostic qualifie et amorce ;
+  l'audit approfondit. Bonus : workflow plus léger, moins cher, moins de latence, une
+  pièce de moins qui peut casser.
 
 ---
 
@@ -44,29 +53,28 @@ L'email est capturé à l'**étape 1** : même en cas d'abandon, le lead est acq
 ### Étape 2 — Votre entreprise (qualification)
 - **Nom de l'entreprise*** · **Site web*** · **Secteur / activité***
 - **Nombre de personnes*** : `1-9` · `10-19` · `20-49` · `50-99` · `100+`
-- **Chiffre d'affaires annuel (CHF)*** : `< 250k` · `250k-1M` · `1M-5M` · `5M-10M` · `> 10M` · `Je préfère ne pas répondre`
+- **CA annuel (CHF)*** : `< 250k` · `250k-1M` · `1M-5M` · `5M-10M` · `> 10M` · `Je préfère ne pas répondre`
 
 ### Étape 3 — Opérations & organisation (douleur)
 - **Comment gérez-vous vos opérations / projets ?** (choix multiple) :
-  A. Tableurs Excel & email · B. Outils de gestion de projet (Asana, ClickUp, Monday…) ·
-  C. Systèmes internes / sur-mesure · D. Mélange d'outils avec étapes manuelles
+  A. Tableurs Excel & email · B. Outils de gestion de projet · C. Systèmes internes / sur-mesure · D. Mélange d'outils avec étapes manuelles
 - **Zones les plus inefficaces ?** (choix multiple) :
-  A. Ventes & CRM · B. Onboarding client · C. Finance / facturation / devis ·
-  D. Opérations terrain / planification · E. Conformité / documentation ·
-  F. Reporting / tableaux de bord · G. Communication interne
+  A. Ventes & CRM · B. Onboarding client · C. Finance / facturation / devis · D. Opérations terrain / planification · E. Conformité / documentation · F. Reporting / tableaux de bord · G. Communication interne
 - **Combien d'outils distincts par jour ?** : `1-3` · `4-6` · `7-10` · `Plus de 10`
 
 ### Étape 4 — Automatisation & maturité (scoring)
 - **Quels outils utilisez-vous ?** (choix multiple) :
-  A. Zapier / Make / n8n · B. Airtable / Google Sheets · C. Notion / Smartsheet ·
-  D. Logiciel comptable (Banana, Winbiz, Crésus, Bexio…) · E. Slack / Teams ·
-  F. APIs / tableaux de bord internes · G. Autre
+  A. Zapier / Make / n8n · B. Airtable / Google Sheets · C. Notion / Smartsheet · D. Logiciel comptable (Banana, Winbiz, Crésus, Bexio…) · E. Slack / Teams · F. APIs / tableaux de bord internes · G. Autre
 - **Processus documentés (procédures écrites) ?** — échelle 1-5 (1 = aucune → 5 = tout)
 - **Processus automatisés ?** — échelle 1-5 (1 = tout manuel → 5 = entièrement automatisé)
 
-### Étape 5 — Points de blocage & objectifs (or pour le suivi)
+### Étape 5 — Points de blocage & objectifs (contexte + qualification)
 - **Principaux maux opérationnels à éliminer (6-12 mois) ?** — texte libre
 - **Si on doublait l'efficacité en 12 mois, à quoi ressemblerait le succès ?** — texte libre
+
+> Note : ces deux champs libres ne nourrissent plus de génération IA. Ils restent
+> utiles comme **contexte de qualification** (stockés en base, lus par Grégory avant
+> l'audit) et pour amorcer la conversation.
 
 Bouton final : **Obtenir mon score →**
 
@@ -78,23 +86,16 @@ Bouton final : **Obtenir mon score →**
 
 ### 3.1 Score d'opportunité (calcul interne, /100)
 
-Mesure le **gisement potentiel** : plus l'entreprise est manuelle / dispersée / peu
+Mesure le gisement potentiel : plus l'entreprise est manuelle / dispersée / peu
 documentée, plus l'opportunité est élevée.
 
-| Composante | Poids | Logique |
+| Composante | Poids | Calcul |
 |---|---|---|
-| Maturité automatisation | 35 | Plus c'est manuel, plus le gisement est grand |
-| Documentation (SOPs) | 15 | Peu de procédures = friction = gisement |
-| Dispersion des outils | 20 | Plus d'outils = plus d'intégrations manquantes |
-| Surface d'inefficacité | 20 | Plus de zones cochées = plus de potentiel |
-| Mode de gestion | 10 | Tableurs/manuel = gisement ; outils intégrés = moins |
-
-**Calcul** :
-- **A. Automatisation (35)** : `(5 - valeur_auto) / 4 * 35`
-- **B. Documentation (15)** : `(5 - valeur_sops) / 4 * 15`
-- **C. Dispersion (20)** : `1-3 → 5` · `4-6 → 12` · `7-10 → 18` · `>10 → 20`
-- **D. Inefficacité (20)** : `min(nb_zones, 5) / 5 * 20`
-- **E. Gestion (10)** : `+5 si A (tableurs)` · `+5 si D (mélange manuel)` · plafonné à 10
+| Maturité automatisation | 35 | `(5 - valeur_auto) / 4 * 35` |
+| Documentation (SOPs) | 15 | `(5 - valeur_sops) / 4 * 15` |
+| Dispersion des outils | 20 | `1-3→5` · `4-6→12` · `7-10→18` · `>10→20` |
+| Surface d'inefficacité | 20 | `min(nb_zones, 5) / 5 * 20` |
+| Mode de gestion | 10 | `+5 si A (tableurs)` · `+5 si D (mélange manuel)` · plafonné à 10 |
 
 `opportunite = round(borne(A + B + C + D + E, 0, 100))`
 
@@ -104,13 +105,12 @@ documentée, plus l'opportunité est élevée.
 maturite = 100 - opportunite
 ```
 
-Intuitive : un chiffre bas = peu automatisé = beaucoup à gagner.
-C'est cette valeur qui est renvoyée au front et affichée en grand.
+Intuitive : un chiffre bas = peu automatisé = beaucoup à gagner. C'est la valeur
+renvoyée au front et affichée en grand.
 
 ### 3.3 Paliers (formulés côté gain)
 
-Le palier est déterminé par l'**opportunité** (le manque), mais **libellé en termes
-de bénéfice** pour rester motivant sans culpabiliser.
+Déterminé par l'**opportunité** (le manque), libellé en termes de bénéfice.
 
 | Opportunité | Palier affiché | Message |
 |---|---|---|
@@ -120,9 +120,9 @@ de bénéfice** pour rester motivant sans culpabiliser.
 
 ### 3.4 Sous-scores : supprimés
 
-Les trois sous-jauges (Documentation / Automatisation / Intégration) ont été
-**retirées** : elles alourdissaient la lecture sans valeur ajoutée claire pour le
-visiteur. Les valeurs brutes `sops` et `auto` restent stockées en base pour analyse.
+Les trois sous-jauges (Documentation / Automatisation / Intégration) ont été retirées
+(lecture alourdie sans valeur ajoutée claire). Les valeurs brutes `sops` et `auto`
+restent stockées en base pour analyse.
 
 ---
 
@@ -130,81 +130,76 @@ visiteur. Les valeurs brutes `sops` et `auto` restent stockées en base pour ana
 
 ### À l'écran (immédiat, après submit)
 - Le **niveau d'automatisation actuel /100** (= `maturite`) en grand
-- Une **jauge horizontale en deux parties** :
-  - partie pleine (largeur = `maturite`%) = « Niveau actuel »
-  - partie vide (largeur = `100 - maturite`%) = « Potentiel à exploiter »
+- Une **jauge en deux parties** : partie pleine (`maturite`%) = « Niveau actuel » ;
+  partie vide = « Potentiel à exploiter »
 - Le **libellé de palier** + sa phrase de diagnostic
-- Message : « Votre rapport détaillé avec vos 3 priorités vous arrive par email. »
-- Bouton **Calendly** (réserver un échange)
+- Un **cadrage honnête** : le score est un premier indicateur automatique ; un vrai
+  diagnostic demande de comprendre le contexte → d'où l'audit
+- **CTA** : « Réserver mon audit offert (30 min) → » vers Calendly
+- Ligne discrète : « Vous recevez aussi une copie de votre score par email. »
 
-### Dans l'email (rapport complet, en brouillon validé par Grégory)
-- Rappel du résultat + palier
-- **3 priorités personnalisées** générées par IA à partir des réponses
-- Lien Calendly (CTA)
-- Ton : conseil, pas vente
+### Dans l'email (envoi automatique)
+- Rappel du score + palier
+- Cadrage « premier indicateur automatique »
+- Lien Calendly (audit offert)
+- **Plus de 3 priorités, plus d'estimation d'heures.** Email court, identique pour
+  tous (rappel du score + invitation à l'audit). Sert de capture/trace + relance passive.
 
 ---
 
 ## 5. Architecture technique
 
 ```
-┌─────────────────┐   POST réponses     ┌──────────────────┐
-│  diagnostic.html │ ──────────────────► │  n8n (webhook)   │
+┌──────────────────┐   POST réponses     ┌──────────────────┐
+│  diagnostic.html  │ ──────────────────► │  n8n (webhook)   │
 │  (HTML/JS vanilla)│                     │                  │
 │  site statique    │ ◄────────────────── │  1. Calcul score │
-│  Render           │  { maturite,        │  2. OpenAI       │
-│  Affiche maturité │    palier, message }│  3. Insert SB    │
-│  + jauge          │                     │  4. Draft Gmail  │
-└─────────────────┘                       └──────────────────┘
-                                                   │
-                                                   ▼
-                                        Brouillon Gmail
-                                        (fgcmedia.sarl@gmail.com)
-                                        → Grégory valide & envoie
+│  Render           │  { maturite,        │  2. Insert SB    │
+│  Affiche maturité │    palier, message }│  3. Email (Resend)│
+│  + jauge + CTA    │                     │  4. Respond      │
+└──────────────────┘                      └──────────────────┘
 ```
 
 - **Front** : page autonome HTML/JS vanilla (pas de framework), POST vers le webhook,
-  affiche `maturite` + jauge deux parties. Charte du site (tokens oklch, Schibsted Grotesk).
-- **n8n** : webhook → Function (score) → OpenAI (gpt-4o-mini) → Supabase (insert) →
-  Gmail (draft) → Respond. Voir `WORKFLOW_N8N.md` pour le détail node par node.
-- **Supabase** : table `leads_diagnostic` (base « fgcmedia.ch »), colonnes de
-  qualification + `reponses` jsonb. La colonne `score` stocke l'**opportunité** (tri
-  commercial : score desc = leads les plus chauds).
+  affiche `maturite` + jauge + cadrage + CTA audit. Charte du site (tokens oklch,
+  Schibsted Grotesk).
+- **n8n** : webhook → Function (score) → Supabase (insert) → Email → Respond.
+  **Plus de node OpenAI.** Voir `WORKFLOW_N8N.md`.
+- **Supabase** : table `leads_diagnostic` (base « fgcmedia.ch »). La colonne `score`
+  stocke l'**opportunité** (tri commercial : score desc = leads les plus chauds).
 
 ---
 
-## 6. Livraison de l'email : draft (actuel) → envoi auto (évolution possible)
+## 6. Envoi de l'email : Resend (transactionnel)
 
-**État actuel : brouillon Gmail.** Le workflow crée un draft que Grégory relit et
-envoie manuellement. Garde-fou pendant la phase d'observation.
+**Choix : Resend via SMTP** (compte déjà configuré sur n8n), plutôt que l'envoi
+automatique via Gmail.
 
-**Pourquoi garder le draft au début** :
-1. **Qualité du rapport IA** : tant qu'un échantillon de 15-20 rapports réels n'a pas
-   été observé, le draft protège contre une sortie hors-sujet ou maladroite.
-2. **Personnalisation à valeur** : permet d'ajouter une phrase sur-mesure (référence au
-   site du prospect, à son secteur) qui peut faire la différence sur un lead chaud.
+**Pourquoi** : Gmail n'est pas fait pour l'envoi transactionnel programmatique (risque
+spam + risque pour le compte). Resend est bâti pour ça (authentification propre,
+réputation gérée). La délivrabilité = directement le taux de conversion (un email en
+spam = un lead perdu, sans score ni lien Calendly).
 
-**Évolution possible : envoi automatique via Resend**, une fois la qualité validée sur
-un échantillon. Option : conditionner dans n8n (IF sur le score) — draft pour les leads
-à fort potentiel, envoi auto pour les autres. À ne mettre en place qu'après la phase
-d'observation, sans complexifier prématurément.
+**Prérequis pour que Resend soit réellement supérieur** :
+- Domaine `fgcmedia.ch` **vérifié dans Resend** (enregistrements DNS SPF + DKIM, idéalement DMARC).
+- Envoi depuis une adresse du domaine (ex. `diagnostic@fgcmedia.ch`), pas une adresse générique.
+- `reply-to` configuré vers une adresse réellement consultée (si l'adresse d'envoi est technique).
+- Test réel vers Gmail ET Outlook pour vérifier l'arrivée en inbox.
 
 ---
 
 ## 7. Décisions verrouillées
 
 - ✅ Pondérations du score : en l'état pour démarrer
-- ✅ Devise : CHF
-- ✅ Route : `/diagnostic`
-- ✅ Calendly : `https://calendly.com/fgcmedia/rdv`
+- ✅ Devise : CHF · Route : `/diagnostic` · Calendly : `https://calendly.com/fgcmedia/rdv`
 - ✅ Consentement nLPD/RGPD : case à l'étape 1
-- ✅ Modèle IA : gpt-4o-mini
 - ✅ Stockage : Supabase, table `leads_diagnostic`
-- ✅ Affichage : maturité /100 + jauge deux parties (pas le score d'opportunité brut)
+- ✅ Affichage : maturité /100 + jauge deux parties
 - ✅ Sous-scores : supprimés
-- ✅ Email : brouillon Gmail (envoi auto Resend = évolution future)
-- ✅ Terminologie : « Diagnostic d'automatisation » (nom) · « Découvrez votre potentiel
-  d'automatisation » (accroche home)
+- ✅ **Génération IA (priorités + estimation d'heures) : supprimée** — contenu trop générique
+- ✅ **Écran & email : score seul + cadrage honnête + CTA audit** (jouer la confiance, pas la frustration)
+- ✅ **Envoi email : Resend** (sous réserve domaine authentifié)
+- ✅ Terminologie : « Diagnostic d'automatisation » · accroche « Découvrez votre potentiel d'automatisation »
 - 🔲 Enrichissement via site web fourni : v2
 
 ---
