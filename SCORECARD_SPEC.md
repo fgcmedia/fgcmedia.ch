@@ -207,7 +207,36 @@ spam = un lead perdu, sans score ni lien Calendly).
 - ✅ **Écran & email : score seul + cadrage honnête + CTA audit** (jouer la confiance, pas la frustration)
 - ✅ **Envoi email : Resend** (sous réserve domaine authentifié)
 - ✅ Terminologie : « Diagnostic d'automatisation » · accroche « Découvrez votre potentiel d'automatisation »
-- 🔲 Enrichissement via site web fourni : v2
+- 🔲 Enrichissement via site web fourni : v2 (voir §7bis)
+
+---
+
+## 7bis. Pistes v2 — réintroduire de la personnalisation (au chaud)
+
+> **Contexte** : la génération IA (3 priorités + estimation d'heures) a été retirée
+> car trop générique. Après analyse, le plafond ne venait **pas du prompt** mais de la
+> **pauvreté du contexte en entrée** : le questionnaire capte des réponses larges
+> (échelles, cases), donc l'IA ne peut produire que des conseils larges — justes mais
+> non spécifiques. Le risque était un **décalage attente/livraison** : afficher « 3
+> priorités personnalisées » puis livrer du générique peut *entamer* la confiance
+> plutôt que la construire. D'où le retrait, cohérent avec le positionnement honnêteté.
+
+Pour faire mieux un jour, deux voies (ni l'une ni l'autre ne consiste à « améliorer le prompt ») :
+
+1. **Enrichir le contexte en entrée** → personnalisation réelle.
+   - Exploiter davantage les champs libres (douleur / vision) déjà présents.
+   - **Enrichissement via le site web fourni** à l'étape entreprise : si l'IA lit ce que
+     fait réellement la boîte, les priorités deviennent spécifiques. C'est le vrai
+     déblocage, mais c'est un chantier.
+
+2. **Assumer le générique, sans surpromettre** → pas de décalage.
+   - Présenter les conseils comme « les leviers les plus courants pour une organisation
+     à votre niveau » plutôt que « vos 3 priorités personnalisées ». Le prospect reçoit
+     de la valeur sans qu'on prétende au sur-mesure.
+
+> **Déclencheur** : ne rouvrir ce chantier que si l'email « score seul » convertit mal
+> en réservations d'audit. Tant qu'il n'y a pas ce signal, priorité ailleurs (front immo).
+> La v1 actuelle (score seul + cadrage honnête + CTA) reste le bon choix par défaut.
 
 ---
 
