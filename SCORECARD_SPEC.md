@@ -3,7 +3,7 @@
 > Document de référence pour le questionnaire d'auto-évaluation
 > (lead magnet + pré-qualification). À passer à Claude Code pour l'implémentation.
 >
-> _Créé : 2026-06-27 · Mis à jour : 2026-07-17 (retrait génération IA, score seul + audit)_
+> _Créé : 2026-06-27 · Mis à jour : 2026-07-17 (email en fin de parcours)_
 
 ---
 
@@ -44,37 +44,43 @@ comme la suite naturelle — sans rétention artificielle d'information.
 
 ## 2. Parcours en 5 étapes
 
-L'email est capturé à l'**étape 1** : même en cas d'abandon, le lead est acquis.
+L'email est capturé en **dernière étape**, juste avant l'affichage du score. Choix
+assumé (2026-07) : demander l'email en fin de parcours plutôt qu'au début améliore le
+taux de complétion (la personne a investi ses 3 min, donner son email pour voir son
+score paraît un échange équitable). L'email reste **obligatoire** — le score s'affiche
+en échange, tout en étant aussi envoyé par email. Contrepartie assumée : on ne capture
+plus les abandons précoces (leads très froids, peu de valeur pour la relance).
 
-### Étape 1 — Contact
-- Objectif affiché + temps estimé (**3 min**)
-- Champs : **Nom complet*** · **Email*** · **case de consentement nLPD/RGPD***
-
-### Étape 2 — Votre entreprise (qualification)
+### Étape 1 — Votre entreprise (qualification)
 - **Nom de l'entreprise*** · **Site web*** · **Secteur / activité***
 - **Nombre de personnes*** : `1-9` · `10-19` · `20-49` · `50-99` · `100+`
 - **CA annuel (CHF)*** : `< 250k` · `250k-1M` · `1M-5M` · `5M-10M` · `> 10M` · `Je préfère ne pas répondre`
 
-### Étape 3 — Opérations & organisation (douleur)
+### Étape 2 — Opérations & organisation (douleur)
 - **Comment gérez-vous vos opérations / projets ?** (choix multiple) :
   A. Tableurs Excel & email · B. Outils de gestion de projet · C. Systèmes internes / sur-mesure · D. Mélange d'outils avec étapes manuelles
 - **Zones les plus inefficaces ?** (choix multiple) :
   A. Ventes & CRM · B. Onboarding client · C. Finance / facturation / devis · D. Opérations terrain / planification · E. Conformité / documentation · F. Reporting / tableaux de bord · G. Communication interne
 - **Combien d'outils distincts par jour ?** : `1-3` · `4-6` · `7-10` · `Plus de 10`
 
-### Étape 4 — Automatisation & maturité (scoring)
+### Étape 3 — Automatisation & maturité (scoring)
 - **Quels outils utilisez-vous ?** (choix multiple) :
   A. Zapier / Make / n8n · B. Airtable / Google Sheets · C. Notion / Smartsheet · D. Logiciel comptable (Banana, Winbiz, Crésus, Bexio…) · E. Slack / Teams · F. APIs / tableaux de bord internes · G. Autre
 - **Processus documentés (procédures écrites) ?** — échelle 1-5 (1 = aucune → 5 = tout)
 - **Processus automatisés ?** — échelle 1-5 (1 = tout manuel → 5 = entièrement automatisé)
 
-### Étape 5 — Points de blocage & objectifs (contexte + qualification)
+### Étape 4 — Points de blocage & objectifs (contexte + qualification)
 - **Principaux maux opérationnels à éliminer (6-12 mois) ?** — texte libre
 - **Si on doublait l'efficacité en 12 mois, à quoi ressemblerait le succès ?** — texte libre
 
 > Note : ces deux champs libres ne nourrissent plus de génération IA. Ils restent
 > utiles comme **contexte de qualification** (stockés en base, lus par Grégory avant
 > l'audit) et pour amorcer la conversation.
+
+### Étape 5 — Contact (capture, désormais en dernier)
+- Phrase de cadrage : « Dernière étape : vos coordonnées pour afficher votre score et en recevoir une copie par email. »
+- Champs : **Nom complet*** · **Email*** · **case de consentement nLPD/RGPD***
+- Objectif « ~3 min » affiché en tête de questionnaire (étape 1).
 
 Bouton final : **Obtenir mon score →**
 
@@ -192,7 +198,8 @@ spam = un lead perdu, sans score ni lien Calendly).
 
 - ✅ Pondérations du score : en l'état pour démarrer
 - ✅ Devise : CHF · Route : `/diagnostic` · Calendly : `https://calendly.com/fgcmedia/rdv`
-- ✅ Consentement nLPD/RGPD : case à l'étape 1
+- ✅ Consentement nLPD/RGPD : case à l'étape contact (dernière étape)
+- ✅ **Email obligatoire en fin de parcours** (pas au début) — meilleur taux de complétion, score affiché en échange + copie email. On renonce à capturer les abandons précoces (leads froids)
 - ✅ Stockage : Supabase, table `leads_diagnostic`
 - ✅ Affichage : maturité /100 + jauge deux parties
 - ✅ Sous-scores : supprimés
