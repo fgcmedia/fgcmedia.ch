@@ -188,7 +188,7 @@
 const WEBHOOK_URL = "https://n8n.fgcmedia.ch/webhook/diagnostic";
 const CALENDLY_URL = "https://calendly.com/fgcmedia/rdv";
 
-const STEPS = ["Contact", "Entreprise", "Opérations", "Automatisation", "Objectifs"];
+const STEPS = ["Entreprise", "Opérations", "Automatisation", "Objectifs", "Contact"];
 
 const TAILLE = ["1-9","10-19","20-49","50-99","100+"];
 const CA = ["< 250k CHF","250k - 1M CHF","1M - 5M CHF","5M - 10M CHF","> 10M CHF","Je préfère ne pas répondre"];
@@ -235,11 +235,11 @@ const app = document.getElementById("app");
 const esc = (s) => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 function valid(){
-  if(step===0) return data.nom.trim() && /\S+@\S+\.\S+/.test(data.email) && data.consent;
-  if(step===1) return data.entreprise.trim() && data.site.trim() && data.secteur.trim() && data.taille && data.ca;
-  if(step===2) return data.gestion.length && data.zones.length && data.nbOutils;
-  if(step===3) return data.outils.length && data.sops && data.auto;
-  if(step===4) return data.douleurs.trim() && data.vision.trim();
+  if(step===0) return data.entreprise.trim() && data.site.trim() && data.secteur.trim() && data.taille && data.ca;
+  if(step===1) return data.gestion.length && data.zones.length && data.nbOutils;
+  if(step===2) return data.outils.length && data.sops && data.auto;
+  if(step===3) return data.douleurs.trim() && data.vision.trim();
+  if(step===4) return data.nom.trim() && /\S+@\S+\.\S+/.test(data.email) && data.consent;
   return false;
 }
 
@@ -258,31 +258,21 @@ function selectField(key, opts){
 function stepHTML(){
   if(step===0) return `
     <h1>Quel est le potentiel d'automatisation de votre entreprise ?</h1>
-    <p class="sub">Calculez votre score. ~3 minutes, sans appel requis.</p>
-    <div class="field"><label class="lab">Votre nom complet</label>
-      <input type="text" data-set="nom" value="${esc(data.nom)}" placeholder="Prénom Nom" /></div>
-    <div class="field"><label class="lab">Votre email</label>
-      <input type="email" data-set="email" value="${esc(data.email)}" placeholder="vous@entreprise.ch" /></div>
-    <label class="check"><input type="checkbox" data-set="consent" ${data.consent?'checked':''} />
-      <span>J'accepte que FGC Média utilise mon email pour m'envoyer le résultat de ce diagnostic. Aucune communication non sollicitée, désinscription à tout moment.</span></label>`;
-
-  if(step===1) return `
-    <h1>Votre entreprise</h1>
-    <p class="sub">Pour situer votre contexte et mieux adapter les recommandations.</p>
+    <p class="sub">Calculez votre score en ~3 minutes, sans appel requis.</p>
     <div class="field"><label class="lab">Nom de l'entreprise</label><input type="text" data-set="entreprise" value="${esc(data.entreprise)}" /></div>
     <div class="field"><label class="lab">Site web</label><input type="text" data-set="site" value="${esc(data.site)}" placeholder="https://" /></div>
     <div class="field"><label class="lab">Secteur / activité</label><input type="text" data-set="secteur" value="${esc(data.secteur)}" /></div>
     <div class="field"><label class="lab">Nombre de personnes (salariés + indépendants)</label>${selectField("taille",TAILLE)}</div>
     <div class="field"><label class="lab">Chiffre d'affaires annuel</label>${selectField("ca",CA)}</div>`;
 
-  if(step===2) return `
+  if(step===1) return `
     <h1>Opérations & organisation</h1>
     <p class="sub">Plusieurs réponses possibles.</p>
     <div class="field"><label class="lab">Comment gérez-vous vos opérations / projets au quotidien ?</label>${pillGroup("gestion",GESTION)}</div>
     <div class="field"><label class="lab">Quelles zones vous semblent les plus inefficaces aujourd'hui ?</label>${pillGroup("zones",ZONES)}</div>
     <div class="field"><label class="lab">Combien d'outils/plateformes distincts vos équipes utilisent-elles chaque jour ?</label>${selectField("nbOutils",NB_OUTILS)}</div>`;
 
-  if(step===3) return `
+  if(step===2) return `
     <h1>Automatisation & maturité</h1>
     <p class="sub">Où en êtes-vous aujourd'hui ?</p>
     <div class="field"><label class="lab">Quels outils utilisez-vous actuellement ? (plusieurs réponses possibles)</label>${pillGroup("outils",OUTILS)}</div>
@@ -291,13 +281,23 @@ function stepHTML(){
     <div class="field"><label class="lab">À quel point vos processus sont-ils automatisés ?</label>
       <p class="hint">1 = tout est manuel → 5 = entièrement automatisé entre services</p>${selectField("auto",ECHELLE)}</div>`;
 
-  if(step===4) return `
+  if(step===3) return `
     <h1>Points de blocage & objectifs</h1>
     <p class="sub">Textes libres.</p>
     <div class="field"><label class="lab">Quelles sont les principales difficultés opérationnelles que vous aimeriez éliminer dans les 6-12 prochains mois ?</label>
       <textarea data-set="douleurs" placeholder="ex : trop de saisie manuelle, les rapports prennent des jours, aucune visibilité sur la charge de l'équipe…">${esc(data.douleurs)}</textarea></div>
     <div class="field"><label class="lab">Si on doublait l'efficacité de votre équipe en 12 mois, à quoi ressemblerait le succès pour vous ?</label>
       <textarea data-set="vision" placeholder="ex : gérer plus de projets à effectif constant, réduire le travail admin, meilleure visibilité des données…">${esc(data.vision)}</textarea></div>`;
+
+  if(step===4) return `
+    <h1>Vos coordonnées</h1>
+    <p class="sub">Dernière étape : vos coordonnées pour afficher votre score et en recevoir une copie par email.</p>
+    <div class="field"><label class="lab">Votre nom complet</label>
+      <input type="text" data-set="nom" value="${esc(data.nom)}" placeholder="Prénom Nom" /></div>
+    <div class="field"><label class="lab">Votre email</label>
+      <input type="email" data-set="email" value="${esc(data.email)}" placeholder="vous@entreprise.ch" /></div>
+    <label class="check"><input type="checkbox" data-set="consent" ${data.consent?'checked':''} />
+      <span>J'accepte que FGC Média utilise mon email pour m'envoyer le résultat de ce diagnostic. Aucune communication non sollicitée, désinscription à tout moment.</span></label>`;
 }
 
 function render(){
