@@ -3,7 +3,7 @@
 > Document de référence pour le questionnaire d'auto-évaluation
 > (lead magnet + pré-qualification). À passer à Claude Code pour l'implémentation.
 >
-> _Créé : 2026-06-27 · Mis à jour : 2026-07-17 (email en fin de parcours)_
+> _Créé : 2026-06-27 · Mis à jour : 2026-07-24 (audit 15 min)_
 
 ---
 
@@ -141,7 +141,7 @@ restent stockées en base pour analyse.
 - Le **libellé de palier** + sa phrase de diagnostic
 - Un **cadrage honnête** : le score est un premier indicateur automatique ; un vrai
   diagnostic demande de comprendre le contexte → d'où l'audit
-- **CTA** : « Réserver mon audit offert (30 min) → » vers Calendly
+- **CTA** : « Réserver mon audit offert (15 min) → » vers Calendly
 - Ligne discrète : « Vous recevez aussi une copie de votre score par email. »
 
 ### Dans l'email (envoi automatique)

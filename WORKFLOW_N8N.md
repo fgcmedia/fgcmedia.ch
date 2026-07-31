@@ -4,7 +4,7 @@
 > du formulaire `/diagnostic`, calcule le score, enregistre le lead dans Supabase
 > et envoie un email récap (score + invitation à l'audit).
 >
-> _Créé : 2026-06-27 · Mis à jour : 2026-07-17 (retrait node OpenAI, envoi Resend)_
+> _Créé : 2026-06-27 · Mis à jour : 2026-07-24 (audit 15 min)_
 
 ---
 
@@ -191,7 +191,7 @@ Merci d'avoir rempli le diagnostic d'automatisation.
 
 Votre niveau d'automatisation actuel : {{ $('Function').item.json.maturite }}/100 ({{ $('Function').item.json.palier }})
 
-Ce score est un premier indicateur automatique. Pour en discuter et voir concrètement ce qui est automatisable chez vous, réservons un audit offert de 30 min :
+Ce score est un premier indicateur automatique. Pour en discuter et voir concrètement ce qui est automatisable chez vous, réservons un audit offert de 15 min :
 https://calendly.com/fgcmedia/rdv
 
 Grégory Cardinale
