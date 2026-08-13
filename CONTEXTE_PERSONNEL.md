@@ -2,7 +2,7 @@
 
 > Document de référence pour partager rapidement ma situation avec un assistant IA (Claude ou autre) afin d'obtenir des conseils stratégiques pertinents sur mes projets et choix professionnels.
 >
-> _Dernière mise à jour : 2026-08-09 (ajout section Cap à 3 mois — rituel trimestriel)_
+> _Dernière mise à jour : 2026-08-09 (ajout section Cap à 3 mois ; correctif présentiel France/Suisse ; niveau Malt)_
 
 ---
 
@@ -13,8 +13,8 @@
 - **Mobilité** : limitée pour un présentiel régulier en Suisse (6h+ de trajet depuis Saint-Raphaël) ; ouvert à des déplacements ponctuels
 - **Disponibilité géographique pour missions** :
   - Remote depuis la France : oui, OK
-  - Présentiel France : impossible car ma société est basée en Suisse et que je suis personnellement domicilié en Suisse (adresse postale), avec Permis B.
-  - Présentiel Suisse : peu réaliste compte tenu de la distance, sauf opportunité exceptionnelle
+  - Présentiel France : **ponctuel OK** (confirmé via candidature mission Nice, 2026-08) ; présentiel **régulier** impossible car ma société est basée en Suisse et que je suis personnellement domicilié en Suisse (adresse postale), avec Permis B.
+  - Présentiel Suisse : idem, ponctuel réaliste (~8x/an via Valais Network) ; régulier peu réaliste compte tenu de la distance depuis Saint-Raphaël (6h+ de trajet), sauf opportunité exceptionnelle
 - **Autres contraintes personnelles** : aucune à part Florence par rapport à ses parents et son fils.
 - **Alimentation** : plats maison cuisinés par Florence, équilibrés, orientation IG bas le midi (ex. pâtes complètes + sauté de porc, sauce tomate) ; quelques écarts le week-end ; alcool nul ou très rare ; jamais fumé.
   - **Correctif 2026-07-30** : jusqu'à cette date, **aucun petit-déjeuner** — jeûne du réveil jusqu'à quelques poignées d'amandes vers 10 h. La description « petit-déjeuner léger » précédemment inscrite ici était inexacte.
@@ -348,6 +348,8 @@ albumine 43 g/L · calcium 100 mg/L · PSA 0,44 ng/mL · bilan lipidique bien co
 | 2026-07-30 | **Expérience bornée santé/énergie lancée (14 j)** — hydratation, suppression du café de 16 h, petit-déjeuner protéiné, reprise Zymad | Bilan sanguin bon mais fatigue réelle → tester d'abord les facteurs modifiables et gratuits, avec critère de verdict écrit, avant d'engager des examens |
 | 2026-07-30 | Demandes médicales (polygraphie, dosages manquants) **reportées à la prochaine visite** (d'ici fin 2026) | Choix de concentration sur l'expérience bornée. Réserve consignée : délai ~5 mois, enjeux vigilance au volant + cardiovasculaire. À avancer si consultation plus précoce |
 | 2026-07-30 | Correctif documentaire : **pas de petit-déjeuner** avant cette date (§1 était inexact) ; hydratation < 1 L/j identifiée | Un contexte faux fait tirer des conclusions fausses — l'exactitude du MD conditionne la qualité des analyses |
+| 2026-08 | Correctif documentaire : présentiel France/Suisse **ponctuel OK**, seul le régulier pose souci (§1 disait « impossible » sans nuance) | Confirmé via candidature mission Nice et sélection des villes sur le profil Malt (Lausanne, Sion, Genève, Neuchâtel, Lyon) |
+| 2026-08 | Profil Malt : niveau **Intermédiaire** (pas Senior) malgré ~12 ans cumulés (7 ans C#/.NET + ~5 ans dev actuel) | Écart de 10 ans sans code entre les deux, limites actuelles assumées (pratiques d'équipe modernes, dépendance IA pour la syntaxe) ; incohérent avec un TJM cible d'Intermédiaire (550 €) plutôt que Senior (600-900 €) |
 
 ---
 
