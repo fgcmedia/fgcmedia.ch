@@ -1,0 +1,291 @@
+<title>Proposition Immocloud pilote</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  --ground:#F6F7F5; --paper:#FFFFFF; --ink:#1B2730; --muted:#5B6770; --rule:#D9DEDB;
+  --accent:#1F5E57; --accent-soft:#E3EFEC; --warn:#9A3B26; --mid:#80650F;
+  --n1:#1F5E57; --n2:#4E8C7F; --n3:#C9A43B; --n4:#C98A5C; --n5:#A9B1B4; --ntext:#FFFFFF;
+  --display:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#12181C; --paper:#1A2227; --ink:#E4EAE8; --muted:#9AA6AC; --rule:#2E3A40;
+    --accent:#7CC3B6; --accent-soft:#1E3230; --warn:#E59A83; --mid:#D9B85A;
+    --n1:#3F9C8E; --n2:#5E8F85; --n3:#A88A33; --n4:#A8714C; --n5:#56606A; --ntext:#FFFFFF;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#12181C; --paper:#1A2227; --ink:#E4EAE8; --muted:#9AA6AC; --rule:#2E3A40;
+  --accent:#7CC3B6; --accent-soft:#1E3230; --warn:#E59A83; --mid:#D9B85A;
+  --n1:#3F9C8E; --n2:#5E8F85; --n3:#A88A33; --n4:#A8714C; --n5:#56606A; --ntext:#FFFFFF;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.6 var(--body);padding-inline:16px;padding-block:32px 64px}
+.doc{max-width:860px;margin:0 auto;background:var(--paper);border:1px solid var(--rule);padding:clamp(20px,5vw,56px)}
+header.top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;border-bottom:2px solid var(--ink);padding-bottom:20px}
+.meta{font-size:13px;color:var(--muted);display:grid;grid-template-columns:auto auto;gap:2px 14px;align-content:start}
+.meta b{color:var(--ink);font-weight:500}
+.eyebrow{font:600 12px/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font:600 clamp(28px,4.4vw,38px)/1.1 var(--display);margin:10px 0 6px;text-wrap:balance}
+.lede{color:var(--muted);margin:0;max-width:52ch}
+h2{font:600 22px/1.2 var(--display);margin:44px 0 12px;text-wrap:balance;display:flex;gap:12px;align-items:baseline}
+h2 .no{color:var(--accent);font-variant-numeric:tabular-nums}
+h3{font:600 16px/1.3 var(--body);margin:22px 0 6px}
+p,li{max-width:68ch}
+ul{padding-left:20px;margin:8px 0}
+li{margin:4px 0}
+.small{font-size:13px;color:var(--muted)}
+.sources{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:14px}
+.src{border:1px solid var(--rule);padding:14px 16px}
+.src h3{margin:0 0 4px;font-size:14px}
+.src p{margin:0;font-size:13.5px;color:var(--muted)}
+.src .tag{display:inline-block;font:600 11px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.tablewrap{overflow-x:auto;margin:14px -8px 8px;padding:0 8px}
+table{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 8px;border-bottom:1px solid var(--rule);vertical-align:top;text-align:left}
+thead th{font:600 11.5px/1.25 var(--display);letter-spacing:.02em;color:var(--muted);border-bottom:2px solid var(--ink);vertical-align:bottom}
+td.n,th.n{text-align:right;white-space:nowrap}
+td.c,th.c{text-align:center}
+td.neg{color:var(--warn)}
+td.al{color:var(--muted);min-width:170px}
+.est{color:var(--accent);font-weight:600;margin-right:2px}
+.note{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;font-weight:600;color:var(--ntext)}
+.n1{background:var(--n1)}.n2{background:var(--n2)}.n3{background:var(--n3)}.n4{background:var(--n4)}.n5{background:var(--n5)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--muted);margin-top:6px}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.legend .note{width:18px;height:18px;font-size:11px}
+.price{border-top:2px solid var(--ink);margin-top:14px}
+.price .line{display:grid;grid-template-columns:1fr auto;gap:4px 24px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.price .line h3{margin:0}
+.price .line p{margin:2px 0 0;font-size:14px;color:var(--muted)}
+.price .amt{font:600 20px/1.2 var(--display);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.price .amt small{display:block;font:400 12px/1.3 var(--body);color:var(--muted)}
+.price .opt .amt{color:var(--accent)}
+.steps{list-style:none;padding:0;margin:14px 0;display:grid;gap:0}
+.steps li{display:grid;grid-template-columns:92px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--rule);max-width:none}
+.steps .when{font:600 13px/1.4 var(--display);color:var(--accent);letter-spacing:.03em}
+.steps b{display:block}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px 32px}
+.callout{background:var(--accent-soft);padding:14px 18px;margin:16px 0;font-size:14.5px}
+.sign{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;margin-top:28px}
+.sign div{border-top:1px solid var(--ink);padding-top:8px;font-size:13px;color:var(--muted);min-height:70px}
+footer{margin-top:40px;font-size:12px;color:var(--muted);border-top:1px solid var(--rule);padding-top:12px}
+@media print{
+  body{background:#fff;padding:0}
+  .doc{border:0;max-width:none;padding:0}
+  h2{break-after:avoid}
+  .tablewrap{overflow:visible}
+  table{font-size:9.5px}
+  section{break-inside:auto}
+}
+@media (max-width:520px){
+  .steps li{grid-template-columns:1fr;gap:2px}
+  .price .line{grid-template-columns:1fr}
+  .price .amt{text-align:left}
+}
+.values{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.values div{border-top:2px solid var(--accent);padding-top:8px;font-size:13.5px;color:var(--muted)}
+.values b{display:block;color:var(--ink);font:600 15px/1.3 var(--display);margin-bottom:2px}
+@media print{.values,.sources{break-inside:avoid}}
+.tablewrap td:nth-child(2),.tablewrap td:nth-child(4){min-width:130px}
+.quote{margin:12px 0 14px;padding:10px 16px;border-left:3px solid var(--accent);color:var(--muted);font-style:italic;max-width:68ch}
+</style>
+
+<main class="doc">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Proposition · Canton de Vaud</div>
+      <h1>Préqualification foncière<br>Commune pilote</h1>
+      <p class="lede">Un tableau des parcelles classées par potentiel constructible non utilisé, établi à partir des sources officielles vaudoises et fédérales, vérifié et livré clé en main.</p>
+    </div>
+    <div class="meta">
+      <span>Pour</span><b>Immocloud Sàrl<br>M. David Andereggen</b>
+      <span>De</span><b>Grégory Cardinale<br>FGC Média</b>
+      <span>Date</span><b>29 septembre 2026</b>
+    </div>
+  </header>
+
+  <section>
+    <h2><span class="no">1</span> Votre demande</h2>
+    <blockquote class="quote">« Afin de valider la méthode avant un déploiement sur l'ensemble du canton, nous proposons de commencer par une seule commune test. Une fois les résultats analysés de notre côté, nous étendrions la démarche commune par commune. »</blockquote>
+    <p>Repérer les parcelles dont le bâti existant est nettement inférieur à ce que permet le règlement communal. Le résultat est un tableau de 13 colonnes avec une note d'intérêt de 1 à 5 (1 = les 10 % de parcelles au plus fort potentiel). Vous n'avez pas le temps d'analyser des centaines de parcelles : le tableau fait le premier tri, vous vous concentrez sur une liste courte. La décision reste la vôtre.</p>
+    <p>Cette proposition porte sur <b>la commune test uniquement</b>. La suite fera l'objet d'une proposition séparée, une fois les résultats analysés de votre côté.</p>
+  </section>
+
+  <section>
+    <h2><span class="no">2</span> Une analyse clé en main, livrée en fichier</h2>
+    <p>Vous n'achetez pas un logiciel : vous recevez des analyses prêtes à l'emploi. Le moteur d'analyse reste chez moi ; vous me dites quelle commune vous intéresse, je vous livre le tableau vérifié.</p>
+    <div class="values">
+      <div><b>Rien à gérer</b>Pas d'hébergement, pas de comptes utilisateurs, pas d'accès à sécuriser, pas de mises à jour ni de formation.</div>
+      <div><b>Un fichier que vous connaissez</b>Un classeur Excel, trié par note, avec les liens de vérification pour chaque parcelle.</div>
+      <div><b>Quelqu'un qui en répond</b>Chaque fichier livré est vérifié avant envoi, et toute erreur de ma part est corrigée.</div>
+      <div><b>Construit avec vous</b>Définitions, règles et contrôles sont posés ensemble pendant le pilote.</div>
+    </div>
+    <p>Le gain de temps n'est réel que si vous pouvez faire confiance au tableau. Pendant le pilote, vous me dites ce que vous voulez que je vérifie en amont, pour que votre propre contrôle se limite aux parcelles que vous retenez.</p>
+  </section>
+
+  <section>
+    <h2><span class="no">3</span> Ce que nous avons déjà vérifié</h2>
+    <p>Avant de chiffrer, j'ai testé chaque source sur des parcelles réelles, à Lausanne et à Crissier. Tout ce dont le tableau a besoin est accessible sans registre foncier ni police ECA.</p>
+    <div class="sources">
+      <div class="src"><span class="tag">Étape A</span><h3>Parcelles et bâtiments</h3><p>N° de parcelle, surface, adresses et surface au sol des bâtiments : cadastre (geo.admin) et Registre fédéral des bâtiments. Écart de surface avec le registre foncier : moins de 1 %.</p></div>
+      <div class="src"><span class="tag">Étape A</span><h3>Extrait RDPPF</h3><p>Récupéré automatiquement pour chaque parcelle (rdppf.vd.ch), en données et en PDF officiel. Il donne la surface de la parcelle dans chaque zone (forêt, agricole, verdure) et les restrictions à examiner.</p></div>
+      <div class="src"><span class="tag">Étape B</span><h3>Zone et règlement</h3><p>Le guichet cantonal fournit la zone communale et, souvent, ses indices (COS, IUS). Le règlement et ses modificatifs sont analysés par IA, une fois par commune, et résumés dans une fiche de règles courte, vérifiée puis validée par vous. Piège évité à Crissier : le modificatif de 1992 change le COS de toute la zone FA.</p></div>
+      <div class="src"><span class="tag">Étape C</span><h3>Volume existant</h3><p>Calculé à partir des relevés altimétriques de swisstopo (2025) et calé sur les volumes connus du Registre des bâtiments. À Crissier, l'écart médian est de 14 % sur 317 maisons. C'est une estimation, suffisante pour trier.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="no">4</span> Exemple de résultat : Crissier, zones villas</h2>
+    <p>Extrait d'un prototype réalisé pendant l'étude préalable sur les <b>514 parcelles bâties</b> des zones de faible densité FA et FB (COS 1/6, hauteur 9 m). Trois parcelles sont présentées : une note 1, une note 3 et une note 5.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th>Localité</th><th>Adresse</th><th class="n">N° parc.</th><th>Zone d'affectation</th>
+          <th class="n">Surface parcelle m²</th><th class="n">Surface bâtie m²</th><th class="n">Volume bâti m³</th>
+          <th class="n">Emprise max. m²</th><th class="n">Volume max. m³</th><th class="n">Écart emprise</th><th class="n">Écart volume</th>
+          <th>Statut PGA</th><th class="c">Note</th><th>Restrictions RDPPF à examiner</th>
+        <tbody>
+<tr><td>Crissier</td><td>Chemin du Ferrage 12</td><td class="n">1205</td><td>Faible densité (villas) FB</td><td class="n">4 358</td><td class="n">229</td><td class="n">1 400</td><td class="n">642</td><td class="n">4 620</td><td class="n ">+64 %</td><td class="n ">+70 %</td><td>En vigueur (1985)<sup>*</sup></td><td class="c"><span class="note n1">1</span></td><td class="al">Distance par rapport à la forêt; Zone agricole</td></tr>
+<tr><td>Crissier</td><td>Chemin de Riant-Mont 1</td><td class="n">1160</td><td>Faible densité (villas) FB</td><td class="n">1 000</td><td class="n">142</td><td class="n"><span class="est" title="Volume estimé par altimétrie">≈</span>920</td><td class="n">167</td><td class="n">1 200</td><td class="n ">+15 %</td><td class="n ">+23 %</td><td>En vigueur (1985)<sup>*</sup></td><td class="c"><span class="note n3">3</span></td><td class="al">–</td></tr>
+<tr><td>Crissier</td><td>Chemin des Cèdres 2</td><td class="n">593</td><td>Faible densité (villas) FA</td><td class="n">1 400</td><td class="n">183</td><td class="n"><span class="est" title="Volume estimé par altimétrie">≈</span>1 410</td><td class="n">167</td><td class="n">1 200</td><td class="n neg">-10 %</td><td class="n neg">-17 %</td><td>En vigueur (1985)<sup>*</sup></td><td class="c"><span class="note n5">5</span></td><td class="al">Aire forestière; Distance par rapport à la forêt; Zone de verdure</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <span><span class="note n1">1</span>10 % les plus fortes</span><span><span class="note n2">2</span>10–25 %</span><span><span class="note n3">3</span>25–50 %</span><span><span class="note n4">4</span>50–75 %</span><span><span class="note n5">5</span>reste, ou bâti déjà au maximum</span>
+    </div>
+    <h3>Comment lire ce tableau</h3>
+    <ul class="small">
+      <li><b>Écart</b> = part des droits à bâtir non utilisés : (maximum − actuel) ÷ maximum. Un écart négatif signifie que le bâti dépasse déjà le règlement actuel (droits acquis).</li>
+      <li><b>Emprise max.</b> = COS × surface située en zone à bâtir. Exemple : la parcelle 1205 compte 4 358 m², dont 3 850 m² en zone villas ; la partie en zone agricole est exclue du calcul.</li>
+      <li><b>Volume max.</b> = emprise max. × hauteur max. × 0,8 pour tenir compte de la toiture à pans imposée. Ce facteur est à valider avec vous.</li>
+      <li><span class="est">≈</span> volume estimé par altimétrie ; sans ce signe, le volume provient du Registre des bâtiments.</li>
+      <li><sup>*</sup> Le plan de Crissier date de 1985 : son éventuelle révision est à confirmer auprès de la commune. Ce statut est vérifié pour la commune pilote.</li>
+      <li><b>Exemple de démonstration, non vérifié</b> : il n'a pas passé le contrôle qualité et les hypothèses ne sont pas encore validées avec vous. Ces chiffres montrent la forme du résultat ; ils ne doivent pas servir à prospecter.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="no">5</span> Commune pilote</h2>
+    <p><b>La commune pilote est à votre choix.</b> Idéalement une commune que vous connaissez bien, pour que le contrôle des résultats soit rapide et fiable. Crissier, où l'exemple ci-dessus a été réalisé, s'y prête ; dans ce cas, l'analyse est entièrement refaite et vérifiée.</p>
+    <p>Le prix du pilote vaut pour une commune de taille moyenne, comme Crissier. Pour l'une des cinq plus grandes villes du canton (Lausanne, Yverdon-les-Bains, Montreux, Nyon, Renens), il est établi sur devis.</p>
+    <p class="small">L'état du plan d'affectation est indiqué dans le tableau (en-tête et colonne) : si un nouveau plan est à l'enquête publique, comme à Ecublens en 2026, les résultats sont signalés comme provisoires. Pour le pilote, une commune au plan stable reste préférable : le but est de valider la méthode, avec des règles qui ne bougent pas.</p>
+  </section>
+
+  <section>
+    <h2><span class="no">6</span> Déroulement et livrables</h2>
+    <ol class="steps">
+      <li><span class="when">Semaine 1</span><div><b>Cadrage avec vous</b>Définitions (écarts, note, parcelles retenues), colonnes du tableau, et ce que vous voulez que je vérifie avant chaque livraison. Collecte des données de la commune.</div></li>
+      <li><span class="when">Semaine 2</span><div><b>Règles de zone</b>Analyse par IA du règlement, de ses modificatifs et des plans spéciaux, une fois pour toute la commune. Je vérifie, puis vous soumets la fiche de règles pour validation avant tout calcul.</div></li>
+      <li><span class="when">Semaine 3</span><div><b>Calcul et contrôle</b>Extraits RDPPF, surfaces constructibles, volumes existants, potentiel, écarts et notes. Contrôle avant livraison.</div></li>
+      <li><span class="when">Semaine 4</span><div><b>Recette et livraison</b>Contrôle croisé avec vous sur 10 à 20 parcelles, corrections, présentation en visio.</div></li>
+      <li><span class="when">Ensuite</span><div><b>Bilan</b>Vous analysez les résultats de votre côté. Nous faisons le point ensemble : ce qui a servi, ce qui manque, et la suite.</div></li>
+    </ol>
+    <div class="two">
+      <div>
+        <h3>Vous recevez</h3>
+        <ul>
+          <li>Le tableau Excel à 13 colonnes (plus EGRID, source du volume, restrictions à examiner, liens de vérification), trié par note.</li>
+          <li><b>Un avertissement rédigé pour chaque parcelle notée 1 ou 2</b> : en une ou deux phrases, ce qui mérite votre attention (restrictions RDPPF, plan spécial, zone réservée).</li>
+          <li><b>Le calculateur de valeur résiduelle, intégré au tableau</b> : pour une parcelle qui vous intéresse, vous saisissez prix de vente, coûts, marge et commission ; la valeur résiduelle se calcule dans la même ligne.</li>
+          <li>Un dossier de sources : règlement, modificatifs et plans, puis un sous-dossier par parcelle retenue avec son extrait RDPPF officiel.</li>
+          <li>La fiche de règles de la commune (chaque valeur avec son article) et une note de méthode (sources, formules, limites).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>J'ai besoin de vous</h3>
+        <ul>
+          <li>Le choix de la commune et le cadrage en semaine 1.</li>
+          <li>La validation de la fiche de règles (un e-mail suffit).</li>
+          <li>Une à deux heures pour la recette.</li>
+          <li>Si possible, quelques volumes ECA connus pour contrôler l'estimation.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="no">7</span> Prix</h2>
+    <div class="price">
+      <div class="line">
+        <div><h3>Commune pilote, clé en main</h3><p>Tout le déroulement ci-dessus : cadrage, règles, calcul, contrôle, recette, livrables et calculateur intégré.</p></div>
+        <div class="amt">CHF 3 900<small>forfait</small></div>
+      </div>
+    </div>
+    <p class="small">Montant en francs suisses ; FGC Média Sàrl n'est pas assujettie à la TVA. Paiement : 50 % à la commande, 50 % à la livraison. Le pilote comprend la mise en service de l'analyse : le prix par commune d'un déploiement sera nettement inférieur.</p>
+  </section>
+
+  <section>
+    <h2><span class="no">8</span> Hypothèses et fiabilité</h2>
+    <p>Toutes les colonnes n'ont pas la même fiabilité :</p>
+    <ul>
+      <li><b>Parcelle, surface, zone, règles, surface bâtie</b> : fiables. Reprises des sources officielles et du règlement, article cité.</li>
+      <li><b>Volume bâti</b> : estimation (écart médian ~15 % quand il est estimé, signe ≈). Ce n'est pas le volume ECA.</li>
+      <li><b>Emprise et volume max.</b> : théoriques. Indices et hauteurs du règlement, sans distances aux limites, forme de parcelle, dérogations ni bonus.</li>
+      <li><b>Note</b> : un outil de tri, pas une évaluation ni une étude de faisabilité.</li>
+      <li><b>Restrictions RDPPF</b> : les surfaces hors zone à bâtir (forêt, agricole, verdure) sont exclues du calcul ; les autres restrictions (distance à la forêt, dangers, limites des constructions…) sont signalées, pas déduites.</li>
+      <li><b>Statut du plan</b> : vérifié à la date de livraison et indiqué dans le tableau.</li>
+    </ul>
+    <p class="small">Les cas que les règles ne permettent pas de chiffrer sont marqués « à interpréter » plutôt que devinés. Les hypothèses de calcul (facteur de toiture, conversion d'un IUS en emprise, plans spéciaux) sont validées avec vous en semaine 1.</p>
+  </section>
+
+  <section>
+    <h2><span class="no">9</span> Cadre</h2>
+    <ul>
+      <li><b>Une analyse, pas des données.</b> Les données sources restent la propriété de leurs détenteurs (Confédération, État de Vaud, communes) et sont citées. Je les utilise conformément à leurs conditions d'utilisation.</li>
+      <li><b>Vos livrables</b> sont destinés à l'activité d'Immocloud, sans limite de durée. Le moteur d'analyse reste chez FGC Média.</li>
+      <li><b>Pas de données personnelles</b> : aucun nom de propriétaire n'est produit ; cette recherche reste de votre côté.</li>
+      <li><b>Confidentialité</b> : vos choix de communes, vos annotations et vos retours restent confidentiels.</li>
+      <li><b>Correction</b> : toute erreur de ma part (reprise d'une donnée, transcription d'une règle, calcul) est corrigée sans frais.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="no">10</span> Hors périmètre</h2>
+    <div class="two">
+      <ul>
+        <li>Registre foncier, Intercapi, servitudes</li>
+        <li>Identification et coordonnées des propriétaires</li>
+        <li>Prise de contact (courriers, suivi)</li>
+      </ul>
+      <ul>
+        <li>Calcul économique au-delà du calculateur intégré</li>
+        <li>Autres communes et autres cantons</li>
+        <li>Mise à jour après livraison</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="no">11</span> Après le pilote</h2>
+    <p>Une fois les résultats analysés de votre côté, je vous ferai une <b>proposition séparée</b> pour la suite. Elle dépendra de trois choses que le pilote permettra de préciser : le nombre de communes, leur complexité et les modalités de service (niveau de contrôle avant livraison, mises à jour).</p>
+    <p>Un point à garder en tête pour cette suite : beaucoup de communes vaudoises révisent leur plan d'affectation en ce moment, et les données cantonales affichent l'ancien plan « en vigueur » jusqu'à l'adoption du nouveau.</p>
+    <div class="two">
+      <div class="callout" style="margin:8px 0"><b>Un risque.</b> Une parcelle notée 1 peut perdre son potentiel si elle est déclassée ou si ses indices baissent. Mieux vaut le savoir avant de démarcher le propriétaire.</div>
+      <div class="callout" style="margin:8px 0"><b>Une opportunité.</b> Une enquête publique fait bouger les propriétaires : ceux qui sont déclassés envisagent de vendre, ceux dont la parcelle gagne en densité découvrent sa nouvelle valeur.</div>
+    </div>
+    <p class="small">Un suivi de vos communes (veille des enquêtes publiques, alerte, mise à jour du tableau) pourra faire partie de cette proposition.</p>
+  </section>
+
+  <section>
+    <h2><span class="no">12</span> Points à discuter</h2>
+    <ol>
+      <li>La commune pilote : laquelle ? Crissier ou une autre commune que vous connaissez bien.</li>
+      <li>Les parcelles retenues : habitation seulement, ou aussi mixte et centre ? Terrains non bâtis inclus ?</li>
+      <li>La formule de l'écart : part des droits non utilisés (proposée) ou gain par rapport à l'existant ?</li>
+      <li>La note : moyenne des écarts d'emprise et de volume (proposée), ou le plus faible des deux ?</li>
+      <li>Le facteur de toiture de 0,8 pour les toits à pans.</li>
+      <li>Ce que vous voulez que je vérifie avant chaque livraison.</li>
+      <li>Excel ou Google Sheets ?</li>
+    </ol>
+  </section>
+
+  <footer>Sources consultées pour l'exemple : RDPPF Vaud (rdppf.vd.ch), guichet cartographique cantonal (geo.vd.ch), Registre fédéral des bâtiments et des logements (OFS), swisstopo (swissSURFACE3D, swissALTI3D), règlement communal de Crissier (1985, modifié en 1992).</footer>
+</main>
