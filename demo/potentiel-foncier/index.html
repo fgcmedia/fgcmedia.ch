@@ -1,0 +1,167 @@
+<title>Potentiel foncier vaudois</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Même identité que les propositions FGC Média : une feuille de travail sur fond clair, colonne de lecture, tableau en vedette */
+:root{
+  --ground:#F6F7F5; --paper:#FFFFFF; --ink:#1B2730; --muted:#5B6770; --rule:#D9DEDB;
+  --accent:#1F5E57; --accent-soft:#E3EFEC; --warn:#9A3B26;
+  --n1:#1F5E57; --n3:#C9A43B; --n5:#A9B1B4; --ntext:#FFFFFF;
+  --display:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#12181C; --paper:#1A2227; --ink:#E4EAE8; --muted:#9AA6AC; --rule:#2E3A40;
+    --accent:#7CC3B6; --accent-soft:#1E3230; --warn:#E59A83;
+    --n1:#3F9C8E; --n3:#A88A33; --n5:#56606A; --ntext:#FFFFFF;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#12181C; --paper:#1A2227; --ink:#E4EAE8; --muted:#9AA6AC; --rule:#2E3A40;
+  --accent:#7CC3B6; --accent-soft:#1E3230; --warn:#E59A83;
+  --n1:#3F9C8E; --n3:#A88A33; --n5:#56606A; --ntext:#FFFFFF;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.6 var(--body);padding-inline:16px;padding-block:32px 64px}
+.doc{max-width:860px;margin:0 auto;background:var(--paper);border:1px solid var(--rule);padding:clamp(20px,5vw,56px)}
+header.top{border-bottom:2px solid var(--ink);padding-bottom:22px}
+.eyebrow{font:600 12px/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font:600 clamp(28px,4.6vw,40px)/1.1 var(--display);margin:10px 0 10px;text-wrap:balance}
+.lede{color:var(--muted);margin:0;max-width:60ch;font-size:16px}
+h2{font:600 22px/1.2 var(--display);margin:44px 0 12px;text-wrap:balance}
+h3{font:600 16px/1.3 var(--body);margin:20px 0 6px}
+p,li{max-width:68ch}
+ul{padding-left:20px;margin:8px 0}
+li{margin:4px 0}
+.small{font-size:13px;color:var(--muted)}
+.tablewrap{overflow-x:auto;margin:14px -8px 8px;padding:0 8px}
+table{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 8px;border-bottom:1px solid var(--rule);vertical-align:top;text-align:left}
+thead th{font:600 11.5px/1.25 var(--display);letter-spacing:.02em;color:var(--muted);border-bottom:2px solid var(--ink);vertical-align:bottom}
+td.n,th.n{text-align:right;white-space:nowrap}
+td.c,th.c{text-align:center}
+td.neg{color:var(--warn)}
+td.al{color:var(--muted);min-width:170px}
+.est{color:var(--accent);font-weight:600;margin-right:2px}
+.note{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;font-weight:600;color:var(--ntext)}
+.n1{background:var(--n1)}.n3{background:var(--n3)}.n5{background:var(--n5)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:22px}
+.facts div{border-top:2px solid var(--accent);padding-top:8px;font-size:13.5px;color:var(--muted)}
+.facts b{display:block;color:var(--ink);font:600 15px/1.3 var(--display);margin-bottom:2px}
+.rules td:first-child{font-weight:500;min-width:130px}
+.rules td:last-child{color:var(--muted);min-width:150px}
+.trap{background:var(--accent-soft);padding:14px 18px;margin:16px 0;font-size:14.5px}
+.steps{list-style:none;padding:0;margin:14px 0}
+.steps li{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--rule);max-width:none}
+.steps .k{font:600 15px/1.4 var(--display);color:var(--accent);font-variant-numeric:tabular-nums}
+.steps b{display:block}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px 32px}
+.two > div{min-width:0}
+.cta{border:2px solid var(--accent);padding:18px 22px;margin-top:16px}
+.cta h3{margin-top:0}
+footer{margin-top:40px;font-size:12px;color:var(--muted);border-top:1px solid var(--rule);padding-top:12px}
+@media (max-width:520px){ .steps li{grid-template-columns:22px 1fr} }
+</style>
+
+<main class="doc">
+  <header class="top">
+    <div class="eyebrow">Préqualification foncière · Canton de Vaud</div>
+    <h1>Savoir où chercher avant de démarcher</h1>
+    <p class="lede">Toutes les parcelles bâties d'une commune, classées selon le potentiel constructible que leurs propriétaires n'utilisent pas. Un tableau vérifié, livré clé en main, pour que vous concentriez votre temps sur une liste courte.</p>
+    <div class="facts">
+      <div><b>Une commune entière</b>Des centaines de parcelles passées en revue, pas un échantillon.</div>
+      <div><b>Une note de 1 à 5</b>1 = les 10 % de parcelles au plus fort potentiel non utilisé.</div>
+      <div><b>Chaque règle sourcée</b>Indices et hauteurs repris du règlement communal, article cité.</div>
+      <div><b>Rien à gérer</b>Un classeur Excel. Pas d'application, pas de compte, pas de formation.</div>
+    </div>
+  </header>
+
+  <section>
+    <h2>À quoi ressemble le résultat</h2>
+    <p>Extrait d'un test sur les zones villas d'une commune de l'Ouest lausannois : plus de 500 parcelles bâties. Trois lignes sont montrées ici, une note 1, une note 3 et une note 5. Les parcelles sont anonymisées et les surfaces arrondies.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th>Parcelle</th><th>Zone</th><th class="n">Surface parcelle m²</th><th class="n">Surface bâtie m²</th><th class="n">Volume bâti m³</th>
+          <th class="n">Emprise max. m²</th><th class="n">Volume max. m³</th><th class="n">Écart emprise</th><th class="n">Écart volume</th>
+          <th class="c">Note</th><th>À examiner</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Parcelle A</td><td>Villas</td><td class="n">≈ 4 400</td><td class="n">229</td><td class="n">1 400</td><td class="n">642</td><td class="n">4 620</td><td class="n">+64 %</td><td class="n">+70 %</td><td class="c"><span class="note n1">1</span></td><td class="al">Une partie en zone agricole, exclue du calcul. Distance à la forêt.</td></tr>
+          <tr><td>Parcelle B</td><td>Villas</td><td class="n">≈ 1 000</td><td class="n">142</td><td class="n"><span class="est" title="Volume estimé par altimétrie">≈</span>920</td><td class="n">167</td><td class="n">1 200</td><td class="n">+15 %</td><td class="n">+23 %</td><td class="c"><span class="note n3">3</span></td><td class="al">–</td></tr>
+          <tr><td>Parcelle C</td><td>Villas</td><td class="n">≈ 1 400</td><td class="n">183</td><td class="n"><span class="est" title="Volume estimé par altimétrie">≈</span>1 410</td><td class="n">167</td><td class="n">1 200</td><td class="n neg">−10 %</td><td class="n neg">−17 %</td><td class="c"><span class="note n5">5</span></td><td class="al">Aire forestière et zone de verdure, exclues du calcul.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="small">
+      <li><b>Écart</b> : part des droits à bâtir non utilisés. Un écart négatif signifie que le bâti dépasse déjà le règlement actuel (droits acquis).</li>
+      <li><span class="est">≈</span> volume estimé à partir des relevés altimétriques de swisstopo ; sans ce signe, il provient du Registre fédéral des bâtiments.</li>
+      <li>Le tableau livré compte aussi l'adresse, le numéro de parcelle, l'état du plan d'affectation, les liens de vérification et, pour les notes 1 et 2, un avertissement rédigé sur ce qui mérite votre attention.</li>
+      <li>Exemple de démonstration : il montre la forme du résultat, pas des chiffres à utiliser.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Obtenir un tableau est facile. Qu'il soit juste, beaucoup moins.</h2>
+    <p>Les données sont publiques, mais éparpillées entre le cadastre, le Registre des bâtiments, les extraits RDPPF, le guichet cantonal et les relevés de swisstopo. Et surtout, les règles qui fixent le potentiel sont dans le règlement communal : souvent un scan des années 1980, complété par des modifications successives.</p>
+    <div class="trap"><b>Un piège rencontré dans la commune test.</b> Le règlement de 1985 fixe un indice d'occupation de 1/10 pour une villa seule. Une modification de 1992 le porte à 1/6 pour toute la zone. Un calcul fait sur le texte d'origine sous-estime le potentiel de presque toutes les parcelles, sans que rien ne le signale : un tableau faux a l'air aussi propre qu'un tableau juste.</div>
+    <p>C'est pourquoi chaque commune commence par une <b>fiche de règles</b> : le règlement et ses modifications sont lus une fois, chaque valeur est reportée avec son article, contrôlée avec les données cantonales, puis validée par vous avant tout calcul.</p>
+    <h3>Extrait de fiche de règles</h3>
+    <div class="tablewrap">
+      <table class="rules">
+        <thead><tr><th>Règle</th><th>Zone villas</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td>Indice d'occupation du sol</td><td>1/6 (1/10 dans le texte de 1985)</td><td>Art. 94, modifié en 1992</td></tr>
+          <tr><td>Hauteur maximale</td><td>9 m si la pente du toit est entre 45 et 100 %, 7 m sinon ; toiture comprise</td><td>Art. 95 et 27</td></tr>
+          <tr><td>Surface de terrain</td><td>Les surfaces forestières ne comptent pas</td><td>Art. 23</td></tr>
+          <tr><td>Contrôle</td><td>Indice concordant avec les données cantonales (0,167)</td><td>Guichet cantonal</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Comment ça se passe</h2>
+    <ol class="steps">
+      <li><span class="k">1</span><div><b>Vous choisissez une commune</b>Idéalement une commune que vous connaissez bien, pour juger vous-même la pertinence du résultat.</div></li>
+      <li><span class="k">2</span><div><b>Je prépare la fiche de règles</b>Vous la validez par un simple e-mail, ou vous me renvoyez vos corrections.</div></li>
+      <li><span class="k">3</span><div><b>Je calcule et je contrôle</b>Surfaces constructibles, volumes existants, écarts, notes et restrictions à examiner.</div></li>
+      <li><span class="k">4</span><div><b>Vous recevez le classeur</b>Trié par note, avec les sources et les liens de vérification. On le parcourt ensemble.</div></li>
+    </ol>
+    <div class="two">
+      <div>
+        <h3>Ce que le tableau fait</h3>
+        <ul>
+          <li>Faire le premier tri sur toute une commune</li>
+          <li>Signaler ce qui mérite d'être vérifié</li>
+          <li>Citer la source de chaque règle</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Ce qu'il ne fait pas</h3>
+        <ul>
+          <li>Remplacer une étude de faisabilité</li>
+          <li>Donner le nom des propriétaires (protection des données)</li>
+          <li>Décider à votre place : la décision reste la vôtre</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Agences fondatrices</h2>
+    <p>Le moteur d'analyse est construit et testé. Je cherche maintenant <b>2 ou 3 agences ou courtiers vaudois</b> pour le finaliser avec moi, chacun sur une commune de son choix : vos retours définissent ce que le tableau vérifie, ce qu'il affiche et comment il note.</p>
+    <p>En échange, les agences fondatrices bénéficient de conditions particulières pour la suite, notamment une priorité sur les communes qu'elles ont choisies.</p>
+    <div class="cta">
+      <h3>Intéressé ?</h3>
+      <p style="margin:0">Répondez simplement au message par lequel vous avez reçu cette page. Je vous montre en 15 minutes le résultat sur une commune réelle, et nous voyons si votre commune s'y prête.</p>
+    </div>
+  </section>
+
+  <footer>Grégory Cardinale · FGC Média Sàrl, Neuchâtel. Sources utilisées : RDPPF Vaud, guichet cartographique cantonal, cadastre (geo.admin.ch), Registre fédéral des bâtiments et des logements (OFS), swisstopo (swissSURFACE3D, swissALTI3D), règlements communaux. Seuls les documents officiels font foi.</footer>
+</main>
