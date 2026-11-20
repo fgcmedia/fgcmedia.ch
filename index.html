@@ -77,12 +77,10 @@
       .chip b { color: var(--ink); font-weight: 700; }
       .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
 
-      /* BANDE MICROSOFT */
-      .ms-band { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; margin-top: 22px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px 24px; box-shadow: var(--shadow-sm); }
-      .ms-band p { font-size: 16px; color: var(--ink-soft); }
-      .ms-band p b { color: var(--ink); font-weight: 700; }
-      .ms-band .ms-link { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 600; color: var(--accent-deep); white-space: nowrap; transition: transform .2s; }
-      .ms-band .ms-link:hover { transform: translateX(3px); }
+      /* LIGNE INTÉGRATEURS MICROSOFT (avant le footer) */
+      .ms-note { text-align: center; font-size: 14.5px; color: var(--ink-faint); padding: 0 0 8px; }
+      .ms-note a { display: inline-block; font-weight: 600; color: var(--accent-deep); transition: transform .2s; }
+      .ms-note a:hover { transform: translateX(3px); }
 
       /* SECTIONS */
       section.block { padding: 76px 0; }
@@ -140,16 +138,17 @@
       .badge { flex: none; font-size: 12.5px; font-weight: 600; padding: 6px 13px; border-radius: 999px; background: var(--accent-wash); color: var(--accent-deep); white-space: nowrap; }
       .badge.neutral { background: var(--bg-warm); color: var(--ink-soft); }
       .project p { margin-top: 14px; color: var(--ink-soft); font-size: 16px; }
-      .project .meta { margin-top: auto; padding-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
-      .project .meta span { font-size: 13px; color: var(--ink-soft); background: var(--bg-warm); border-radius: 999px; padding: 6px 13px; }
-      .project .meta span b { color: var(--ink); }
+      /* Stack : volontairement secondaire, on lit d'abord le problème et le résultat */
+      .project .meta { margin-top: auto; padding-top: 16px; display: flex; gap: 6px; flex-wrap: wrap; }
+      .project .meta span { font-size: 12px; color: var(--ink-faint); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; }
+      .project .meta span b { color: var(--ink-soft); font-weight: 600; }
       @media (max-width: 980px) { .projects, .projects.two { grid-template-columns: 1fr; } }
 
       .case { display: grid; grid-template-columns: 1.25fr 1fr; gap: 36px; margin-top: 18px; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 36px; box-shadow: var(--shadow); }
       .case p { margin-top: 14px; color: var(--ink-soft); font-size: 16.5px; }
-      .case .meta { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
-      .case .meta span { font-size: 13px; color: var(--ink-soft); background: var(--bg-warm); border-radius: 999px; padding: 6px 13px; }
-      .case .meta span b { color: var(--ink); }
+      .case .meta { margin-top: 16px; display: flex; gap: 6px; flex-wrap: wrap; }
+      .case .meta span { font-size: 12px; color: var(--ink-faint); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; }
+      .case .meta span b { color: var(--ink-soft); font-weight: 600; }
       .case blockquote { margin-top: 22px; border-left: 3px solid var(--accent); padding-left: 16px; font-size: 16px; color: var(--ink); font-style: italic; }
       .case blockquote cite { display: block; margin-top: 6px; font-size: 13.5px; font-style: normal; color: var(--ink-faint); }
       .case-stats { display: grid; gap: 14px; align-content: start; }
@@ -157,7 +156,9 @@
       .stat b { display: block; font-size: clamp(30px, 3.4vw, 40px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; color: var(--accent-deep); }
       .stat .stat-title { display: block; margin-top: 6px; font-size: 16px; font-weight: 600; color: var(--ink); }
       .stat .stat-sub { display: block; margin-top: 4px; font-size: 14.5px; color: var(--ink-soft); line-height: 1.45; }
+      .case > * { min-width: 0; }
       @media (max-width: 900px) { .case { grid-template-columns: 1fr; padding: 28px 24px; } }
+      @media (max-width: 480px) { .project-top { flex-wrap: wrap; } }
 
       /* POUR QUI */
       .audience { display: grid; grid-template-columns: 1.1fr 1fr; gap: 44px; align-items: center; margin-top: 40px; }
@@ -218,6 +219,8 @@
       .approche-lead .hl { color: var(--accent-deep); }
       .approche-intro { max-width: 70ch; font-size: 18.5px; color: var(--ink-soft); margin-top: 24px; line-height: 1.6; }
       .approche-intro strong { color: var(--ink); font-weight: 600; }
+      .approche-m365 { max-width: 70ch; font-size: 16.5px; color: var(--ink-soft); margin-top: 16px; line-height: 1.6; }
+      .approche-m365 strong { color: var(--ink); font-weight: 600; }
 
       /* FAQ */
       .faq-list { margin-top: 40px; display: grid; gap: 14px; }
@@ -244,7 +247,6 @@
             <a href="#exemples">Exemples</a>
             <a href="#faq">FAQ</a>
             <a href="#apropos">À propos</a>
-            <a href="https://fgctech.ch/cv/">CV</a>
           </nav>
           <div class="nav-actions">
             <a class="icon-btn" href="https://www.linkedin.com/in/gregory-cardinale/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
@@ -281,10 +283,6 @@
           <span class="chip"><span class="dot"></span><b>+20 ans</b>&nbsp;en tech &amp; business</span>
           <span class="chip"><span class="dot"></span><b>Remote</b> ou sur site&nbsp;· France & Suisse</span>
           <span class="chip"><span class="dot"></span><b>Audit</b>&nbsp;de 15 min offert</span>
-        </div>
-        <div class="ms-band">
-          <p><b>Intégrateur ou partenaire Microsoft ?</b> Renfort freelance sur Power Platform et Dynamics&nbsp;365.</p>
-          <a class="ms-link" href="https://fgctech.ch/cv-ms/">Voir mon CV dédié →</a>
         </div>
       </div>
     </section>
@@ -328,6 +326,7 @@
           <span class="eyebrow-c">Méthode</span>
           <p class="approche-lead">L'automatisation n'est pas le but.<br /> <span class="hl">Vos opérations qui tournent sans friction, si.</span></p>
           <p class="approche-intro">La plupart des prestataires vous livrent un outil. Moi, je pars de votre problème : <strong>où votre équipe perd-elle du temps, où vos données se dispersent, où votre process casse.</strong> On chiffre ce que ça vous coûte, on valide une maquette avant d'écrire la moindre ligne de code, puis je livre par étapes courtes et utilisables.</p>
+          <p class="approche-m365"><strong>Vous êtes sous Microsoft&nbsp;365 ?</strong> On s'appuie sur Outlook, Teams, SharePoint et Power Automate, en général sans nouvel abonnement. Sinon, on part de vos outils actuels.</p>
         </div>
         <h2 style="margin-top:64px">Mon approche repose sur 3 piliers</h2>
         <div class="pillars">
@@ -362,8 +361,8 @@
           <div class="project">
             <div class="project-top"><span class="project-name sm">Fidélisation automatisée</span><span class="badge">Livré · 2024–2026</span></div>
             <span class="project-client">Institut de beauté · Lausanne</span>
-            <p>Synchronisation du logiciel de réservation avec le CRM, relance automatique après chaque rendez-vous et offre de fidélité mensuelle, sans aucune action de l'équipe. En production du T4&nbsp;2024 à novembre&nbsp;2026.</p>
-            <div class="meta"><span><b>n8n</b> · HighLevel</span><span><b>API</b> Agenda.ch</span></div>
+            <p>Le logiciel de réservation et le CRM ne se parlaient pas. Du T4&nbsp;2024 à novembre&nbsp;2026, 4 workflows n8n en production les ont reliés : fiche client à jour après chaque rendez-vous, relance après la visite, offre de fidélité mensuelle. Un chatbot WhatsApp trilingue répondait aux clientes. Aucune action de l'équipe.</p>
+            <div class="meta"><span><b>n8n</b> · HighLevel</span><span><b>API</b> Agenda.ch</span><span><b>WhatsApp</b> · chatbot</span></div>
           </div>
           <div class="project">
             <div class="project-top"><span class="project-name sm">Appels de charges PPE</span><span class="badge neutral">En cours</span></div>
@@ -427,6 +426,10 @@
             <span class="usage-tag">Tableau de bord sur-mesure</span>
             <p><strong>PME industrielle, agence :</strong> données éparpillées entre plusieurs outils réunies dans un écran clair et à jour.</p>
           </div>
+          <div class="usage-card">
+            <span class="usage-tag">Automatiser vos flux Microsoft&nbsp;365</span>
+            <p><strong>PME sous Microsoft&nbsp;365 :</strong> approbations, documents classés dans SharePoint, notifications Teams déclenchées par vos e-mails Outlook. Avec les outils que vous payez déjà.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -452,6 +455,10 @@
           <details class="faq-item">
             <summary>Pourquoi du sur-mesure plutôt qu'un logiciel tout fait du marché ?<span class="sign">+</span></summary>
             <div class="faq-body">Si un logiciel du marché répond à votre besoin, je vous le dirai — et je vous aiderai même à bien le choisir et le brancher au reste. Le sur-mesure n'a de sens que quand <strong>aucun outil existant ne colle à votre façon de travailler</strong>, ou quand vous payez le prix fort pour un logiciel dont vous n'utilisez qu'une petite partie des fonctions. Souvent, la meilleure solution est un mélange : connecter intelligemment ce que vous avez déjà, et ne développer que ce qui manque vraiment.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Je suis sous Microsoft 365, faut-il un nouvel outil ?<span class="sign">+</span></summary>
+            <div class="faq-body">Pas forcément. Votre abonnement inclut déjà, dans la plupart des cas, <strong>Power Automate, SharePoint et Teams</strong>. On commence par exploiter ce que vous payez déjà. On n'ajoute du sur-mesure que si c'est rentable.</div>
           </details>
           <details class="faq-item">
             <summary>On a déjà essayé un outil et ça n'a jamais vraiment pris. Pourquoi ce serait différent ?<span class="sign">+</span></summary>
@@ -496,10 +503,6 @@
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
               LinkedIn
             </a>
-            <a class="social-link" href="https://fgctech.ch/cv/">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
-              Mon CV
-            </a>
           </div>
         </div>
       </div>
@@ -520,12 +523,16 @@
       </div>
     </div>
 
+    <div class="wrap">
+      <p class="ms-note">Intégrateur Microsoft ? <a href="https://fgctech.ch/cv-ms/">Voir mon profil Power Platform / Dynamics&nbsp;365 →</a></p>
+    </div>
+
     <footer>
       <div class="wrap">
         <div class="foot-grid">
           <div class="foot-brand">
             <a href="#top" class="brand"><span class="mark">F</span> FGC&nbsp;Tech</a>
-            <p>© FGC Média Sàrl (changement de raison sociale en FGC Tech Sàrl en cours) · Tous droits réservés<br />Numéro d'immatriculation : CHE-339.209.179 (Suisse)<br />c/o ExpertFid & Audit SA, succursale de Neuchâtel, Grand-Rue 1 – CH-2000 Neuchâtel – Suisse</p>
+            <p>© FGC Média Sàrl (changement de raison sociale en FGC Tech Sàrl en cours) · Tous droits réservés<br />Numéro d'immatriculation : CHE-339.209.179 (Suisse)<br />c/o ExpertFid &amp; Audit SA, succursale de Neuchâtel, Grand-Rue 1 – CH-2000 Neuchâtel – Suisse</p>
           </div>
           <div class="foot-col">
             <h4>Naviguer</h4>
